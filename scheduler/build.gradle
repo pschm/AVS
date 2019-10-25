@@ -10,11 +10,35 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
+    def ktor_version = "1.2.4"
+    def junit_version = "5.5.2"
+
+    // Ktor & Ktor-netty (Server)
+    implementation "io.ktor:ktor-server-core:$ktor_version"
+    implementation "io.ktor:ktor-server-netty:$ktor_version"
+    implementation "ch.qos.logback:logback-classic:1.2.3"
+
+    // Ktor (Client)
+    implementation "io.ktor:ktor-client-core:$ktor_version"
+    implementation "io.ktor:ktor-client-apache:$ktor_version"
+
+    // json support
+    implementation "com.google.code.gson:gson:1.7.2"
+
+    // kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    // junit
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_version"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit_version"
+}
+
+test {
+    useJUnitPlatform()
 }
 
 compileKotlin {

@@ -21,6 +21,19 @@ scheduler/gradle/wrapper/gradle-wrapper.properties
 # -------------------------------------------------
 
 
+
+
+# ++++++++++++++++ Worker Stuff ++++++++++++++++
+worker/bin/
+worker/tmp/
+worker/.settings/
+worker/.loadpath/
+
+# ++++++++++++++++++++++++++++++++
+
+
+
+
 # ++++++++++++++++ Unity Stuff ++++++++++++++++
 unity/*/[Ll]ibrary/
 unity/*/[Tt]emp/

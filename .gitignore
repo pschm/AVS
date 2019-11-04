@@ -1,20 +1,24 @@
-.gradle
-/build/
+
+# ---------------- Scheduler Stuff ----------------
+scheduler/.gradle/*
+scheduler/.idea/*
+
+scheduler/.gradle
+scheduler/build/
 
 # Ignore Gradle GUI config
-gradle-app.setting
+scheduler/gradle-app.setting
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
+scheduler/!gradle-wrapper.jar
 
 # Cache of project
-.gradletasknamecache
+scheduler/.gradletasknamecache
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
-# gradle/wrapper/gradle-wrapper.properties
+scheduler/gradle/wrapper/gradle-wrapper.properties
 
-
-
+# -------------------------------------------------
 
 
 # ++++++++++++++++ Unity Stuff ++++++++++++++++

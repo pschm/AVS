@@ -20,12 +20,28 @@ public class Shelf : MonoBehaviour {
 #endif
 
 
-
     }
 
+    /// <summary>
+    /// Returns the point for "accessing" the shelf.
+    /// </summary>
+    /// <returns></returns>
+    public Vector3 GetWalkToPoint() {
+        //Add an offset because the shelf point itself is inside the shelf.
+        return transform.position + transform.forward * 1.5f;
+    }
+
+
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.grey;
+        Gizmos.DrawSphere(GetWalkToPoint(), .5f);
+    }
 
     private void OnValidate() {
         if(textPlane == null) textPlane = transform.GetComponentInChildren<TextMeshPro>();
         textPlane.text = productName;       
     }
+#endif
+
 }

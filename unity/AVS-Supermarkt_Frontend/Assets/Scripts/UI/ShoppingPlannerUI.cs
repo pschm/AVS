@@ -16,7 +16,8 @@ public class ShoppingPlannerUI : MonoBehaviour {
 
 
     private void Awake() {
-        var shelfs = shelfParent.GetComponentsInChildren<Shelf>();
+        var shelfs = new List<Shelf>(shelfParent.GetComponentsInChildren<Shelf>());
+        shelfs.Sort((x, y) => x.productName.CompareTo(y.productName)); //Sort list alphabetical
 
         foreach(var shelf in shelfs) {
             var item = Instantiate(itemPrefab);

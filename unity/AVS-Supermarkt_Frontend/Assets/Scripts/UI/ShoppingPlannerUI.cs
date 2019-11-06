@@ -23,6 +23,7 @@ public class ShoppingPlannerUI : MonoBehaviour {
             var item = Instantiate(itemPrefab);
             item.Setup(this, shelf);
             item.transform.SetParent(shopViewPortContent);
+            item.transform.localScale = Vector3.one;
         }
     }
 
@@ -50,10 +51,5 @@ public class ShoppingPlannerUI : MonoBehaviour {
         shoppingList.Remove(shelf);
     }
 
-
-
-    public void StartShopping() {
-
-    }
 
 }

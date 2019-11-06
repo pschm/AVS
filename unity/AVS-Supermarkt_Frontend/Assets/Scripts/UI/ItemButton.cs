@@ -6,24 +6,32 @@ using TMPro;
 
 public class ItemButton : MonoBehaviour {
 
+    public Shelf Shelf { get; private set; }
+    public int SiblingIndex { get; private set; }
+
     public Button buttonComponent;
     public TextMeshProUGUI nameLabel;
 
     private ShoppingPlannerUI plannerUI;
-    private Shelf shelf;
-
+    
+    
     private void Start() {
         buttonComponent.onClick.AddListener(HandleClick);
     }
 
-    public void Setup(ShoppingPlannerUI plannerUI, Shelf shelf) {
+    public void Setup(ShoppingPlannerUI plannerUI, Shelf shelf, int siblingIndex) {
         this.plannerUI = plannerUI;
-        this.shelf = shelf;
+        Shelf = shelf;
+        SiblingIndex = siblingIndex;
         nameLabel.text = shelf.productName;
     }
 
     public void HandleClick() {
-        plannerUI.TryTransferItemToOtherList(transform, shelf);
+        plannerUI.TryTransferItemToOtherList(this, Shelf);
+    }
+
+    private void OnEnable() {
+        plannerUI?.ResetToShopList(this, Shelf);
     }
 
 }

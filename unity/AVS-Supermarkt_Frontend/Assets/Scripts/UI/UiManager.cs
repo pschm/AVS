@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class UiManager : MonoBehaviour {
 
-    public GameObject plannerPanel;
+    public ShoppingPlannerUI plannerPanel;
     public GameObject loadingPanel;
     public GameObject openPlannerPanel;
+
+    public Customer customer;
 
     private void Awake() {
         OpenOpenerUi();
@@ -16,11 +18,15 @@ public class UiManager : MonoBehaviour {
     public void StartCalculation() {
         CloseAllUis();
         loadingPanel.SetActive(true);
+
+        var points = new List<Vector3>();
+        plannerPanel.GetShoppingList().ForEach(x => points.Add(x.transform.position));
+        customer.SetWaypoints(points);
     }
 
     public void OpenPlannerUi() {
         CloseAllUis();
-        plannerPanel.SetActive(true);
+        plannerPanel.gameObject.SetActive(true);
     }
 
     public void OpenOpenerUi() {
@@ -29,7 +35,7 @@ public class UiManager : MonoBehaviour {
     }
 
     private void CloseAllUis() {
-        plannerPanel.SetActive(false);
+        plannerPanel.gameObject.SetActive(false);
         loadingPanel.SetActive(false);
         openPlannerPanel.SetActive(false);
     }

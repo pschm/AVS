@@ -27,6 +27,9 @@ public class ShoppingPlannerUI : MonoBehaviour {
         }
     }
 
+    public List<Shelf> GetShoppingList() {
+        return new List<Shelf>(shoppingList);
+    }
     public void TryTransferItemToOtherList(Transform btnTransform, Shelf shelf) {
         if(btnTransform.parent.Equals(shopViewPortContent)) {
             //Debug.Log("Move to shopping list.");

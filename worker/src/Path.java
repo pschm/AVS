@@ -15,7 +15,7 @@ public class Path {
         }
     }
     
-    public Path(ArrayList<Product> path){
+    public Path(ArrayList path){
         this.path = path;
     }
 

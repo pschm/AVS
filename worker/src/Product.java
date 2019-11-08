@@ -1,20 +1,17 @@
 public class Product {
 	int x;
     int y;
-    String productName;
     
     // Constructs a randomly placed product
-    public Product(String productName){
+    public Product(){
         this.x = (int)(Math.random()*200);
         this.y = (int)(Math.random()*200);
-        this.productName = productName;
     }
     
     // Constructs a product at chosen x, y location
-    public Product(int x, int y, String productName){
+    public Product(int x, int y){
         this.x = x;
         this.y = y;
-        this.productName = productName;
     }
     
     // Gets product's x coordinate
@@ -25,11 +22,6 @@ public class Product {
     // Gets product's y coordinate
     public int getY(){
         return this.y;
-    }
-
-    // Gets product's name
-    public String getProductName(){
-        return this.productName;
     }
     
     // Gets the distance to given product
@@ -43,6 +35,6 @@ public class Product {
     
     @Override
     public String toString(){
-        return getX()+","+getY() + ","+getProductName();
+        return getX()+", "+getY();
     }
 }

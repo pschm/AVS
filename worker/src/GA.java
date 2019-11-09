@@ -4,7 +4,11 @@ public class GA {
     private static final int tournamentSize = 5;
     private static final boolean elitism = true;
 
-    // Evolves a population over one generation
+    /**
+     * Evolves a population over one generation
+     * @param pop
+     * @return new Population
+     */
     public static Population evolvePopulation(Population pop) {
         Population newPopulation = new Population(pop.populationSize(), false);
 
@@ -36,7 +40,12 @@ public class GA {
         return newPopulation;
     }
 
-    // Applies crossover to a set of parents and creates offspring
+    /**
+     * Applies crossover to a set of parents and creates offspring
+     * @param parent1
+     * @param parent2
+     * @return new Path
+     */
     public static Path crossover(Path parent1, Path parent2) {
         // Create new child tour
     	Path child = new Path();
@@ -75,7 +84,10 @@ public class GA {
         return child;
     }
 
-    // Mutate a path using swap mutation
+    /**
+     * Mutate a path using swap mutation
+     * @param path
+     */
     private static void mutate(Path path) {
         // Loop through path products
         for(int tourPos1=0; tourPos1 < path.pathSize(); tourPos1++){
@@ -95,7 +107,11 @@ public class GA {
         }
     }
 
-    // Selects candidate path for crossover
+    /**
+     * Selects candidate path for crossover
+     * @param pop
+     * @return fittest path
+     */
     private static Path tournamentSelection(Population pop) {
         // Create a tournament population
         Population tournament = new Population(tournamentSize, false);
@@ -105,7 +121,7 @@ public class GA {
             int randomId = (int) (Math.random() * pop.populationSize());
             tournament.savePath(i, pop.getPath(randomId));
         }
-        // Get the fittest tour
+        // Get the fittest path
         Path fittest = tournament.getFittest();
         return fittest;
     }

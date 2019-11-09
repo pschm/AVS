@@ -8,18 +8,26 @@ public class Path {
     private double fitness = 0;
     private int distance = 0;
     
-    // Constructs a blank path
+    /**
+     * Constructs a blank path
+     */
     public Path(){
         for (int i = 0; i < PathManager.numberOfProducts(); i++) {
             path.add(null);
         }
     }
     
+    /**
+     * Constructs a path
+     * @param path
+     */
     public Path(ArrayList path){
         this.path = path;
     }
 
-    // Creates a random individual
+    /**
+     * Creates a random individual
+     */
     public void generateIndividual() {
         // Loop through all our destination products and add them to our path
         for (int productIndex = 0; productIndex < PathManager.numberOfProducts(); productIndex++) {
@@ -29,12 +37,20 @@ public class Path {
         Collections.shuffle(path);
     }
 
-    // Gets a product from the path
+    /**
+     * Gets a product from the path
+     * @param tourPosition
+     * @return Product
+     */
     public Product getProduct(int tourPosition) {
         return (Product)path.get(tourPosition);
     }
 
-    // Sets a product in a certain position within a path
+    /**
+     * Sets a product in a certain position within a path
+     * @param pathPosition
+     * @param product
+     */
     public void setProduct(int pathPosition, Product product) {
         path.set(pathPosition, product);
         // If the paths been altered we need to reset the fitness and distance
@@ -42,7 +58,10 @@ public class Path {
         distance = 0;
     }
     
-    // Gets the paths fitness
+    /**
+     * Gets the paths fitness
+     * @return Fitness (Double)
+     */
     public double getFitness() {
         if (fitness == 0) {
             fitness = 1/(double)getDistance();
@@ -50,7 +69,10 @@ public class Path {
         return fitness;
     }
     
-    // Gets the total distance of the path
+    /**
+     * Gets the total distance of the path
+     * @return Distance (INT)
+     */
     public int getDistance(){
         if (distance == 0) {
             int pathDistance = 0;
@@ -76,12 +98,19 @@ public class Path {
         return distance;
     }
 
-    // Get number of products on our path
+    /**
+     * Get number of products on our path
+     * @return
+     */
     public int pathSize() {
         return path.size();
     }
     
-    // Check if the path contains a product
+    /**
+     * Check if the path contains a product
+     * @param product
+     * @return Boolean
+     */
     public boolean containsProduct(Product product){
         return path.contains(product);
     }

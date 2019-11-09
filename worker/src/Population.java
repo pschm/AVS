@@ -2,7 +2,11 @@ public class Population {
 	// Holds population of paths
     Path[] paths;
 
-    // Construct a population
+    /**
+     * Construct a population
+     * @param populationSize
+     * @param initialize
+     */
     public Population(int populationSize, boolean initialize) {
         paths = new Path[populationSize];
         // If we need to initialize a population of paths do so
@@ -16,17 +20,28 @@ public class Population {
         }
     }
     
-    // Saves a path
+    /**
+     * Saves a path
+     * @param index
+     * @param path
+     */
     public void savePath(int index, Path path) {
         paths[index] = path;
     }
     
-    // Gets a path from population
+    /**
+     * Gets a path from population
+     * @param index
+     * @return path
+     */
     public Path getPath(int index) {
         return paths[index];
     }
 
-    // Gets the best path in the population
+    /**
+     * Gets the best path in the population
+     * @return fittest Path
+     */
     public Path getFittest() {
     	Path fittest = paths[0];
         // Loop through individuals to find fittest
@@ -38,7 +53,10 @@ public class Population {
         return fittest;
     }
 
-    // Gets population size
+    /**
+     * Gets population size
+     * @return size of population
+     */
     public int populationSize() {
         return paths.length;
     }

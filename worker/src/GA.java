@@ -24,10 +24,10 @@ public class GA {
         // Current population
         for (int i = elitismOffset; i < newPopulation.populationSize(); i++) {
             // Select parents
-            Path parent1 = tournamentSelection(pop);
-            Path parent2 = tournamentSelection(pop);
+            IndividualPath parent1 = tournamentSelection(pop);
+            IndividualPath parent2 = tournamentSelection(pop);
             // Crossover parents
-            Path child = crossover(parent1, parent2);
+            IndividualPath child = crossover(parent1, parent2);
             // Add child to new population
             newPopulation.savePath(i, child);
         }
@@ -46,9 +46,9 @@ public class GA {
      * @param parent2
      * @return new Path
      */
-    public static Path crossover(Path parent1, Path parent2) {
+    public static IndividualPath crossover(IndividualPath parent1, IndividualPath parent2) {
         // Create new child tour
-    	Path child = new Path();
+    	IndividualPath child = new IndividualPath();
 
         // Get start and end sub tour positions for parent1's tour
         int startPos = (int) (Math.random() * parent1.pathSize());
@@ -88,7 +88,7 @@ public class GA {
      * Mutate a path using swap mutation
      * @param path
      */
-    private static void mutate(Path path) {
+    private static void mutate(IndividualPath path) {
         // Loop through path products
         for(int tourPos1=0; tourPos1 < path.pathSize(); tourPos1++){
             // Apply mutation rate
@@ -112,7 +112,7 @@ public class GA {
      * @param pop
      * @return fittest path
      */
-    private static Path tournamentSelection(Population pop) {
+    private static IndividualPath tournamentSelection(Population pop) {
         // Create a tournament population
         Population tournament = new Population(tournamentSize, false);
         // For each place in the tournament get a random candidate path and
@@ -122,7 +122,7 @@ public class GA {
             tournament.savePath(i, pop.getPath(randomId));
         }
         // Get the fittest path
-        Path fittest = tournament.getFittest();
+        IndividualPath fittest = tournament.getFittest();
         return fittest;
     }
 }

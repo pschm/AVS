@@ -1,65 +1,65 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Path {
-	 // Holds our path of products
-    private ArrayList<Product> path = new ArrayList<Product>();
+public class IndividualPath {
+	 // Holds our IndividualPath of products
+    private ArrayList<Product> IndividualPath = new ArrayList<Product>();
     // Cache
     private double fitness = 0;
     private int distance = 0;
     
     /**
-     * Constructs a blank path
+     * Constructs a blank IndividualPath
      */
-    public Path(){
+    public IndividualPath(){
         for (int i = 0; i < PathManager.numberOfProducts(); i++) {
-            path.add(null);
+            IndividualPath.add(null);
         }
     }
     
     /**
-     * Constructs a path
-     * @param path
+     * Constructs a IndividualPath
+     * @param IndividualPath
      */
-    public Path(ArrayList path){
-        this.path = path;
+    public IndividualPath(ArrayList<Product> IndividualPath){
+        this.IndividualPath = IndividualPath;
     }
 
     /**
      * Creates a random individual
      */
     public void generateIndividual() {
-        // Loop through all our destination products and add them to our path
+        // Loop through all our destination products and add them to our IndividualPath
         for (int productIndex = 0; productIndex < PathManager.numberOfProducts(); productIndex++) {
           setProduct(productIndex, PathManager.getProduct(productIndex));
         }
-        // Randomly reorder the path
-        Collections.shuffle(path);
+        // Randomly reorder the IndividualPath
+        Collections.shuffle(IndividualPath);
     }
 
     /**
-     * Gets a product from the path
+     * Gets a product from the IndividualPath
      * @param tourPosition
      * @return Product
      */
     public Product getProduct(int tourPosition) {
-        return (Product)path.get(tourPosition);
+        return (Product)IndividualPath.get(tourPosition);
     }
 
     /**
-     * Sets a product in a certain position within a path
-     * @param pathPosition
+     * Sets a product in a certain position within a IndividualPath
+     * @param IndividualPathPosition
      * @param product
      */
-    public void setProduct(int pathPosition, Product product) {
-        path.set(pathPosition, product);
-        // If the paths been altered we need to reset the fitness and distance
+    public void setProduct(int IndividualPathPosition, Product product) {
+        IndividualPath.set(IndividualPathPosition, product);
+        // If the IndividualPaths been altered we need to reset the fitness and distance
         fitness = 0;
         distance = 0;
     }
     
     /**
-     * Gets the paths fitness
+     * Gets the IndividualPaths fitness
      * @return Fitness (Double)
      */
     public double getFitness() {
@@ -70,20 +70,20 @@ public class Path {
     }
     
     /**
-     * Gets the total distance of the path
+     * Gets the total distance of the IndividualPath
      * @return Distance (INT)
      */
     public int getDistance(){
         if (distance == 0) {
-            int pathDistance = 0;
-            // Loop through our path's products
+            int IndividualPathDistance = 0;
+            // Loop through our IndividualPath's products
             for (int productIndex=0; productIndex < pathSize(); productIndex++) {
                 // Get product we're travelling from
             	Product fromProduct = getProduct(productIndex);
                 // Product we're travelling to
             	Product destinationProduct;
-                // Check we're not on our path's last product, if we are set our
-                // path's final destination product to our starting product
+                // Check we're not on our IndividualPath's last product, if we are set our
+                // IndividualPath's final destination product to our starting product
                 if(productIndex+1 < pathSize()){
                     destinationProduct = getProduct(productIndex+1);
                 }
@@ -91,28 +91,28 @@ public class Path {
                     destinationProduct = getProduct(0);
                 }
                 // Get the distance between the two products
-                pathDistance += fromProduct.distanceTo(destinationProduct);
+                IndividualPathDistance += fromProduct.distanceTo(destinationProduct);
             }
-            distance = pathDistance;
+            distance = IndividualPathDistance;
         }
         return distance;
     }
 
     /**
-     * Get number of products on our path
+     * Get number of products on our IndividualPath
      * @return
      */
     public int pathSize() {
-        return path.size();
+        return IndividualPath.size();
     }
     
     /**
-     * Check if the path contains a product
+     * Check if the IndividualPath contains a product
      * @param product
      * @return Boolean
      */
     public boolean containsProduct(Product product){
-        return path.contains(product);
+        return IndividualPath.contains(product);
     }
     
     @Override

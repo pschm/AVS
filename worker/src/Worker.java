@@ -1,10 +1,13 @@
-public class Worker {
+import java.io.IOException;
 
-	public static void main(String[] args) {
-		// Create and add our products
-		
-		//TODO Need a List of Products from 'Master (Scheduler)' with x and y coordinates.
-		
+public class Worker {
+    public static void main(String[] args) throws IOException {
+        
+        SchedulerAPI api = new SchedulerAPI();
+        api.setWorker();
+
+        //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        
         Product Product = new Product(60, 200,"Product");
         PathManager.addProduct(Product);
         Product Product2 = new Product(180, 200,"Product2");

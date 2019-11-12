@@ -14,11 +14,12 @@ import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import io.ktor.server.netty.NettyApplicationEngine
+import java.time.LocalDateTime
 
 /**
  * The [Scheduler] provides the server and the API for the workers
  */
-class Scheduler(private val unityUrl: String) {
+class Scheduler {
 
     private val server: NettyApplicationEngine
     private val workers = mutableListOf<Worker>()
@@ -54,20 +55,32 @@ class Scheduler(private val unityUrl: String) {
     fun start() = server.start(wait = true)
 
     /**
-     * responds path (200) or error (204) if the path is not yet available
+     * responds:
+     *
+     *  200 -> found best path
+     *
+     *  204 -> the path is not yet available
+     *
+     *  503 -> the path is not yet available and no worker is registered
      */
     private suspend fun respondPath(call: ApplicationCall) {
-        bestIndividual?.let {
-            val json = Gson().toJson(it)
-            call.respondText(json, status = HttpStatusCode.OK)
-        } ?: call.respondText("The Path is not set yet, try later", status = HttpStatusCode.NoContent)
+        when {
+            bestIndividual != null -> {
+                val json = Gson().toJson(bestIndividual)
+                call.respondText(json, status = HttpStatusCode.OK)
+            }
+            workers.isEmpty() -> call.respondText(
+                "Currently no worker is registered, try later",
+                    status = HttpStatusCode.ServiceUnavailable
+            )
+            else -> call.respondText("The Path is not set yet, try later", status = HttpStatusCode.NoContent)
+        }
     }
 
     /**
      * save sent json to map
      */
     private suspend fun saveMap(call: ApplicationCall) {
-        println("POST map")
         map = try {
             call.receive()
         } catch (e: Exception) {
@@ -103,6 +116,7 @@ class Scheduler(private val unityUrl: String) {
         workers.forEach {
             if (it.ipAddress == workerAddress) {
                 it.individual = individual
+                it.timestamp = LocalDateTime.now()
                 updateBestIndividual(individual)
                 alreadyInList = true
                 return@forEach
@@ -121,7 +135,7 @@ class Scheduler(private val unityUrl: String) {
     private suspend fun addWorker(call: ApplicationCall) {
         val individual = parseIndividual(call) ?: return
         val workerAddress = call.request.origin.host
-        val worker = Worker(workerAddress, individual)
+        val worker = Worker(workerAddress, individual, LocalDateTime.now())
 
         // check if the worker is already registered
         if (workers.any { it.ipAddress == worker.ipAddress }) {

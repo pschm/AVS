@@ -2,12 +2,7 @@ import java.io.IOException;
 
 public class Worker {
     public static void main(String[] args) throws IOException {
-        
-        SchedulerAPI api = new SchedulerAPI();
-        api.setWorker();
 
-        //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        
         Product Product = new Product(60, 200,"Product");
         PathManager.addProduct(Product);
         Product Product2 = new Product(180, 200,"Product2");
@@ -48,6 +43,15 @@ public class Worker {
         PathManager.addProduct(Product19);
         Product Product20 = new Product(160, 20,"Product20");
         PathManager.addProduct(Product20);
+
+        SchedulerAPI api = new SchedulerAPI();
+
+        api.putWorker("23423-23423-sada-123",new IndividualPath(PathManager.getPath()));
+
+        //api.getMap();
+
+        //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
         // Initialize population
         Population pop = new Population(50, true);

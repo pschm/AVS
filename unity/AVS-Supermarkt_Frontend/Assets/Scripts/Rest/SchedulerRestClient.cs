@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -9,32 +10,25 @@ public static class SchedulerRestClient {
     public static readonly string url = "http://localhost:8080";
 
 
-    public static long PostShoppingList(List<NodeModel> nodes) {
+    public static UnityWebRequest BuildPostShoppingListRequest(List<NodeModel> nodes) {
         var jsonBody = JsonHelper.ToJson(nodes);
-        UnityWebRequest www = UnityWebRequest.Post(url + "/map", jsonBody);
-        www.SetRequestHeader("Accept", "application/json");
 
-        www.SendWebRequest();
-        if(www.isNetworkError) return -1;
+        var request = new UnityWebRequest(url + "/map", "POST");
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonBody);
 
-        return www.responseCode;
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        return request;
     }
 
 
-    public static List<NodeModel> GetCalculatedWaypoints() {
-        UnityWebRequest www = UnityWebRequest.Get(url + "/waypoints");
-        www.SetRequestHeader("Accept", "application/json");
+    public static UnityWebRequest BuildGetCalculatedWaypointsRequest() {
+        UnityWebRequest request = UnityWebRequest.Get(url + "/path");
+        request.SetRequestHeader("Accept", "application/json");
 
-        www.SendWebRequest();
-
-        if(www.isNetworkError || www.responseCode != 200) {
-            return null;
-        } else {
-            var data = www.downloadHandler.text;
-            var convertedData = JsonUtility.FromJson<List<NodeModel>>(data);
-
-            return convertedData;
-        }
+        return request;
     }
 
 

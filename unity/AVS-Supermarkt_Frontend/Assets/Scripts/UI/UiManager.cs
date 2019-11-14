@@ -55,10 +55,12 @@ public class UiManager : MonoBehaviour {
 
 #else
     private IEnumerator HandleCalculation(List<NodeModel> nodes) {
-        var responseCode = SchedulerRestClient.PostShoppingList(nodes);
-        if(responseCode != 200) {
-            Debug.Log("Error: " + responseCode);
-            throw new System.InvalidProgramException();
+        var request = SchedulerRestClient.BuildPostShoppingListRequest(nodes);
+        yield return request.SendWebRequest();
+
+        if(request.responseCode != 200) {
+            Debug.LogWarning("Error: " + request.responseCode);
+            throw new System.NotImplementedException("No error handling for given response code while POST shopping list");
 
         } else {
             Debug.Log("Sending to scheduler successful.");
@@ -68,13 +70,27 @@ public class UiManager : MonoBehaviour {
 
     private IEnumerator CheckForCalculationResult() {
         Debug.Log("Checking for result...");
+        var request = SchedulerRestClient.BuildGetCalculatedWaypointsRequest();
+        bool isCalculating = true;
         List<NodeModel> result = null;
-        while(result == null) {
+
+        while(result == null && isCalculating) {
             yield return new WaitForSeconds(2f);
-            result = SchedulerRestClient.GetCalculatedWaypoints();
+            yield return request.SendWebRequest();
+
+            if(!request.isNetworkError && request.responseCode == 200) {
+                Debug.Log("Got result.");
+
+                var data = request.downloadHandler.text;
+                result = JsonUtility.FromJson<List<NodeModel>>(data);
+
+            } else if(request.isNetworkError || request.responseCode == 503) {
+                Debug.LogWarning($"Cant get result. Network-Error: {request.isNetworkError}, Response-Code: {request.responseCode}");
+                isCalculating = false;
+            }
         }
 
-        Debug.Log("Got result.");
+        
         ProcessCalculationResult(result);
     }
 
@@ -82,6 +98,7 @@ public class UiManager : MonoBehaviour {
 
     private void ProcessCalculationResult(List<NodeModel> result) {
         CloseAllUis();
+        //TODO Handle null result
         resultPanel.SetResult(result);
         resultPanel.gameObject.SetActive(true);
     }

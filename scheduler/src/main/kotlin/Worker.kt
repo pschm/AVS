@@ -1,4 +1,10 @@
-import genetic_algorithm.Individual
+import genetic_algorithm.IndividualPath
 import java.time.LocalDateTime
+import java.util.*
 
-data class Worker(val ipAddress: String, var individual: Individual, var timestamp: LocalDateTime)
+data class Worker(
+    val uuid: UUID,
+    val ipAddress: String,
+    var individual: IndividualPath,
+    var timestamp: LocalDateTime
+)

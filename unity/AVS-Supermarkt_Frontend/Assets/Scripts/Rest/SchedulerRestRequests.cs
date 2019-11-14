@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public static class SchedulerRestClient {
+public static class SchedulerRestRequests {
     
     public static readonly string url = "http://localhost:8080";
 

@@ -55,7 +55,7 @@ public class UiManager : MonoBehaviour {
 
 #else
     private IEnumerator HandleCalculation(List<NodeModel> nodes) {
-        var request = SchedulerRestClient.BuildPostShoppingListRequest(nodes);
+        var request = SchedulerRestRequests.BuildPostShoppingListRequest(nodes);
         yield return request.SendWebRequest();
 
         if(request.responseCode != 200) {
@@ -70,7 +70,7 @@ public class UiManager : MonoBehaviour {
 
     private IEnumerator CheckForCalculationResult() {
         Debug.Log("Checking for result...");
-        var request = SchedulerRestClient.BuildGetCalculatedWaypointsRequest();
+        var request = SchedulerRestRequests.BuildGetCalculatedWaypointsRequest();
         bool isCalculating = true;
         List<NodeModel> result = null;
 

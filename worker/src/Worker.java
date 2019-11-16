@@ -1,7 +1,15 @@
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 public class Worker {
     public static void main(String[] args) throws IOException {
+
+        SchedulerAPI schedulerAPI = new SchedulerAPI();
+
+        JSONObject mapAsJSON = new JSONObject(schedulerAPI.getMap());
+
+        //TODO Iterate mapAsJSON and put the products into PathManager
 
         Product Product = new Product(60, 200,"Product");
         PathManager.addProduct(Product);
@@ -44,12 +52,6 @@ public class Worker {
         Product Product20 = new Product(160, 20,"Product20");
         PathManager.addProduct(Product20);
 
-        SchedulerAPI api = new SchedulerAPI();
-
-        api.putWorker("23423-23423-sada-123",new IndividualPath(PathManager.getPath()));
-
-        //api.getMap();
-
         //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -59,7 +61,7 @@ public class Worker {
 
         // Evolve population for 100 generations
         pop = GA.evolvePopulation(pop);
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 100000; i++) {
             pop = GA.evolvePopulation(pop);
         }
 
@@ -68,6 +70,7 @@ public class Worker {
         System.out.println("Final distance: " + pop.getFittest().getDistance());
         System.out.println("Solution:");
         System.out.println(pop.getFittest());
-	}
 
+        schedulerAPI.sendFittestPath(pop.getFittest());
+	}
 }

@@ -9,14 +9,13 @@ import java.util.List;
 
 import com.google.gson.Gson;
 import org.json.JSONObject;
-import sun.net.www.http.HttpClient;
 
 public class SchedulerAPI {
     
     private static HttpURLConnection con;
-    private static final String urlWorker = "http://139.6.65.27:8080/worker";
-    private static final String urlMap = "http://139.6.65.27:8080/map";
-    private static final Path UUIDPATH = Paths.get("/Users/wi2885/Desktop/uuid/id.txt");
+    private static final String urlWorker = "http://192.168.0.136:8080/worker";
+    private static final String urlMap = "http://192.168.0.136:8080/map";
+    private static final Path UUIDPATH = Paths.get("C:\\Users\\volka\\Desktop\\uuid.txt");
 
     private String postWorker(IndividualPath individualPath) throws IOException
     {
@@ -71,7 +70,7 @@ public class SchedulerAPI {
         }
     }
 
-    public void putWorker(String uuidAsString,IndividualPath individualPath) throws IOException
+    private void putWorker(String uuidAsString,IndividualPath individualPath) throws IOException
     {
         String urlParameters = "?uuid="+uuidAsString;
 
@@ -115,7 +114,7 @@ public class SchedulerAPI {
         }
     }
 
-    public void getMap() throws IOException
+    public String getMap() throws IOException
     {
         try
         {
@@ -137,7 +136,7 @@ public class SchedulerAPI {
             }
             else  {
                 try(BufferedReader br = new BufferedReader(
-                        new InputStreamReader(con.getInputStream(), "utf-8"))) {
+                        new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8))) {
                     response = new StringBuilder();
                     String responseLine = null;
                     while ((responseLine = br.readLine()) != null) {
@@ -147,9 +146,7 @@ public class SchedulerAPI {
                 }
             }
 
-            JSONObject jsonObject = new JSONObject(response.toString());
-
-            System.out.println("GET RESPONSE: "+ response.toString());
+            return response.toString();
 
         } finally {
 
@@ -157,7 +154,7 @@ public class SchedulerAPI {
         }
     }
 
-    public void sendFittestPath(IndividualPath individualPath) throws IOException {
+    void sendFittestPath(IndividualPath individualPath) throws IOException {
 
         File f = UUIDPATH.toFile();
         if(f.exists() && f.isFile()) {
@@ -168,7 +165,7 @@ public class SchedulerAPI {
         {
             String uuidAsString = postWorker(individualPath);
 
-            PrintWriter writer = new PrintWriter(UUIDPATH.toString(), "UTF-8");
+            PrintWriter writer = new PrintWriter(UUIDPATH.toString(), StandardCharsets.UTF_8);
             writer.println(uuidAsString);
             writer.close();
         }

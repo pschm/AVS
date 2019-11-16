@@ -116,7 +116,7 @@ public class IndividualPath {
     public boolean containsProduct(Product product){
         return IndividualPath.contains(product);
     }
-    
+
     @Override
     public String toString() {
         String geneString = "|";

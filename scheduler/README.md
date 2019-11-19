@@ -17,11 +17,11 @@ Sollten Fehler auftreten, kann auch eine ausführbare .exe Datei zur Verfügung 
 |-----------|-----|----|---------|--------------------|----------------------|
 |Worker||||
 ||Post|/worker|Erstellt einen Worker|application/json ||
-||Put |/worker|Akutalisiert den Worker|applicaiton/json ||
+||Put |/worker?uuid={parameter}|Akutalisiert den entsprechenden Worker|applicaiton/json ||
 |Map||||
 ||Get|/map|Liefert die Karte der Unity Instanz ||application/json|
 ||Post|/map|Setzt die Karte der Unity Instanz |application/json||
 |Path||||
 ||Get|/path|Liefert den aktuell besten Weg zurück. ||application/json|
 
-*Hinweis: Die Identifizierung der Worker geschieht momentan über die IP-Adresse. Zukünftig wird beim POST auf "/worker" eine UUID erzeugt und im JSON zurückgegeben. Diese muss dann bei einem PUT als Parameter (id) mitgeliefert werden. [Implementierung vorraussichtlich Dienstag]*
+

@@ -1,5 +1,9 @@
+package scheduler
+
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import genetic_algorithm.IndividualPath
+import genetic_algorithm.Population
 import io.ktor.application.ApplicationCall
 import io.ktor.application.call
 import io.ktor.features.origin
@@ -14,20 +18,18 @@ import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import io.ktor.server.netty.NettyApplicationEngine
+import json_structure.UnityProducts
+import json_structure.WorkerRespond
 import java.time.LocalDateTime
 import java.util.*
 
 /**
- * The [Scheduler] provides the server and the API for the workers
+ * The [RestService] provides the server and the API for the workers
  */
-class Scheduler {
+class RestService {
 
     private val server: NettyApplicationEngine
-    private val workers = mutableListOf<Worker>()
-    private var bestIndividual: IndividualPath? = null
-    private var map: String? = null
-        get() = if (field.isNullOrBlank()) null else field
-
+    private val scheduler = Scheduler()
 
     init {
         server = embeddedServer(Netty, port = 8080) {
@@ -81,11 +83,11 @@ class Scheduler {
      */
     private suspend fun respondPath(call: ApplicationCall) {
         when {
-            bestIndividual != null -> {
-                val json = Gson().toJson(bestIndividual)
+            scheduler.bestIndividual != null -> {
+                val json = Gson().toJson(scheduler.bestIndividual)
                 call.respondText(json, status = HttpStatusCode.OK)
             }
-            workers.isEmpty() -> call.respondText(
+            scheduler.workers.isEmpty() -> call.respondText(
                 "Currently no worker is registered, try later",
                     status = HttpStatusCode.ServiceUnavailable
             )
@@ -97,16 +99,20 @@ class Scheduler {
      * save sent json to map
      */
     private suspend fun saveMap(call: ApplicationCall) {
-        map = try {
-            call.receive()
+        scheduler.map = try {
+            val string = call.receive<String>()
+            val items = Gson().fromJson<UnityProducts>(string, UnityProducts::class.java)
+
+            items.Items
         } catch (e: Exception) {
             println("Could not read map")
             e.printStackTrace()
             null
         }
 
-        map?.let {
-            call.respondText(it, status = HttpStatusCode.OK)
+        scheduler.map?.let {
+            scheduler.createPopulation(it)
+            call.respondText(Gson().toJson(it), status = HttpStatusCode.OK)
         } ?: call.respondText("Could not read json", status = HttpStatusCode.BadRequest)
     }
 
@@ -114,9 +120,9 @@ class Scheduler {
      * responds map data (200) or error (204) if map is not yet available
      */
     private suspend fun respondMap(call: ApplicationCall) {
-        map?.let {
-            println("send map: $map")
-            call.respondText(it, status = HttpStatusCode.OK)
+        scheduler.map?.let {
+            println("send map: ${scheduler.map}")
+            call.respondText(Gson().toJson(it), status = HttpStatusCode.OK)
         } ?: call.respondText("Map is not set yet, try later", status = HttpStatusCode.NoContent)
     }
 
@@ -125,7 +131,7 @@ class Scheduler {
      */
     private suspend fun updateWorker(call: ApplicationCall) {
         // check if worker is in list
-        val individual = parseIndividual(call) ?: return
+        val population = parsePopulation(call) ?: return
         val workerId = call.parameters["uuid"]
 
         if (workerId == null) {
@@ -135,11 +141,11 @@ class Scheduler {
 
         // update worker individual
         var alreadyInList = false
-        workers.forEach {
+        scheduler.workers.forEach {
             if (it.uuid == UUID.fromString(workerId)) {
-                it.individual = individual
+                it.subPopulation = population
                 it.timestamp = LocalDateTime.now()
-                updateBestIndividual(individual)
+                scheduler.updateBestIndividual(population)
                 alreadyInList = true
                 return@forEach
             }
@@ -155,44 +161,38 @@ class Scheduler {
      * parse json from [call] and try to add a worker to the list
      */
     private suspend fun addWorker(call: ApplicationCall) {
-        val individual = parseIndividual(call) ?: return
         val workerAddress = call.request.origin.remoteHost
-        val worker = Worker(UUID.randomUUID(), workerAddress, individual, LocalDateTime.now())
+        val subPopulation = scheduler.getSubPopulation()
 
-        // check if the worker is already registered
-        if (workers.any { it.uuid == worker.uuid }) {
-            call.respondText("Worker is already registered. Use PUT instead", status = HttpStatusCode.BadRequest)
+        if (subPopulation == null) {
+            call.respondText("Max worker count is reached: ${Scheduler.WORKER_COUNT} Workers",
+                status = HttpStatusCode.ServiceUnavailable)
             return
         }
 
+        val worker = Worker(UUID.randomUUID(), workerAddress, subPopulation, LocalDateTime.now())
+
         // save worker
-        workers.add(worker)
+        scheduler.workers.add(worker)
 
-        // update best individual
-        updateBestIndividual(worker.individual)
 
-        call.respondText(worker.uuid.toString(), status = HttpStatusCode.OK)
+        val gson = GsonBuilder().serializeNulls().create()
+        val json = gson.toJson(WorkerRespond(worker.uuid, worker.subPopulation))
+
+        call.respondText(json, status = HttpStatusCode.OK)
     }
 
     /**
-     * Try to parse an [IndividualPath] from send json in [call].
-     * If no [IndividualPath] could be parsed the call responds with [HttpStatusCode.BadRequest]
-     * @return send [IndividualPath] or null
+     * Try to parse an [Population] from send json in [call].
+     * If no [Population] could be parsed the call responds with [HttpStatusCode.BadRequest]
+     * @return send [Population] or null
      */
-    private suspend fun parseIndividual(call: ApplicationCall): IndividualPath? = try {
-        call.receive<IndividualPath>()
+    private suspend fun parsePopulation(call: ApplicationCall): Population? = try {
+        call.receive<Population>()
     } catch (e: ContentTransformationException) {
         call.respondText("couldn't read json", status = HttpStatusCode.BadRequest)
         null
     }
 
-    /**
-     * update [bestIndividual] if [individual] has better fitness
-     */
-    private fun updateBestIndividual(individual: IndividualPath) {
-        bestIndividual = bestIndividual?.let {
-            if (individual.distance < it.distance) individual
-            else it
-        } ?: individual
-    }
+
 }

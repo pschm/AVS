@@ -16,7 +16,7 @@ Sollten Fehler auftreten, kann auch eine ausführbare .exe Datei zur Verfügung 
 |Ressource  |Verb |URI |Semantik |Contenttype-Request | Contenttype-Response |
 |-----------|-----|----|---------|--------------------|----------------------|
 |Worker||||
-||Post|/worker|Erstellt einen Worker|application/json ||
+||Post|/worker|Erstellt einen Worker und gibt UUID und Population zurück|application/json|application/json|
 ||Put |/worker?uuid={parameter}|Akutalisiert den entsprechenden Worker|applicaiton/json ||
 |Map||||
 ||Get|/map|Liefert die Karte der Unity Instanz ||application/json|

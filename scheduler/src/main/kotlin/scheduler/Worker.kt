@@ -10,6 +10,12 @@ data class Worker(
     var subPopulation: Population,
     var timestamp: LocalDateTime
 ) {
+    fun changePopulation(newPopulation: Population) {
+        subPopulation.worker = null
+        subPopulation = newPopulation
+        newPopulation.worker = this
+    }
+
     init {
         subPopulation.worker = this
     }

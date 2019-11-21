@@ -25,7 +25,7 @@ class Population(populationSize: Int, initialize: Boolean) {
         }
     }
 
-    fun getPaths(): ArrayList<IndividualPath?>? {
+    fun getPaths(): ArrayList<IndividualPath?> {
         val arrayList = ArrayList<IndividualPath?>()
         paths.toCollection(arrayList)
         return arrayList
@@ -74,5 +74,12 @@ class Population(populationSize: Int, initialize: Boolean) {
      */
     fun populationSize(): Int {
         return paths.size
+    }
+
+    /**
+     * update [paths] with the individuals from [population]
+     */
+    fun updateIndividuals(population: Population) {
+        paths = population.paths
     }
 }

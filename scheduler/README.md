@@ -9,15 +9,13 @@ Da es sich bei der Umsetzung des Schedulers um ein Gradle-Projekt handelt, ist e
 
 Der Server läuft dann auf localhost mit dem Port 8080. 
 
-Sollten Fehler auftreten, kann auch eine ausführbare .exe Datei zur Verfügung gestellt werden.
-
 
 ### Scheduler Ressourcentabelle
 |Ressource  |Verb |URI |Semantik |Contenttype-Request | Contenttype-Response |
 |-----------|-----|----|---------|--------------------|----------------------|
 |Worker||||
 ||Post|/worker|Erstellt einen Worker und gibt UUID und Population zurück|application/json|application/json|
-||Put |/worker?uuid={parameter}|Akutalisiert den entsprechenden Worker|applicaiton/json ||
+||Put |/worker?uuid={parameter}|Akutalisiert den entsprechenden Worker und liefert eine neue Population zurück|applicaiton/json |applicaiton/json|
 |Map||||
 ||Get|/map|Liefert die Karte der Unity Instanz ||application/json|
 ||Post|/map|Setzt die Karte der Unity Instanz |application/json||

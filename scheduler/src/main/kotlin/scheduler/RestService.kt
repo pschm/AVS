@@ -141,20 +141,25 @@ class RestService {
 
         // update worker individual
         var alreadyInList = false
+        var newPopulation: Population? = null
         scheduler.workers.forEach {
             if (it.uuid == UUID.fromString(workerId)) {
-                it.subPopulation = population
+                it.subPopulation.updateIndividuals(population)
                 it.timestamp = LocalDateTime.now()
-                scheduler.updateBestIndividual(population)
+                scheduler.updateBestIndividual(it.subPopulation)
+                scheduler.evolvePopulation(it)
+                newPopulation = it.subPopulation
                 alreadyInList = true
                 return@forEach
             }
         }
 
-        if (alreadyInList)
+        if (!alreadyInList)
             call.respondText("Worker is not registered. Use POST instead", status = HttpStatusCode.BadRequest)
-        else
-            call.respondText("updated individual successfully", status = HttpStatusCode.OK)
+        else {
+            val json = Gson().toJson(newPopulation)
+            call.respondText(json, status = HttpStatusCode.OK)
+        }
     }
 
     /**
@@ -188,7 +193,11 @@ class RestService {
      * @return send [Population] or null
      */
     private suspend fun parsePopulation(call: ApplicationCall): Population? = try {
-        call.receive<Population>()
+        val string = call.receive<String>()
+
+        val json = Gson().fromJson<Population>(string, Population::class.java)
+
+        json
     } catch (e: ContentTransformationException) {
         call.respondText("couldn't read json", status = HttpStatusCode.BadRequest)
         null

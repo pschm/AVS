@@ -12,12 +12,12 @@ class IndividualPath(var IndividualPath: ArrayList<Product?> = ArrayList()) {
     var fitness = 0.0
         get() {
             if (field == 0.0) {
-                field = 1 / calcDistance().toDouble()
+                field = 1 / distance.toDouble()
             }
             return field
         }
     var distance = 0
-        get() = calcDistance()
+        get() = calcDistance(field)
 
 
     init {
@@ -36,7 +36,7 @@ class IndividualPath(var IndividualPath: ArrayList<Product?> = ArrayList()) {
             setProduct(productIndex, PathManager.getProduct(productIndex))
         }
         // Randomly reorder the IndividualPath
-        Collections.shuffle(IndividualPath)
+        IndividualPath.shuffle()
     }
 
     /**
@@ -64,8 +64,9 @@ class IndividualPath(var IndividualPath: ArrayList<Product?> = ArrayList()) {
      * Gets the total distance of the IndividualPath
      * @return Distance (INT)
      */
-    fun calcDistance(): Int {
-        if (distance == 0) {
+    fun calcDistance(oldDistance: Int): Int {
+        var newDistance = oldDistance
+        if (oldDistance == 0) {
             var IndividualPathDistance = 0
             // Loop through our IndividualPath's products
             for (productIndex in 0 until pathSize()) { // Get product we're travelling from
@@ -82,9 +83,9 @@ class IndividualPath(var IndividualPath: ArrayList<Product?> = ArrayList()) {
                 // Get the distance between the two products
                 IndividualPathDistance += fromProduct!!.distanceTo(destinationProduct!!).toInt()
             }
-            distance = IndividualPathDistance
+            newDistance = IndividualPathDistance
         }
-        return distance
+        return newDistance
     }
 
     /**

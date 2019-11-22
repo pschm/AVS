@@ -97,8 +97,13 @@ public class UiManager : MonoBehaviour {
 #endif //Emulate Scheduler
 
     private void ProcessCalculationResult(List<NodeModel> result) {
+        if(result == null) {
+            Debug.Log("Got no result to display.");
+            OpenOpenerUi();
+            return;
+        }
+
         CloseAllUis();
-        //TODO Handle null result
         resultPanel.SetResult(result);
         resultPanel.gameObject.SetActive(true);
     }

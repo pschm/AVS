@@ -1,3 +1,5 @@
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -114,7 +116,7 @@ public class IndividualPath {
     public boolean containsProduct(Product product){
         return IndividualPath.contains(product);
     }
-    
+
     @Override
     public String toString() {
         String geneString = "|";

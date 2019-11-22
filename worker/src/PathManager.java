@@ -20,6 +20,8 @@ public class PathManager {
     public static Product getProduct(int index){
         return (Product)destinationProducts.get(index);
     }
+
+    public static ArrayList<Product> getPath() { return destinationProducts; }
     
     /**
      * Get the number of destination products

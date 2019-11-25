@@ -112,7 +112,7 @@ class RestService {
 
         scheduler.map?.let {
             scheduler.createPopulation(it)
-            call.respondText(Gson().toJson(it), status = HttpStatusCode.OK)
+            call.respondText(Gson().toJson(UnityProducts(it)), status = HttpStatusCode.OK)
         } ?: call.respondText("Could not read json", status = HttpStatusCode.BadRequest)
     }
 
@@ -121,8 +121,9 @@ class RestService {
      */
     private suspend fun respondMap(call: ApplicationCall) {
         scheduler.map?.let {
-            println("send map: ${scheduler.map}")
-            call.respondText(Gson().toJson(it), status = HttpStatusCode.OK)
+            val json = Gson().toJson(UnityProducts(it))
+            println("send map: $json")
+            call.respondText(json, status = HttpStatusCode.OK)
         } ?: call.respondText("Map is not set yet, try later", status = HttpStatusCode.NoContent)
     }
 
@@ -167,11 +168,23 @@ class RestService {
      */
     private suspend fun addWorker(call: ApplicationCall) {
         val workerAddress = call.request.origin.remoteHost
+
+        // if no map is available no population can becreated
+        if  (scheduler.map == null) {
+            call.respondText(
+                "No map available, therefore no population could be created",
+                status = HttpStatusCode.ServiceUnavailable
+            )
+            return
+        }
+
         val subPopulation = scheduler.getSubPopulation()
 
         if (subPopulation == null) {
-            call.respondText("Max worker count is reached: ${Scheduler.WORKER_COUNT} Workers",
-                status = HttpStatusCode.ServiceUnavailable)
+            call.respondText(
+                "Max worker count is reached: ${Scheduler.WORKER_COUNT} Workers",
+                status = HttpStatusCode.ServiceUnavailable
+            )
             return
         }
 
@@ -195,13 +208,14 @@ class RestService {
     private suspend fun parsePopulation(call: ApplicationCall): Population? = try {
         val string = call.receive<String>()
 
-        val json = Gson().fromJson<Population>(string, Population::class.java)
+        val population = Gson().fromJson<Population>(string, Population::class.java)
 
-        json
+        if (population.paths.contains(null)) {
+            call.respondText("invalid population", status = HttpStatusCode.BadRequest)
+            null
+        } else population
     } catch (e: ContentTransformationException) {
         call.respondText("couldn't read json", status = HttpStatusCode.BadRequest)
         null
     }
-
-
 }

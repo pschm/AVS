@@ -11,6 +11,7 @@ class Population(populationSize: Int, initialize: Boolean) {
     // Holds population of paths
     var paths: Array<IndividualPath?>
 
+    // transient --> property is ignored from Gson while building json
     @Transient var worker: Worker? = null
 
     init {

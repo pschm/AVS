@@ -4,6 +4,7 @@ import genetic_algorithm.IndividualPath
 import genetic_algorithm.PathManager
 import genetic_algorithm.Population
 import genetic_algorithm.Product
+import java.time.LocalDateTime
 import kotlin.math.pow
 import kotlin.random.Random
 
@@ -12,6 +13,7 @@ class Scheduler {
     companion object {
         const val WORKER_COUNT = 12
         const val POPULATION_SIZE = 200 // min (WORKER_COUNT+1)²
+        const val WORKER_RESPONSE_TIME = 5 // time in minutes
     }
 
     val workers = mutableListOf<Worker>()
@@ -72,13 +74,19 @@ class Scheduler {
      * Returns if the there are more workers than subPopulations or if no free population was found
      */
     fun getSubPopulation(): Population? {
+        deleteOldWorkers()
+
         if (workers.size + 1 > subPopulations.size) {
             println("Worker size to large")
             return null
         }
 
+        val freePopulations = mutableListOf<Population>()
         for (it in subPopulations)
-            if (it.worker == null) return it
+            if (it.worker == null) freePopulations.add(it)
+
+        if (freePopulations.isNotEmpty())
+            return freePopulations[Random.nextInt(0, freePopulations.size)]
 
         println("could not find free population :/")
         return null
@@ -102,16 +110,27 @@ class Scheduler {
             // remove the worst individual
             paths.removeAt(paths.size - 1)
             // add random new individual from neighbor population
-            paths.add(lastPopulation.getPaths()[Random.nextInt(0, lastPopulation.populationSize()-1)])
+            paths.add(lastPopulation.getPaths()[Random.nextInt(0, lastPopulation.populationSize())])
 
             it.setPaths(paths)
             lastPopulation = it
         }
     }
 
-    fun printPopulations(header: String) {
+    private fun printPopulations(header: String) {
         println(header)
         subPopulations.forEach { println(it.getPaths()) }
         println("---------------")
+    }
+
+    private fun deleteOldWorkers() {
+        val oldWorkers = mutableListOf<Worker>()
+        val now = LocalDateTime.now()
+        workers.forEach {
+            if (it.timestamp.isBefore(now.plusMinutes(WORKER_RESPONSE_TIME.toLong())))
+                oldWorkers.add(it)
+        }
+
+        workers.removeAll(oldWorkers)
     }
 }

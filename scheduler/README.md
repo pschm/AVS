@@ -22,4 +22,16 @@ Der Server läuft dann auf localhost mit dem Port 8080.
 |Path||||
 ||Get|/path|Liefert den aktuell besten Weg zurück. ||application/json|
 
-
+### Scheduler HTTP-Fehlercodes
+| Ressource | Verb | Fehlercode |                     | Beschreibung                                                            |
+|-----------|------|------------|---------------------|-------------------------------------------------------------------------|
+| /worker   | POST | 503        | Service Unavailable | Die Map ist nicht gesetzt.                                              |
+|           |      |            |                     | Die maximale Anzahl der Arbeiter wurde erreicht.                        |
+|           | PUT  | 400        | Bad Request         | Population ist nicht valide (enthält z.B. null-Werte).                  |
+|           |      |            |                     | Das JSON konnte nicht gelesen werden.                                   |
+|           |      |            |                     | Die UUID fehlt.                                                         |
+|           |      |            |                     | Der Nutzer ist nicht registriert.                                       |
+| /map      | GET  | 204        | No Content          | Die Map ist nicht verfügbar.                                            |
+|           | POST | 400        | Bad Request         | Das JSON konnte nicht gelesen werden.                                   |
+| /path     | GET  | 503        | Service Unavailable | Es gibt momentan keine registrieren Worker, die an der Lösung arbeiten. |
+|           |      | 204        | No Content          | Die Worker haben noch kein Ergebnis geliefert.

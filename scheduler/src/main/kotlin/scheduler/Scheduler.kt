@@ -77,8 +77,12 @@ class Scheduler {
             return null
         }
 
+        val freePopulations = mutableListOf<Population>()
         for (it in subPopulations)
-            if (it.worker == null) return it
+            if (it.worker == null) freePopulations.add(it)
+
+        if (freePopulations.isNotEmpty())
+            return freePopulations[Random.nextInt(0, freePopulations.size)]
 
         println("could not find free population :/")
         return null
@@ -102,14 +106,14 @@ class Scheduler {
             // remove the worst individual
             paths.removeAt(paths.size - 1)
             // add random new individual from neighbor population
-            paths.add(lastPopulation.getPaths()[Random.nextInt(0, lastPopulation.populationSize()-1)])
+            paths.add(lastPopulation.getPaths()[Random.nextInt(0, lastPopulation.populationSize())])
 
             it.setPaths(paths)
             lastPopulation = it
         }
     }
 
-    fun printPopulations(header: String) {
+    private fun printPopulations(header: String) {
         println(header)
         subPopulations.forEach { println(it.getPaths()) }
         println("---------------")

@@ -15,12 +15,12 @@ public class SchedulerAPI {
     private static HttpURLConnection con;
     private static final String urlWorker = "http://192.168.0.136:8080/worker";
     private static final String urlMap = "http://192.168.0.136:8080/map";
-    private static final Path UUIDPATH = Paths.get("C:\\Users\\volka\\Desktop\\uuid.txt");
+    private static final Path UUIDPATH = Paths.get("\\Users\\wi2885\\Desktopuuid\\uuid.txt");
 
-    private String postWorker(IndividualPath individualPath) throws IOException
+    private String postWorker(Population population) throws IOException
     {
         Gson gson = new Gson();
-        String individidualPathAsJson = gson.toJson(individualPath); //convert
+        String populationAsJSON = gson.toJson(population); //convert
     
         try
         {
@@ -34,7 +34,7 @@ public class SchedulerAPI {
             con.setRequestProperty("Content-Type", "application/json; utf-8");
 
             try(OutputStream os = con.getOutputStream()) {
-                byte[] input = individidualPathAsJson.getBytes("utf-8");
+                byte[] input = populationAsJSON.getBytes("utf-8");
                 os.write(input, 0, input.length);
             }
 
@@ -70,12 +70,12 @@ public class SchedulerAPI {
         }
     }
 
-    private void putWorker(String uuidAsString,IndividualPath individualPath) throws IOException
+    private void putWorker(String uuidAsString,Population population) throws IOException
     {
         String urlParameters = "?uuid="+uuidAsString;
 
         Gson gson = new Gson();
-        String individidualPathAsJson = gson.toJson(individualPath); //convert
+        String individidualPathAsJson = gson.toJson(population); //convert
     
         try
         {
@@ -154,18 +154,18 @@ public class SchedulerAPI {
         }
     }
 
-    void sendFittestPath(IndividualPath individualPath) throws IOException {
+    void sendFittestPath(Population population) throws IOException {
 
         File f = UUIDPATH.toFile();
         if(f.exists() && f.isFile()) {
             List<String> allLines = Files.readAllLines(UUIDPATH,StandardCharsets.UTF_8);
-            this.putWorker(allLines.get(0),individualPath);
+            this.putWorker(allLines.get(0),population);
         }
         else
         {
-            String uuidAsString = postWorker(individualPath);
+            String uuidAsString = postWorker(population);
 
-            PrintWriter writer = new PrintWriter(UUIDPATH.toString(), StandardCharsets.UTF_8);
+            PrintWriter writer = new PrintWriter(UUIDPATH.toString());
             writer.println(uuidAsString);
             writer.close();
         }

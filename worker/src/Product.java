@@ -1,6 +1,6 @@
 public class Product {
-	int x;
-    int y;
+	double x;
+    double y;
     String productName;
     
     /**
@@ -8,8 +8,8 @@ public class Product {
      * @param productName
      */
     public Product(String productName){
-        this.x = (int)(Math.random()*200);
-        this.y = (int)(Math.random()*200);
+        this.x = (double) (Math.random()*200);
+        this.y = (double) (Math.random()*200);
         this.productName = productName;
     }
     
@@ -19,7 +19,7 @@ public class Product {
      * @param y
      * @param productName
      */
-    public Product(int x, int y, String productName){
+    public Product(double x, double y, String productName){
         this.x = x;
         this.y = y;
         this.productName = productName;
@@ -29,7 +29,7 @@ public class Product {
      * Gets product's x coordinate
      * @return X (INT)
      */
-    public int getX(){
+    public double getX(){
         return this.x;
     }
     
@@ -37,7 +37,7 @@ public class Product {
      * Gets product's y coordinate
      * @return Y (INT)
      */
-    public int getY(){
+    public double getY(){
         return this.y;
     }
 
@@ -51,8 +51,8 @@ public class Product {
      * @return Distance
      */
     public double distanceTo(Product product){
-        int xDistance = Math.abs(getX() - product.getX());
-        int yDistance = Math.abs(getY() - product.getY());
+        double xDistance = Math.abs(getX() - product.getX());
+        double yDistance = Math.abs(getY() - product.getY());
         double distance = Math.sqrt( (xDistance*xDistance) + (yDistance*yDistance) );
         
         return distance;

@@ -13,9 +13,9 @@ import org.json.JSONObject;
 public class SchedulerAPI {
     
     private static HttpURLConnection con;
-    private static final String urlWorker = "http://192.168.0.136:8080/worker";
-    private static final String urlMap = "http://192.168.0.136:8080/map";
-    private static final Path UUIDPATH = Paths.get("\\Users\\wi2885\\Desktopuuid\\uuid.txt");
+    private static final String urlWorker = "http://192.168.0.150:8080/worker";
+    private static final String urlMap = "http://192.168.0.150:8080/map";
+    private static final Path UUIDPATH = Paths.get("C:\\Users\\volka\\Desktop\\uuid.txt");
 
     private String postWorker(Population population) throws IOException
     {
@@ -54,13 +54,11 @@ public class SchedulerAPI {
                     while ((responseLine = br.readLine()) != null) {
                         response.append(responseLine.trim());
                     }
-                    System.out.println(response.toString());
+                    System.out.println("POST RESPONSE:" + response.toString());
                 }
             }
     
             JSONObject jsonObject = new JSONObject(response.toString());
-
-            System.out.println(jsonObject.toString());
 
             return jsonObject.getString("uuid");
     
@@ -75,7 +73,7 @@ public class SchedulerAPI {
         String urlParameters = "?uuid="+uuidAsString;
 
         Gson gson = new Gson();
-        String individidualPathAsJson = gson.toJson(population); //convert
+        String populationAsJson = gson.toJson(population); //convert
     
         try
         {
@@ -88,26 +86,29 @@ public class SchedulerAPI {
             con.setRequestProperty("Content-Type", "application/json; utf-8");
 
             try(OutputStream os = con.getOutputStream()) {
-                byte[] input = individidualPathAsJson.getBytes("utf-8");
+                byte[] input = populationAsJson.getBytes("utf-8");
                 os.write(input, 0, input.length);
             }
-    
-            StringBuilder response;
-    
-            try (BufferedReader br = new BufferedReader(
-                    new InputStreamReader(con.getInputStream()))) {
-    
-                String line;
-                response = new StringBuilder();
-    
-                while ((line = br.readLine()) != null) {
-                    response.append(line);
-                    response.append(System.lineSeparator());
+
+            StringBuilder response = null;
+
+            InputStream inputStream;
+            int status = con.getResponseCode();
+
+            if (status != HttpURLConnection.HTTP_OK)  {
+                inputStream = con.getErrorStream();
+            }
+            else {
+                try (BufferedReader br = new BufferedReader(
+                        new InputStreamReader(con.getInputStream(), "utf-8"))) {
+                    response = new StringBuilder();
+                    String responseLine = null;
+                    while ((responseLine = br.readLine()) != null) {
+                        response.append(responseLine.trim());
+                    }
+                    System.out.println("RESPONSE:" + response.toString());
                 }
             }
-
-            System.out.println("PUT RESPONSE: "+ response.toString());
-    
         } finally {
     
             con.disconnect();

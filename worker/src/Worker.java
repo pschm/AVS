@@ -11,15 +11,14 @@ public class Worker {
 
         JSONObject mapAsJSON = new JSONObject(schedulerAPI.getMap());
 
-
         JSONArray jsonArray = mapAsJSON.getJSONArray("Items");
 
         for (int i = 0; i < jsonArray.length(); i++)
         {
-            JSONObject indexObject = new JSONObject(jsonArray.get(i));
-            JSONObject position = new JSONObject(indexObject.get("position"));
+            JSONObject indexObject = new JSONObject(jsonArray.get(i).toString());
+            JSONObject position = new JSONObject(indexObject.get("position").toString());
 
-            PathManager.addProduct(new Product(position.getInt("x"),position.getInt("y"),indexObject.getString("name")));
+            PathManager.addProduct(new Product(position.getDouble("x"),position.getDouble("y"),indexObject.getString("name")));
         }
 
         //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -31,7 +30,7 @@ public class Worker {
 
         // Evolve population for 100 generations
         pop = GA.evolvePopulation(pop);
-        for (int i = 0; i < 100000; i++) {
+        for (int i = 0; i < 100; i++) {
             pop = GA.evolvePopulation(pop);
         }
 
@@ -39,7 +38,7 @@ public class Worker {
         System.out.println("Finished");
         System.out.println("Final distance: " + pop.getFittest().getDistance());
         System.out.println("Solution:");
-        System.out.println(pop);
+        System.out.println(pop.getFittest());
 
         schedulerAPI.sendFittestPath(pop);
 	}

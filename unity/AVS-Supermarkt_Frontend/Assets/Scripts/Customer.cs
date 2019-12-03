@@ -59,7 +59,7 @@ public class Customer : MonoBehaviour {
     }
 
     public void SetWaypoints(List<Vector3> waypoints, Action finishAction = null) {
-        ResetPosition();
+        ResetPosition(waypoints[0]);
 
         this.waypoints = waypoints;
         waypointIndex = 0;
@@ -76,14 +76,14 @@ public class Customer : MonoBehaviour {
 
         //Calculate a path from the start point to the first shelf
         if(NavMesh.CalculatePath(transform.position, waypoints[0], NavMesh.AllAreas, path)) {
-            foreach(var point in path.corners){
+            foreach(var point in path.corners) {
                 linePoints.Add(new Vector3(point.x, point.y + 1, point.z));
             }
         }
 
         //Calculate a path from each self to the next one
         for(int i = 0; i < waypoints.Count - 1; i++) {
-            if(NavMesh.CalculatePath(waypoints[i], waypoints[i+1], NavMesh.AllAreas, path)) {
+            if(NavMesh.CalculatePath(waypoints[i], waypoints[i + 1], NavMesh.AllAreas, path)) {
 
                 foreach(var point in path.corners) {
                     linePoints.Add(new Vector3(point.x, point.y + 1, point.z));
@@ -98,8 +98,12 @@ public class Customer : MonoBehaviour {
     }
 
     public void ResetPosition() {
+        ResetPosition(initialPos);
+    }
+
+    public void ResetPosition(Vector3 position) {
         agent.isStopped = true;
-        transform.position = initialPos;
+        transform.position = position;
 
         lineRenderer.positionCount = 0;
     }

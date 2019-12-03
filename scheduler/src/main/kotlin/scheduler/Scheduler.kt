@@ -28,10 +28,28 @@ class Scheduler {
         // best individual of the given population
         val individual = population.getFittest()
 
-        bestIndividual = individual?.let {
-            if (individual.distance < it.distance) individual
-            else bestIndividual
-        } ?: bestIndividual
+
+        //println(individual?.fitness)
+
+        println("bestIndiviual: $bestIndividual (distance: ${bestIndividual?.distance})")
+        println("newIndividual: $individual (distance ${individual?.distance})")
+
+        val bIndividual = bestIndividual
+        if (bIndividual == null) {
+            bestIndividual = individual
+            return
+        }
+
+        if (individual != null && individual.distance < bIndividual.distance) {
+            bestIndividual = individual
+        }
+
+//        bestIndividual = individual?.let {
+//            if (it.distance < bestIndividual?.distance ?: -1) individual
+//            else bestIndividual
+//        } ?: bestIndividual
+
+
     }
 
     /**
@@ -74,7 +92,7 @@ class Scheduler {
      * Returns if the there are more workers than subPopulations or if no free population was found
      */
     fun getSubPopulation(): Population? {
-        deleteOldWorkers()
+        //deleteOldWorkers()
 
         if (workers.size + 1 > subPopulations.size) {
             println("Worker size to large")
@@ -123,6 +141,7 @@ class Scheduler {
         println("---------------")
     }
 
+    // TODO fix concurred modification exception
     private fun deleteOldWorkers() {
         val oldWorkers = mutableListOf<Worker>()
         val now = LocalDateTime.now()

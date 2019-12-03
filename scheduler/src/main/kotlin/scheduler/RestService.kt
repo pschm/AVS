@@ -4,9 +4,11 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import genetic_algorithm.IndividualPath
 import genetic_algorithm.Population
+import genetic_algorithm.Product
 import io.ktor.application.ApplicationCall
 import io.ktor.application.call
 import io.ktor.features.origin
+import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.request.ContentTransformationException
 import io.ktor.request.receive
@@ -84,12 +86,19 @@ class RestService {
     private suspend fun respondPath(call: ApplicationCall) {
         when {
             scheduler.bestIndividual != null -> {
-                val json = Gson().toJson(scheduler.bestIndividual)
-                call.respondText(json, status = HttpStatusCode.OK)
+                println("Send best Individual")
+
+                val mList = mutableListOf<Product>()
+                scheduler.bestIndividual?.IndividualPath?.forEach {p ->
+                    p?.let { mList.add(it) }
+                }
+                val unityProducts = UnityProducts(mList)
+                val json = Gson().toJson(unityProducts)
+                call.respondText(json, status = HttpStatusCode.OK, contentType = ContentType.Application.Json)
             }
             scheduler.workers.isEmpty() -> call.respondText(
                 "Currently no worker is registered, try later",
-                    status = HttpStatusCode.ServiceUnavailable
+                    status = HttpStatusCode.NoContent
             )
             else -> call.respondText("The Path is not set yet, try later", status = HttpStatusCode.NoContent)
         }
@@ -137,14 +146,18 @@ class RestService {
 
         if (workerId == null) {
             call.respondText("parameter uuid missing", status = HttpStatusCode.BadRequest)
+            println("worker id missing")
             return
         }
+
+        println("update worker")
 
         // update worker individual
         var alreadyInList = false
         var newPopulation: Population? = null
         scheduler.workers.forEach {
             if (it.uuid == UUID.fromString(workerId)) {
+                println("Update worker ${it.uuid}")
                 it.subPopulation.updateIndividuals(population)
                 it.timestamp = LocalDateTime.now()
                 scheduler.updateBestIndividual(it.subPopulation)
@@ -155,8 +168,10 @@ class RestService {
             }
         }
 
-        if (!alreadyInList)
+        if (!alreadyInList) {
             call.respondText("Worker is not registered. Use POST instead", status = HttpStatusCode.BadRequest)
+            println("Worker is not registered. Use POST instead - 400")
+        }
         else {
             val json = Gson().toJson(newPopulation)
             call.respondText(json, status = HttpStatusCode.OK)
@@ -208,14 +223,18 @@ class RestService {
     private suspend fun parsePopulation(call: ApplicationCall): Population? = try {
         val string = call.receive<String>()
 
+        println("popupaltion from worker $string")
         val population = Gson().fromJson<Population>(string, Population::class.java)
+        population.paths.forEach { print("$it |") }
 
-        if (population.paths.contains(null)) {
+        if (population.paths.contains(null) || population.paths.isNullOrEmpty()) {
             call.respondText("invalid population", status = HttpStatusCode.BadRequest)
+            println("invalid population - 400")
             null
         } else population
     } catch (e: ContentTransformationException) {
         call.respondText("couldn't read json", status = HttpStatusCode.BadRequest)
+        println("could read json - 400")
         null
     }
 }

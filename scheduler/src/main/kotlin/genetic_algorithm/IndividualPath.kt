@@ -1,12 +1,11 @@
 package genetic_algorithm
 
 import genetic_algorithm.PathManager.Companion.numberOfProducts
-import kotlin.collections.ArrayList
 
 /**
- * @property individualPath Holds our IndividualPath of products
+ * @property IndividualPath Holds our IndividualPath of products
  */
-class IndividualPath(var individualPath: ArrayList<Product?> = ArrayList()) {
+class IndividualPath(var IndividualPath: ArrayList<Product?> = ArrayList()) {
 
     var fitness = 0.0
         get() {
@@ -19,9 +18,9 @@ class IndividualPath(var individualPath: ArrayList<Product?> = ArrayList()) {
         get() = calcDistance(field)
 
     init {
-        if (individualPath.isEmpty()) {
+        if (IndividualPath.isEmpty()) {
             for (i in 0 until numberOfProducts()) {
-                individualPath.add(null)
+                IndividualPath.add(null)
             }
         }
     }
@@ -34,7 +33,7 @@ class IndividualPath(var individualPath: ArrayList<Product?> = ArrayList()) {
             setProduct(productIndex, PathManager.getProduct(productIndex))
         }
         // Randomly reorder the IndividualPath
-        individualPath.shuffle()
+        IndividualPath.shuffle()
     }
 
     /**
@@ -43,7 +42,7 @@ class IndividualPath(var individualPath: ArrayList<Product?> = ArrayList()) {
      * @return Product
      */
     fun getProduct(tourPosition: Int): Product? {
-        return individualPath[tourPosition]
+        return IndividualPath[tourPosition]
     }
 
     /**
@@ -52,7 +51,7 @@ class IndividualPath(var individualPath: ArrayList<Product?> = ArrayList()) {
      * @param product
      */
     fun setProduct(IndividualPathPosition: Int, product: Product?) {
-        individualPath[IndividualPathPosition] = product
+        IndividualPath[IndividualPathPosition] = product
         // If the IndividualPaths been altered we need to reset the fitness and distance
         fitness = 0.0
         distance = 0
@@ -90,7 +89,7 @@ class IndividualPath(var individualPath: ArrayList<Product?> = ArrayList()) {
      * @return
      */
     fun pathSize(): Int {
-        return individualPath.size
+        return IndividualPath.size
     }
 
     /**
@@ -99,7 +98,7 @@ class IndividualPath(var individualPath: ArrayList<Product?> = ArrayList()) {
      * @return Boolean
      */
     fun containsProduct(product: Product?): Boolean {
-        return individualPath.contains(product)
+        return IndividualPath.contains(product)
     }
 
     override fun toString(): String {

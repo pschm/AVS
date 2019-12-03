@@ -12,13 +12,11 @@ public class Customer : MonoBehaviour {
     private float grabCooldown;
 
     private NavMeshAgent agent;
-    private LineRenderer lineRenderer;
     private Vector3 initialPos;
     private Action finishAction;
 
     private void Awake() {
         agent = GetComponent<NavMeshAgent>();
-        lineRenderer = GetComponent<LineRenderer>();
         agent.isStopped = true;
         initialPos = transform.position;
     }
@@ -67,34 +65,9 @@ public class Customer : MonoBehaviour {
 
         this.finishAction = finishAction;
 
-        SetupLineRenderer(waypoints);
-    }
-
-    public void SetupLineRenderer(List<Vector3> waypoints) {
-        List<Vector3> linePoints = new List<Vector3>();
-        NavMeshPath path = new NavMeshPath();
-
-        //Calculate a path from the start point to the first shelf
-        if(NavMesh.CalculatePath(transform.position, waypoints[0], NavMesh.AllAreas, path)) {
-            foreach(var point in path.corners) {
-                linePoints.Add(new Vector3(point.x, point.y + 1, point.z));
-            }
-        }
-
-        //Calculate a path from each self to the next one
-        for(int i = 0; i < waypoints.Count - 1; i++) {
-            if(NavMesh.CalculatePath(waypoints[i], waypoints[i + 1], NavMesh.AllAreas, path)) {
-
-                foreach(var point in path.corners) {
-                    linePoints.Add(new Vector3(point.x, point.y + 1, point.z));
-                }
-
-            }
-
-        }
-
-        lineRenderer.positionCount = linePoints.Count;
-        lineRenderer.SetPositions(linePoints.ToArray());
+#if UNITY_EDITOR
+        UpdateGizmosLines(waypoints);
+#endif
     }
 
     public void ResetPosition() {
@@ -105,7 +78,45 @@ public class Customer : MonoBehaviour {
         agent.isStopped = true;
         transform.position = position;
 
-        lineRenderer.positionCount = 0;
+#if UNITY_EDITOR
+        gizmosLinePoints = new List<Vector3>();
+#endif
     }
+
+
+
+#if UNITY_EDITOR
+    //Used for drawing gizoms so that its not required to re-build the list every draw call
+    private List<Vector3> gizmosLinePoints = new List<Vector3>();
+
+    private void UpdateGizmosLines(List<Vector3> waypoints) {
+        if(waypoints == null || waypoints.Count <= 0) return;
+
+        gizmosLinePoints = new List<Vector3>();
+        NavMeshPath path = new NavMeshPath();
+
+        //Calculate a path from each self to the next one
+        for(int i = 0; i < waypoints.Count - 1; i++) {
+            if(NavMesh.CalculatePath(waypoints[i], waypoints[i + 1], NavMesh.AllAreas, path)) {
+
+                foreach(var point in path.corners) {
+                    gizmosLinePoints.Add(new Vector3(point.x, point.y + 1, point.z));
+                }
+            }
+        }
+    }
+
+    private void OnDrawGizmos() {
+        var oldColor = Gizmos.color;
+
+        Gizmos.color = Color.cyan;
+        for(int i = 0; i < gizmosLinePoints.Count - 1; i++) {
+            Gizmos.DrawLine(gizmosLinePoints[i], gizmosLinePoints[i + 1]);
+        }
+
+        Gizmos.color = oldColor;
+    }
+
+#endif
 
 }

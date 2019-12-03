@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Text;
 
 public class UiManager : MonoBehaviour {
 
@@ -81,8 +82,8 @@ public class UiManager : MonoBehaviour {
             if(!request.isNetworkError && request.responseCode == 200) {
                 Debug.Log("Got result.");
 
-                var data = request.downloadHandler.text;
-                result = JsonUtility.FromJson<List<NodeModel>>(data);
+                var response = Encoding.UTF8.GetString(request.downloadHandler.data);
+                result = JsonHelper.FromJson<NodeModel>(response);
 
             } else if(request.isNetworkError || request.responseCode == 503) {
                 Debug.LogWarning($"Cant get result. Network-Error: {request.isNetworkError}, Response-Code: {request.responseCode}");

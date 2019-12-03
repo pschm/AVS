@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Text;
 
 public class UiManager : MonoBehaviour {
 
@@ -69,22 +70,22 @@ public class UiManager : MonoBehaviour {
     }
 
     private IEnumerator CheckForCalculationResult() {
-        Debug.Log("Checking for result...");
-        var request = SchedulerRestRequests.BuildGetCalculatedWaypointsRequest();
+        Debug.Log("Checking for result...");        
         bool isCalculating = true;
         List<NodeModel> result = null;
 
         while(result == null && isCalculating) {
+            var request = SchedulerRestRequests.BuildGetCalculatedWaypointsRequest();
             yield return new WaitForSeconds(2f);
             yield return request.SendWebRequest();
 
             if(!request.isNetworkError && request.responseCode == 200) {
                 Debug.Log("Got result.");
 
-                var data = request.downloadHandler.text;
-                result = JsonUtility.FromJson<List<NodeModel>>(data);
+                var response = Encoding.UTF8.GetString(request.downloadHandler.data);
+                result = JsonHelper.FromJson<NodeModel>(response);
 
-            } else if(request.isNetworkError || request.responseCode == 503) {
+            } else if(request.isNetworkError /*|| request.responseCode == 503*/) {
                 Debug.LogWarning($"Cant get result. Network-Error: {request.isNetworkError}, Response-Code: {request.responseCode}");
                 isCalculating = false;
             }

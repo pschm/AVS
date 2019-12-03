@@ -1584,6 +1584,7 @@ MonoBehaviour:
   resultLabelPrefab: {fileID: 4227499146112557788, guid: fa04467e5f8ceac4cb25951b4227d638,
     type: 3}
   resultViewPortContent: {fileID: 1486857316}
+  startAndEndpointColor: {r: 0.3372549, g: 0.3372549, b: 0.3529412, a: 1}
 --- !u!1001 &136292411
 PrefabInstance:
   m_ObjectHideFlags: 0

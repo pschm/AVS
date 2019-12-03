@@ -1,16 +1,14 @@
 public class Product {
-	double x;
-    double y;
-    String productName;
+    Position position;
+    String name;
     
     /**
      * Constructs a randomly placed product
      * @param productName
      */
     public Product(String productName){
-        this.x = (double) (Math.random()*200);
-        this.y = (double) (Math.random()*200);
-        this.productName = productName;
+        this.position = new Position((double) (Math.random()*200), (double) (Math.random()*200));
+        this.name = productName;
     }
     
     /**
@@ -20,9 +18,8 @@ public class Product {
      * @param productName
      */
     public Product(double x, double y, String productName){
-        this.x = x;
-        this.y = y;
-        this.productName = productName;
+        this.position = new Position(x, y);
+        this.name = productName;
     }
     
     /**
@@ -30,7 +27,7 @@ public class Product {
      * @return X (INT)
      */
     public double getX(){
-        return this.x;
+        return this.position.getX();
     }
     
     /**
@@ -38,11 +35,11 @@ public class Product {
      * @return Y (INT)
      */
     public double getY(){
-        return this.y;
+        return this.position.getY();
     }
 
     public String getProductName(){
-        return this.productName;
+        return this.name;
     }
     
     /**

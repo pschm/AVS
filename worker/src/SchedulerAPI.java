@@ -13,9 +13,9 @@ import org.json.JSONObject;
 public class SchedulerAPI {
     
     private static HttpURLConnection con;
-    private static final String urlWorker = "http://192.168.0.150:8080/worker";
-    private static final String urlMap = "http://192.168.0.150:8080/map";
-    private static final Path UUIDPATH = Paths.get("C:\\Users\\volka\\Desktop\\uuid.txt");
+    private static final String urlWorker = "http://139.6.65.27:8080/worker";
+    private static final String urlMap = "http://139.6.65.27:8080/map";
+    private static final Path UUIDPATH = Paths.get("/Users/wi2885/Desktop/uuid/uuid.txt");
 
     private String postWorker(Population population) throws IOException
     {

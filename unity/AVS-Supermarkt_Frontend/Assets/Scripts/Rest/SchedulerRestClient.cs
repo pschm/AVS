@@ -35,7 +35,7 @@ public class SchedulerRestClient : MonoBehaviour {
 
     private IEnumerator DoCalculationEmulated(List<NodeModel> nodes, Action<List<NodeModel>> actionOnResult) {
         Debug.Log("Emulating Scheduler is enabled.");
-        yield return new WaitForSeconds(UnityEngine.Random.Range(2, 6));
+        yield return new WaitForSeconds(UnityEngine.Random.Range(0.5f, 2f));
 
         Debug.Log("Got result.");
         calculationActive = false;

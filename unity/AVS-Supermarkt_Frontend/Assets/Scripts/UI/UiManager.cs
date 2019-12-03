@@ -69,12 +69,12 @@ public class UiManager : MonoBehaviour {
     }
 
     private IEnumerator CheckForCalculationResult() {
-        Debug.Log("Checking for result...");
-        var request = SchedulerRestRequests.BuildGetCalculatedWaypointsRequest();
+        Debug.Log("Checking for result...");        
         bool isCalculating = true;
         List<NodeModel> result = null;
 
         while(result == null && isCalculating) {
+            var request = SchedulerRestRequests.BuildGetCalculatedWaypointsRequest();
             yield return new WaitForSeconds(2f);
             yield return request.SendWebRequest();
 

@@ -85,7 +85,7 @@ public class UiManager : MonoBehaviour {
                 var response = Encoding.UTF8.GetString(request.downloadHandler.data);
                 result = JsonHelper.FromJson<NodeModel>(response);
 
-            } else if(request.isNetworkError || request.responseCode == 503) {
+            } else if(request.isNetworkError /*|| request.responseCode == 503*/) {
                 Debug.LogWarning($"Cant get result. Network-Error: {request.isNetworkError}, Response-Code: {request.responseCode}");
                 isCalculating = false;
             }

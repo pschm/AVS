@@ -7,7 +7,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Customer : MonoBehaviour {
 
-    private List<Vector3> waypoints;
+    private List<Vector3> waypoints = new List<Vector3>();
     private int waypointIndex;
     private float grabCooldown;
 
@@ -100,7 +100,7 @@ public class Customer : MonoBehaviour {
             if(NavMesh.CalculatePath(waypoints[i], waypoints[i + 1], NavMesh.AllAreas, path)) {
 
                 foreach(var point in path.corners) {
-                    gizmosLinePoints.Add(new Vector3(point.x, point.y + 1, point.z));
+                    gizmosLinePoints.Add(new Vector3(point.x, point.y + .1f, point.z));
                 }
             }
         }
@@ -112,6 +112,11 @@ public class Customer : MonoBehaviour {
         Gizmos.color = Color.cyan;
         for(int i = 0; i < gizmosLinePoints.Count - 1; i++) {
             Gizmos.DrawLine(gizmosLinePoints[i], gizmosLinePoints[i + 1]);
+        }
+
+        Gizmos.color = Color.magenta;
+        foreach(var waypoint in waypoints) {
+            Gizmos.DrawSphere(waypoint, .5f);
         }
 
         Gizmos.color = oldColor;

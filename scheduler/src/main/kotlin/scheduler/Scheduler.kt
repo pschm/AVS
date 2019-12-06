@@ -19,7 +19,7 @@ class Scheduler {
     val workers = mutableListOf<Worker>()
     var bestIndividual: IndividualPath? = null
     var map: List<Product>? = null
-    private val subPopulations = mutableListOf<Population>()
+    val subPopulations = mutableListOf<Population>()
 
     /**
      * update [bestIndividual] if [population] has better fitness
@@ -114,11 +114,7 @@ class Scheduler {
      * Evolves all [subPopulations] based on nearest neighbor immigrant principle
      * and changes the [Population] of the worker
      */
-    fun evolvePopulation(worker: Worker) {
-        // get a new population for the worker
-        val newPopulation = getSubPopulation() ?: throw NoSuchElementException()
-        worker.changePopulation(newPopulation)
-
+    fun evolvePopulation() {
         // evolve
         var lastPopulation = subPopulations.last()
         subPopulations.forEach {
@@ -135,9 +131,11 @@ class Scheduler {
         }
     }
 
-    private fun printPopulations(header: String) {
+    fun printPopulations(header: String) {
         println(header)
-        subPopulations.forEach { println(it.getPaths()) }
+        subPopulations.forEach { println("${it.worker?.uuid} -" + it.getPaths()) }
+        println("---------------")
+        workers.forEach { println(it.uuid) }
         println("---------------")
     }
 

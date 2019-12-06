@@ -141,7 +141,7 @@ class RestService {
      */
     private suspend fun updateWorker(call: ApplicationCall) {
         // check if worker is in list
-        val population = parsePopulation(call) ?: return
+        val parsedPopulation = parsePopulation(call) ?: return
         val workerId = call.parameters["uuid"]
 
         if (workerId == null) {
@@ -154,16 +154,31 @@ class RestService {
 
         // update worker individual
         var alreadyInList = false
-        var newPopulation: Population? = null
+        var respondPopulation: Population? = null
+
         scheduler.workers.forEach {
             if (it.uuid == UUID.fromString(workerId)) {
+
                 println("Update worker ${it.uuid}")
-                it.subPopulation.updateIndividuals(population)
+
+                // get a new population for the worker
+                val newPopulation = scheduler.getSubPopulation() ?: throw NoSuchElementException()
+
+                if (scheduler.subPopulations.any { subPop -> subPop.worker == it }) {
+                    it.subPopulation.updateIndividuals(parsedPopulation)
+                    scheduler.updateBestIndividual(it.subPopulation)
+
+                    it.changePopulation(newPopulation)
+                    scheduler.evolvePopulation()
+                } else {
+                    it.changePopulation(newPopulation)
+                }
+
                 it.timestamp = LocalDateTime.now()
-                scheduler.updateBestIndividual(it.subPopulation)
-                scheduler.evolvePopulation(it)
-                newPopulation = it.subPopulation
+                respondPopulation = it.subPopulation
                 alreadyInList = true
+
+                scheduler.printPopulations("Update Worker")
                 return@forEach
             }
         }
@@ -173,7 +188,7 @@ class RestService {
             println("Worker is not registered. Use POST instead - 400")
         }
         else {
-            val json = Gson().toJson(newPopulation)
+            val json = Gson().toJson(respondPopulation)
             call.respondText(json, status = HttpStatusCode.OK)
         }
     }

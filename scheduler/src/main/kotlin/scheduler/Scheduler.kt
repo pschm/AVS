@@ -16,7 +16,11 @@ class Scheduler {
         const val WORKER_RESPONSE_TIME = 5 // time in minutes
     }
 
-    val workers = mutableListOf<Worker>()
+    @get:Synchronized
+    val workers =  mutableListOf<Worker>()
+//    val workers: MutableList<Worker> = Collections.synchronizedList( mutableListOf<Worker>() )
+
+
     var bestIndividual: IndividualPath? = null
     var map: List<Product>? = null
     val subPopulations = mutableListOf<Population>()
@@ -57,6 +61,7 @@ class Scheduler {
      */
     fun createPopulation(products: List<Product>) {
         subPopulations.clear()
+        PathManager.clear()
         products.forEach { PathManager.addProduct(it) }
 
         // calc populationSize (should max be product.size²)
@@ -92,7 +97,7 @@ class Scheduler {
      * Returns if the there are more workers than subPopulations or if no free population was found
      */
     fun getSubPopulation(): Population? {
-        //deleteOldWorkers()
+        deleteOldWorkers()
 
         if (workers.size + 1 > subPopulations.size) {
             println("Worker size to large")
@@ -144,10 +149,11 @@ class Scheduler {
         val oldWorkers = mutableListOf<Worker>()
         val now = LocalDateTime.now()
         workers.forEach {
-            if (it.timestamp.isBefore(now.plusMinutes(WORKER_RESPONSE_TIME.toLong())))
+            if (it.timestamp.isBefore(now.minusMinutes(WORKER_RESPONSE_TIME.toLong())))
                 oldWorkers.add(it)
         }
 
-        workers.removeAll(oldWorkers)
+        println("#Workers to remove ${oldWorkers.size}")
+        //workers.removeAll(oldWorkers)
     }
 }

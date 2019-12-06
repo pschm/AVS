@@ -31,5 +31,9 @@ class PathManager {
         fun numberOfProducts(): Int {
             return destinationProducts.size
         }
+
+        fun clear() {
+            destinationProducts.clear()
+        }
     }
 }

@@ -32,8 +32,15 @@ class IndividualPath(var IndividualPath: ArrayList<Product?> = ArrayList()) {
         for (productIndex in 0 until numberOfProducts()) {
             setProduct(productIndex, PathManager.getProduct(productIndex))
         }
+
+        val start = IndividualPath.removeAt(0)
+        val finish = IndividualPath.removeAt(IndividualPath.lastIndex)
+
         // Randomly reorder the IndividualPath
         IndividualPath.shuffle()
+
+        IndividualPath.add(0, start)
+        IndividualPath.add(finish)
     }
 
     /**

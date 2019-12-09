@@ -26,8 +26,10 @@ public class GA {
             // Select parents
             IndividualPath parent1 = tournamentSelection(pop);
             IndividualPath parent2 = tournamentSelection(pop);
+
             // Crossover parents
             IndividualPath child = crossover(parent1, parent2);
+
             // Add child to new population
             newPopulation.savePath(i, child);
         }
@@ -48,11 +50,11 @@ public class GA {
      */
     public static IndividualPath crossover(IndividualPath parent1, IndividualPath parent2) {
         // Create new child tour
-    	IndividualPath child = new IndividualPath();
+    	IndividualPath child = new IndividualPath(parent1.pathSize());
 
         // Get start and end sub tour positions for parent1's tour
-        int startPos = (int) (Math.random() * parent1.pathSize());
-        int endPos = (int) (Math.random() * parent1.pathSize());
+        int startPos = 0;
+        int endPos = parent1.pathSize();
 
         // Loop and add the sub path from parent1 to our child
         for (int i = 0; i < child.pathSize(); i++) {

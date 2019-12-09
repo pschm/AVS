@@ -15,16 +15,14 @@ public class SchedulerAPI {
     private static HttpURLConnection con;
     private static final String urlWorker = "http://139.6.65.27:8080/worker";
     private static final String urlMap = "http://139.6.65.27:8080/map";
-    private static final Path UUIDPATH = Paths.get("/Users/wi2885/Desktop/uuid/uuid.txt");
+    //private static final String urlWorker = "http://192.168.0.136:8080/worker";
+    //private static final String urlMap = "http://192.168.0.136:8080/map";
+    //private static final Path UUIDPATH = Paths.get("/Users/wi2885/Desktop/uuid/uuid.txt");
 
-    private String postWorker(Population population) throws IOException
+    public JSONObject postWorker() throws IOException
     {
-        Gson gson = new Gson();
-        String populationAsJSON = gson.toJson(population); //convert
-    
         try
         {
-
             URL myurl = new URL(urlWorker);
             con = (HttpURLConnection) myurl.openConnection();
     
@@ -34,7 +32,7 @@ public class SchedulerAPI {
             con.setRequestProperty("Content-Type", "application/json; utf-8");
 
             try(OutputStream os = con.getOutputStream()) {
-                byte[] input = populationAsJSON.getBytes("utf-8");
+                byte[] input = new byte[0];
                 os.write(input, 0, input.length);
             }
 
@@ -60,7 +58,7 @@ public class SchedulerAPI {
     
             JSONObject jsonObject = new JSONObject(response.toString());
 
-            return jsonObject.getString("uuid");
+            return jsonObject;
     
         } finally {
     
@@ -68,7 +66,7 @@ public class SchedulerAPI {
         }
     }
 
-    private void putWorker(String uuidAsString,Population population) throws IOException
+    public JSONObject putWorker(String uuidAsString,Population population) throws IOException
     {
         String urlParameters = "?uuid="+uuidAsString;
 
@@ -109,6 +107,11 @@ public class SchedulerAPI {
                     System.out.println("RESPONSE:" + response.toString());
                 }
             }
+
+            JSONObject jsonObject = new JSONObject(response.toString());
+
+            return jsonObject;
+
         } finally {
     
             con.disconnect();
@@ -152,23 +155,6 @@ public class SchedulerAPI {
         } finally {
 
             con.disconnect();
-        }
-    }
-
-    void sendFittestPath(Population population) throws IOException {
-
-        File f = UUIDPATH.toFile();
-        if(f.exists() && f.isFile()) {
-            List<String> allLines = Files.readAllLines(UUIDPATH,StandardCharsets.UTF_8);
-            this.putWorker(allLines.get(0),population);
-        }
-        else
-        {
-            String uuidAsString = postWorker(population);
-
-            PrintWriter writer = new PrintWriter(UUIDPATH.toString());
-            writer.println(uuidAsString);
-            writer.close();
         }
     }
 }

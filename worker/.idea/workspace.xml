@@ -2,21 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4bff9c72-6ccd-42a8-bca1-945968d3eaa9" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/GA.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/GA.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/IndividualPath.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/IndividualPath.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/PathManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/PathManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Population.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Population.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Product.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/SchedulerAPI.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SchedulerAPI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Worker.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Worker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GA.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/IndividualPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IndividualPath.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SchedulerAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SchedulerAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Worker.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,18 +34,6 @@
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager">
     <configuration default="true" type="Applet">
@@ -103,6 +87,18 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -115,6 +111,8 @@
       <updated>1573730101301</updated>
       <workItem from="1573914099969" duration="2691000" />
       <workItem from="1573916900208" duration="1883000" />
+      <workItem from="1575805819718" duration="25481000" />
+      <workItem from="1575915964738" duration="5743000" />
     </task>
     <servers />
   </component>
@@ -134,7 +132,70 @@
       </map>
     </option>
   </component>
+  <component name="WindowStateProjectService">
+    <state x="488" y="64" key="#com.intellij.ide.util.MemberChooser" timestamp="1575824291362">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="488" y="64" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575824291362" />
+    <state width="463" height="466" key="DebuggerActiveHint" timestamp="1575922756722">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="463" height="466" key="DebuggerActiveHint/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575922756722" />
+    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog" timestamp="1575820078973">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575820078973" />
+    <state width="1323" height="174" key="GridCell.Tab.0.bottom" timestamp="1575922760109">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="174" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575922760109" />
+    <state width="1323" height="174" key="GridCell.Tab.0.center" timestamp="1575922760094">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="174" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575922760094" />
+    <state width="1323" height="174" key="GridCell.Tab.0.left" timestamp="1575922760094">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="174" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575922760094" />
+    <state width="1323" height="174" key="GridCell.Tab.0.right" timestamp="1575922760094">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="174" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575922760094" />
+    <state width="1323" height="174" key="GridCell.Tab.1.bottom" timestamp="1575922732268">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="174" key="GridCell.Tab.1.bottom/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575922732268" />
+    <state width="1323" height="174" key="GridCell.Tab.1.center" timestamp="1575922732268">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="174" key="GridCell.Tab.1.center/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575922732268" />
+    <state width="1323" height="174" key="GridCell.Tab.1.left" timestamp="1575922732268">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="174" key="GridCell.Tab.1.left/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575922732268" />
+    <state width="1323" height="174" key="GridCell.Tab.1.right" timestamp="1575922732268">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="174" key="GridCell.Tab.1.right/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575922732268" />
+    <state width="691" height="372" key="XDebugger.FullValuePopup" timestamp="1575813373716">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="691" height="372" key="XDebugger.FullValuePopup/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575813373716" />
+    <state x="244" y="99" width="877" height="568" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1575832301598">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="244" y="99" width="877" height="568" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575832301598" />
+  </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Worker.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="gson" />

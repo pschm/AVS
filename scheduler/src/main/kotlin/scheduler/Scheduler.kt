@@ -94,7 +94,7 @@ class Scheduler {
 
     /**
      * @return [Population] from subPopulations which has no worker attached to it.
-     * Returns if the there are more workers than subPopulations or if no free population was found
+     * Returns null if the there are more workers than subPopulations or if no free population was found
      */
     fun getSubPopulation(): Population? {
         deleteOldWorkers()

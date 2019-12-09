@@ -75,13 +75,14 @@ class RestService {
     fun start() = server.start(wait = true)
 
     /**
-     * responds:
+     * This function gets the bestIndividual from the scheduler and saves the belonging path items in [UnityProducts] to return a correct JSON to Unity.
+     * Responds:
      *
      *  200 -> found best path
      *
      *  204 -> the path is not yet available
      *
-     *  503 -> the path is not yet available and no worker is registered
+     *  503 -> the path is not yet available and no worker is registered  TODO: is that still correct?
      */
     private suspend fun respondPath(call: ApplicationCall) {
         when {
@@ -105,7 +106,14 @@ class RestService {
     }
 
     /**
-     * save sent json to map
+     * [saveMap] is called, when Unity sends a shopping list as JSON. The individual products will be saved from JSON to map.
+     * The products are [UnityProducts]. If the map isn't equal to zero, a population will be created.
+     *
+     * Responds:
+     * 200 --> Ok. The list of products will be send TODO: Why a return?
+     *
+     * 400 --> The json was not readable
+     *
      */
     private suspend fun saveMap(call: ApplicationCall) {
         scheduler.map = try {
@@ -126,7 +134,7 @@ class RestService {
     }
 
     /**
-     * responds map data (200) or error (204) if map is not yet available
+     * [respondMap] responds map data (200) or error (204) if map is not yet available.
      */
     private suspend fun respondMap(call: ApplicationCall) {
         scheduler.map?.let {
@@ -137,7 +145,14 @@ class RestService {
     }
 
     /**
-     * update [IndividualPath] of the calling worker
+     * [updateWorker] updates [IndividualPath] of the calling worker. The worker sends his uuid and his population to the scheduler.
+     * The scheduler mixes his masterpopulation with the worker's population to avoid identical populations and send the new population as JSON to the worker. TODO: Already in doku described?
+     * Responds:
+     * 400 --> The Parameter uuid is missing
+     *
+     * 400 --> Worker is not registered. Use POST instead TODO: Change to one call?
+     *
+     * 200 --> Json with new population is send.
      */
     private suspend fun updateWorker(call: ApplicationCall) {
         // check if worker is in list
@@ -194,7 +209,17 @@ class RestService {
     }
 
     /**
-     * parse json from [call] and try to add a worker to the list
+     * [addWorker] parses json from [call] and tries to add a worker to the list of workers.
+     * If the requirements are fulfilled, the worker (including uuid, ip adress, master subpopulation and a time) will be added.
+     *
+     * Requirements:
+     * - A map of products from unity has to be send before.
+     * - The max of workers has not be reached
+     *
+     * Responds:
+     * 503 --> No map available, so no population could be created
+     * 503 --> The max worker count is reached. No master population available.
+     * 200 --> The new subpopulation with the belonging uuid of the worker is send.
      */
     private suspend fun addWorker(call: ApplicationCall) {
         val workerAddress = call.request.origin.remoteHost
@@ -231,7 +256,7 @@ class RestService {
     }
 
     /**
-     * Try to parse an [Population] from send json in [call].
+     * [parsePopulation] tries to parse an [Population] from send json in [call].
      * If no [Population] could be parsed the call responds with [HttpStatusCode.BadRequest]
      * @return send [Population] or null
      */

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
+using Random = UnityEngine.Random;
 
 public class SchedulerRestClient : MonoBehaviour {
 
@@ -22,20 +23,20 @@ public class SchedulerRestClient : MonoBehaviour {
     }
 
 
-    public void StartCalculationForShoppinglist(List<NodeModel> nodes, string hostUrl, Action<List<NodeModel>> actionOnResult) {
+    public void StartCalculationForShoppinglist(List<NodeModel> nodes, string hostUrl, Action<List<NodeModel>> intAction, Action<List<NodeModel>> actionOnResult) {
         if(calculationActive) {
             throw new NotImplementedException("Caculation still active. Cannot start a new one!");
         }
 
         calculationActive = true;
         if(string.IsNullOrWhiteSpace(hostUrl)) StartCoroutine(DoCalculationEmulated(nodes, actionOnResult));
-        else StartCoroutine(DoCalculation(nodes, hostUrl, actionOnResult));
+        else StartCoroutine(DoCalculation(nodes, hostUrl, intAction, actionOnResult));
     }
 
 
     private IEnumerator DoCalculationEmulated(List<NodeModel> nodes, Action<List<NodeModel>> actionOnResult) {
         Debug.Log("Emulating Scheduler is enabled.");
-        yield return new WaitForSeconds(UnityEngine.Random.Range(0.5f, 2f));
+        yield return new WaitForSeconds(Random.Range(0.5f, 2f));
 
         Debug.Log("Got result.");
         calculationActive = false;
@@ -43,28 +44,25 @@ public class SchedulerRestClient : MonoBehaviour {
     }
 
 
-    private IEnumerator DoCalculation(List<NodeModel> nodes, string hostUrl, Action<List<NodeModel>> actionOnResult) {
+    private IEnumerator DoCalculation(List<NodeModel> nodes, string hostUrl, Action<List<NodeModel>> intAction, Action<List<NodeModel>> actionOnResult) {
         var request = CreatePostShoppingListRequest(nodes, hostUrl);
         yield return request.SendWebRequest();
 
         if(request.responseCode != 200) {
             Debug.LogWarning("Error: " + request.responseCode);
-            throw new System.NotImplementedException("No error handling for given response code while POST shopping list");
+            throw new NotImplementedException("No error handling for given response code while POST shopping list");
 
         } else {
             Debug.Log("Sending to scheduler successful.");
-            yield return QueryCalculationResult(hostUrl, actionOnResult);
+            yield return QueryCalculationResult(hostUrl, intAction, actionOnResult);
         }
     }
 
-    private IEnumerator QueryCalculationResult(string hostUrl, Action<List<NodeModel>> actionOnResult) {
+    private IEnumerator QueryCalculationResult(string hostUrl, Action<List<NodeModel>> intAction, Action<List<NodeModel>> actionOnResult) {
         Debug.Log("Checking for result...");
-        bool isCalculating = true;
         List<NodeModel> result = null;
 
-        while(result == null && isCalculating) {
-            yield return new WaitForSeconds(delayBetweenRequests);
-
+        while(result == null) {
             var request = CreateGetCalculatedWaypointsRequest(hostUrl);
             yield return request.SendWebRequest();
 
@@ -76,12 +74,29 @@ public class SchedulerRestClient : MonoBehaviour {
 
             } else if(request.isNetworkError /*|| request.responseCode == 503*/) {
                 Debug.LogWarning($"Cant get result. Network-Error: {request.isNetworkError}, Response-Code: {request.responseCode}");
-                isCalculating = false;
+                break;
+
+            } else {
+
+                yield return HandleIntermediateRequest(hostUrl, intAction);
             }
+
+            yield return new WaitForSeconds(delayBetweenRequests);
         }
 
         calculationActive = false;
         actionOnResult(result);
+    }
+
+    private IEnumerator HandleIntermediateRequest(string hostUrl, Action<List<NodeModel>> intAction) {
+        var request = CreateGetIntermediateWaypointsRequest(hostUrl);
+        yield return request.SendWebRequest();
+
+        if(!request.isNetworkError && request.responseCode == 200) {
+            var response = Encoding.UTF8.GetString(request.downloadHandler.data);
+            var result = JsonHelper.FromJson<NodeModel>(response);
+            intAction(result);
+        }
     }
 
 
@@ -98,8 +113,15 @@ public class SchedulerRestClient : MonoBehaviour {
         return request;
     }
 
+    private static UnityWebRequest CreateGetIntermediateWaypointsRequest(string hostUrl) {
+        UnityWebRequest request = UnityWebRequest.Get(hostUrl + "/path"); //TODO Adjust to Scheduler-Endpoint
+        request.SetRequestHeader("Accept", "application/json");
+
+        return request;
+    }
+
     private static UnityWebRequest CreateGetCalculatedWaypointsRequest(string hostUrl) {
-        UnityWebRequest request = UnityWebRequest.Get(hostUrl + "/path");
+        UnityWebRequest request = UnityWebRequest.Get(hostUrl + "/path"); //TODO Adjust to Scheduler-Endpoint
         request.SetRequestHeader("Accept", "application/json");
 
         return request;

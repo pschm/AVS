@@ -25,12 +25,12 @@ public class PathDisplayer : MonoBehaviour {
     public void EnableDisplayStraithPath(bool b) => rendererStraight.gameObject.SetActive(b);
 
 
-    public void DisplayPath(List<Vector3> waypoints) {
+    public void DisplayAllPath(List<Vector3> waypoints) {
         DisplayStraightPath(waypoints);
         DisplayNavPath(waypoints);
     }
 
-    private void DisplayStraightPath(List<Vector3> waypoints) {
+    public void DisplayStraightPath(List<Vector3> waypoints) {
         var renderPoints = waypoints.ToArray();
         for(int i = 0; i < renderPoints.Length; i++) {
             renderPoints[i].y += hightOffset; //Apply hight offset
@@ -40,7 +40,7 @@ public class PathDisplayer : MonoBehaviour {
         rendererStraight.SetPositions(renderPoints);
     }
 
-    private void DisplayNavPath(List<Vector3> waypoints) {
+    public void DisplayNavPath(List<Vector3> waypoints) {
         List<Vector3> linePoints = new List<Vector3>();
         NavMeshPath path = new NavMeshPath();
 

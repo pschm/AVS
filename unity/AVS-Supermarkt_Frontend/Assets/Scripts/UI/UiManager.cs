@@ -27,7 +27,7 @@ public class UiManager : MonoBehaviour {
 
         var hostUrl = schedulerIpField.text;
         if(!string.IsNullOrWhiteSpace(hostUrl) && !hostUrl.StartsWith("http")) hostUrl = "http://" + hostUrl;
-        SchedulerRestClient.Instance.StartCalculationForShoppinglist(nodes, hostUrl, ProcessCalculationResult);
+        SchedulerRestClient.Instance.StartCalculationForShoppinglist(nodes, hostUrl, ProcessIntermediateResult, ProcessCalculationResult);
     }
 
     private void ProcessCalculationResult(List<NodeModel> result) {
@@ -40,6 +40,11 @@ public class UiManager : MonoBehaviour {
         CloseAllUis();
         resultPanel.SetResult(result);
         resultPanel.gameObject.SetActive(true);
+    }
+
+    private void ProcessIntermediateResult(List<NodeModel> intermediateRes) {
+        if(intermediateRes == null || intermediateRes.Count <= 0) return;
+        PathDisplayer.Instance.DisplayStraightPath(NodeModel.GetVector3List(intermediateRes));
     }
 
 
@@ -55,7 +60,7 @@ public class UiManager : MonoBehaviour {
 
         var waypoints = NodeModel.GetVector3List(resultPanel.ResultNodeList);
         customer.SetWaypoints(waypoints, OpenOpenerUi);
-        PathDisplayer.Instance.DisplayPath(waypoints);
+        PathDisplayer.Instance.DisplayAllPath(waypoints);
     }
 
     public void OpenPlannerUi() {

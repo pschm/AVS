@@ -61,6 +61,7 @@ class Scheduler {
      */
     fun createPopulation(products: List<Product>) {
         subPopulations.clear()
+        bestIndividual = null
         PathManager.clear()
         products.forEach { PathManager.addProduct(it) }
 

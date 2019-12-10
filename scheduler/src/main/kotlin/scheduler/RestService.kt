@@ -10,8 +10,8 @@ import io.ktor.application.call
 import io.ktor.features.origin
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
-import io.ktor.request.ContentTransformationException
-import io.ktor.request.receive
+import io.ktor.http.charset
+import io.ktor.request.*
 import io.ktor.response.respondText
 import io.ktor.routing.get
 import io.ktor.routing.post
@@ -22,6 +22,7 @@ import io.ktor.server.netty.Netty
 import io.ktor.server.netty.NettyApplicationEngine
 import json_structure.UnityProducts
 import json_structure.WorkerRespond
+import kotlinx.io.charsets.Charset
 import java.time.LocalDateTime
 import java.util.*
 
@@ -32,44 +33,71 @@ class RestService {
 
     private val server: NettyApplicationEngine
     private val scheduler = Scheduler()
+    private val gson = Gson()
 
     init {
         server = embeddedServer(Netty, port = 8080) {
             routing {
                 // enable REST-Calls
                 get("/ping") {
-                    val host = call.request.origin.remoteHost
-                    println("Ping-Request from $host")
-                    call.respondText("pong")
+                    logRequest(call)
+                    call.respondText("pong", ContentType.Text.Plain, HttpStatusCode.OK)
                 }
 
                 // worker
                 post("/worker") {
-                    println("POST /worker from: ${call.request.origin.remoteHost}")
+                    logRequest(call)
                     addWorker(call)
                 }
                 put("/worker") {
-                    println("PUT /worker from: ${call.request.origin.remoteHost}")
+                    logRequest(call)
                     updateWorker(call)
+                }
+                get("/worker/uuid") {
+                    // TODO delete post /worker and get /map and implement
+                }
+                get("/worker") {
+                    logRequest(call)
+                    respondPopulation(call)
                 }
 
                 // map
                 get("/map") {
-                    println("GET /map from: ${call.request.origin.remoteHost}")
+                    logRequest(call)
                     respondMap(call)
                 }
                 post("/map") {
-                    println("POST /map from: ${call.request.origin.remoteHost}")
+                    logRequest(call)
                     saveMap(call)
                 }
 
                 // path
                 get("/path") {
-                    println("GET /path from: ${call.request.origin.remoteHost}")
+                    logRequest(call)
                     respondPath(call)
                 }
             }
         }
+    }
+
+    private suspend fun respondPopulation(call: ApplicationCall) {
+        val workerId = call.parameters["uuid"]
+
+        if (workerId == null) {
+            call.respondText("parameter uuid missing", ContentType.Text.Plain, HttpStatusCode.BadRequest)
+            println("worker id missing")
+            return
+        }
+
+        scheduler.subPopulations.forEach {
+            if (it.worker?.uuid.toString() == workerId) {
+                val json = gson.toJson(it)
+                call.respondText(json, ContentType.Application.Json, HttpStatusCode.OK)
+                return
+            }
+        }
+
+        call.respondText("uuid is not registered", ContentType.Text.Plain, HttpStatusCode.BadRequest)
     }
 
     fun start() = server.start(wait = true)
@@ -94,13 +122,13 @@ class RestService {
                 }
                 val unityProducts = UnityProducts(mList)
                 val json = Gson().toJson(unityProducts)
-                call.respondText(json, status = HttpStatusCode.OK, contentType = ContentType.Application.Json)
+                call.respondText(json, ContentType.Application.Json, HttpStatusCode.OK)
             }
             scheduler.workers.isEmpty() -> call.respondText(
                 "Currently no worker is registered, try later",
                     status = HttpStatusCode.NoContent
             )
-            else -> call.respondText("The Path is not set yet, try later", status = HttpStatusCode.NoContent)
+            else -> call.respondText("The Path is not set yet, try later", ContentType.Text.Plain, HttpStatusCode.NoContent) // TODO change back to ServiceUnavailable
         }
     }
 
@@ -109,7 +137,8 @@ class RestService {
      */
     private suspend fun saveMap(call: ApplicationCall) {
         scheduler.map = try {
-            val string = call.receive<String>()
+//            val string = call.receive<String>()
+            val string = call.receiveTextWithCorrectEncoding()
             val items = Gson().fromJson<UnityProducts>(string, UnityProducts::class.java)
 
             items.Items
@@ -122,7 +151,7 @@ class RestService {
         scheduler.map?.let {
             scheduler.createPopulation(it)
             call.respondText(Gson().toJson(UnityProducts(it)), status = HttpStatusCode.OK)
-        } ?: call.respondText("Could not read json", status = HttpStatusCode.BadRequest)
+        } ?: call.respondText("Could not read json", ContentType.Text.Plain, HttpStatusCode.BadRequest)
     }
 
     /**
@@ -133,7 +162,7 @@ class RestService {
             val json = Gson().toJson(UnityProducts(it))
             println("send map: $json")
             call.respondText(json, status = HttpStatusCode.OK)
-        } ?: call.respondText("Map is not set yet, try later", status = HttpStatusCode.NoContent)
+        } ?: call.respondText("Map is not set yet, try later", ContentType.Text.Plain, HttpStatusCode.NoContent)
     }
 
     /**
@@ -145,7 +174,7 @@ class RestService {
         val workerId = call.parameters["uuid"]
 
         if (workerId == null) {
-            call.respondText("parameter uuid missing", status = HttpStatusCode.BadRequest)
+            call.respondText("parameter uuid missing", ContentType.Text.Plain, HttpStatusCode.BadRequest)
             println("worker id missing")
             return
         }
@@ -186,7 +215,7 @@ class RestService {
         scheduler.deleteOldWorkers()
 
         if (!alreadyInList) {
-            call.respondText("Worker is not registered. Use POST instead", status = HttpStatusCode.BadRequest)
+            call.respondText("Worker is not registered. Use POST instead", ContentType.Text.Plain, HttpStatusCode.BadRequest)
             println("Worker is not registered. Use POST instead - 400")
         }
         else {
@@ -229,6 +258,7 @@ class RestService {
         val gson = GsonBuilder().serializeNulls().create()
         val json = gson.toJson(WorkerRespond(worker.uuid, worker.subPopulation))
 
+        // println("POST - JSON send to Worker: $json")
         call.respondText(json, status = HttpStatusCode.Created)
     }
 
@@ -238,7 +268,8 @@ class RestService {
      * @return send [Population] or null
      */
     private suspend fun parsePopulation(call: ApplicationCall): Population? = try {
-        val string = call.receive<String>()
+//        val string = call.receive<String>()
+        val string = call.receiveTextWithCorrectEncoding()
 
         println("popupaltion from worker $string")
         val population = Gson().fromJson<Population>(string, Population::class.java)
@@ -254,4 +285,25 @@ class RestService {
         println("could read json - 400")
         null
     }
+
+    private fun logRequest(call: ApplicationCall) {
+        println("${call.request.httpMethod.value} ${call.request.path()} from ${call.request.origin.remoteHost}")
+    }
+}
+
+/**
+ * Receive the request as String.
+ * If there is no Content-Type in the HTTP header specified use ISO_8859_1 as default charset, see https://www.w3.org/International/articles/http-charset/index#charset.
+ * But use UTF-8 as default charset for application/json, see https://tools.ietf.org/html/rfc4627#section-3
+ * from https://github.com/ktorio/ktor/issues/384
+ */
+private suspend fun ApplicationCall.receiveTextWithCorrectEncoding(): String {
+    fun ContentType.defaultCharset(): Charset = when (this) {
+        ContentType.Application.Json -> Charsets.UTF_8
+        else -> Charsets.ISO_8859_1
+    }
+
+    val contentType = request.contentType()
+    val suitableCharset = contentType.charset() ?: contentType.defaultCharset()
+    return receiveStream().bufferedReader(charset = suitableCharset).readText()
 }

@@ -97,8 +97,6 @@ class Scheduler {
      * Returns if the there are more workers than subPopulations or if no free population was found
      */
     fun getSubPopulation(): Population? {
-        deleteOldWorkers()
-
         if (workers.size + 1 > subPopulations.size) {
             println("Worker size to large")
             return null
@@ -144,16 +142,8 @@ class Scheduler {
         println("---------------")
     }
 
-    // TODO fix concurred modification exception
-    private fun deleteOldWorkers() {
-        val oldWorkers = mutableListOf<Worker>()
+    fun deleteOldWorkers() {
         val now = LocalDateTime.now()
-        workers.forEach {
-            if (it.timestamp.isBefore(now.minusMinutes(WORKER_RESPONSE_TIME.toLong())))
-                oldWorkers.add(it)
-        }
-
-        println("#Workers to remove ${oldWorkers.size}")
-        //workers.removeAll(oldWorkers)
+        workers.removeAll { it.timestamp.isBefore(now.minusMinutes(WORKER_RESPONSE_TIME.toLong())) }
     }
 }

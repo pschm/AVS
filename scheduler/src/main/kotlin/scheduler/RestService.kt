@@ -183,6 +183,8 @@ class RestService {
             }
         }
 
+        scheduler.deleteOldWorkers()
+
         if (!alreadyInList) {
             call.respondText("Worker is not registered. Use POST instead", status = HttpStatusCode.BadRequest)
             println("Worker is not registered. Use POST instead - 400")
@@ -227,7 +229,7 @@ class RestService {
         val gson = GsonBuilder().serializeNulls().create()
         val json = gson.toJson(WorkerRespond(worker.uuid, worker.subPopulation))
 
-        call.respondText(json, status = HttpStatusCode.OK)
+        call.respondText(json, status = HttpStatusCode.Created)
     }
 
     /**

@@ -18,4 +18,12 @@ public class NodeModel {
         return nodes;
     }
 
+    public static List<Vector3> GetVector3List(List<NodeModel> nodes) {
+        if(nodes == null) return null;
+
+        var points = new List<Vector3>();
+        nodes.ForEach(x => points.Add(new Vector3(x.position.x, 0, x.position.y)));
+        return points;
+    }
+
 }

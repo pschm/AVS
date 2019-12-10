@@ -53,9 +53,9 @@ public class UiManager : MonoBehaviour {
         loadingPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Einkauf läuft...";
         loadingPanel.SetActive(true);
 
-        var points = new List<Vector3>();
-        resultPanel.ResultNodeList.ForEach(x => points.Add(new Vector3(x.position.x, 0, x.position.y)));
-        customer.SetWaypoints(points, OpenOpenerUi);
+        var waypoints = NodeModel.GetVector3List(resultPanel.ResultNodeList);
+        customer.SetWaypoints(waypoints, OpenOpenerUi);
+        PathDisplayer.Instance.DisplayPath(waypoints);
     }
 
     public void OpenPlannerUi() {

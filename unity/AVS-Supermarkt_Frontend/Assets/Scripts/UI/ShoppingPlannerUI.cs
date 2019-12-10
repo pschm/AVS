@@ -7,13 +7,19 @@ using Random = UnityEngine.Random;
 
 public class ShoppingPlannerUI : MonoBehaviour {
 
+    [Header("UI Stuff")]
     public ItemButton itemPrefab;
     public RectTransform shopViewPortContent;
     public RectTransform listViewPortContent;
 
+    [Header("Transform Parents")]
     public Transform shelfParent;
     public Transform entrypointParent;
     public Transform checkoutParent;
+
+    [Header("Predefined Lists")]
+    public List<Shelf> preListSmall;
+    public List<Shelf> preListLarge;
 
     private List<Shelf> shoppingList;
     private ItemButton entrypointBtn;
@@ -45,6 +51,10 @@ public class ShoppingPlannerUI : MonoBehaviour {
         checkoutBtn.buttonComponent.interactable = false; ;
     }
 
+    private void OnEnable() {
+        ResetShopList();
+    }
+
     public List<Shelf> GetShoppingList() {
         var list = new List<Shelf>(shoppingList);
 
@@ -69,36 +79,61 @@ public class ShoppingPlannerUI : MonoBehaviour {
     }
 
 
-    public void TryTransferItemToOtherList(ItemButton itmBtn, Shelf shelf) {
+    public void TryTransferItemToOtherList(ItemButton itmBtn) {
         if(itmBtn.transform.parent.Equals(shopViewPortContent)) {
             //Debug.Log("Move to shopping list.");
-            MoveToShoppingList(itmBtn, shelf);
+            MoveToShoppingList(itmBtn);
 
         } else if(itmBtn.transform.parent.Equals(listViewPortContent)) {
             //Debug.Log("Move out of shopping list.");
-            MoveOutOfShoppingList(itmBtn, shelf);
+            MoveOutOfShoppingList(itmBtn);
 
         } else {
             throw new InvalidOperationException();
         }
     }
 
-    public void MoveToShoppingList(ItemButton itmBtn, Shelf shelf) {
+    public void MoveToShoppingList(ItemButton itmBtn) {
         itmBtn.transform.SetParent(listViewPortContent);
-        shoppingList.Add(shelf);
+        shoppingList.Add(itmBtn.Shelf);
 
         //Set the checkout as the last elements
         checkoutBtn.transform.SetAsLastSibling();
     }
 
-    public void MoveOutOfShoppingList(ItemButton itmBtn, Shelf shelf) {
+    public void MoveOutOfShoppingList(ItemButton itmBtn) {
+        if(!shoppingList.Contains(itmBtn.Shelf)) return;
+
         itmBtn.transform.SetParent(shopViewPortContent);
         itmBtn.transform.SetSiblingIndex(itmBtn.SiblingIndex);
-        shoppingList.Remove(shelf);
+        shoppingList.Remove(itmBtn.Shelf);
     }
 
-    public void ResetToShopList(ItemButton itmBtn, Shelf shelf) {
-        if(shoppingList.Contains(shelf)) MoveOutOfShoppingList(itmBtn, shelf);
+
+    public void ResetShopList() {
+        foreach(var btn in listViewPortContent.GetComponentsInChildren<ItemButton>()) {
+            btn.ResetButtonToShopList();
+        }
+    }
+    
+    public void LoadSmallPredefinedList() {
+        LoadPredefinedList(preListSmall);
     }
 
+    public void LoadLargePredefinedList() {
+        LoadPredefinedList(preListLarge);
+    }
+
+    private void LoadPredefinedList(List<Shelf> list) {
+        if(list == null || list.Count <= 0) {
+            Debug.LogWarning("Given predefined list is null or empty.");
+            return;
+        }
+
+        ResetShopList();
+        var btns = new List<ItemButton>(shopViewPortContent.GetComponentsInChildren<ItemButton>());
+        foreach(var shelf in list) {
+            MoveToShoppingList(btns.Find(x => x.Shelf == shelf));
+        }
+    }
 }

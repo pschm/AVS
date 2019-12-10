@@ -38,12 +38,12 @@ public class ItemButton : MonoBehaviour {
     }
 
     public void HandleClick() {
-        plannerUI.TryTransferItemToOtherList(this, Shelf);
+        plannerUI.TryTransferItemToOtherList(this);
     }
 
-    private void OnEnable() {
+    public void ResetButtonToShopList() {
         //Only reset to the shop list if its a clickable button
-        if(buttonComponent.interactable) plannerUI?.ResetToShopList(this, Shelf);
+        if(buttonComponent.interactable) plannerUI?.MoveOutOfShoppingList(this);
     }
 
 }

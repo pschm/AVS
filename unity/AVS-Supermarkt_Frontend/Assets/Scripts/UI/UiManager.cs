@@ -31,7 +31,16 @@ public class UiManager : MonoBehaviour {
         SchedulerRestClient.Instance.StartCalculationForShoppinglist(nodes, hostUrl, ProcessIntermediateResult, ProcessCalculationResult);
     }
 
-    private void ProcessCalculationResult(List<NodeModel> result) {
+    public void CancelCalculation() {
+        SchedulerRestClient.Instance.CancelCalculation();
+    }
+
+    private void ProcessCalculationResult(List<NodeModel> result, bool wasCanceled) {
+        if(wasCanceled) {
+            OpenOpenerUi();
+            return;
+        }
+
         if(result == null || result.Count <= 0) {
             Debug.Log("Got no result to display.");
             OpenOpenerUi();

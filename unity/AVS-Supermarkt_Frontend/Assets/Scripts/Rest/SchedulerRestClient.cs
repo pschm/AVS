@@ -11,6 +11,7 @@ public class SchedulerRestClient : MonoBehaviour {
     public float delayBetweenRequests = 2f;
 
     private bool calculationActive;
+    private bool cancelCalculation;
 
     public static SchedulerRestClient Instance { get; private set; }
 
@@ -23,7 +24,7 @@ public class SchedulerRestClient : MonoBehaviour {
     }
 
 
-    public void StartCalculationForShoppinglist(List<NodeModel> nodes, string hostUrl, Action<List<NodeModel>> intAction, Action<List<NodeModel>> actionOnResult) {
+    public void StartCalculationForShoppinglist(List<NodeModel> nodes, string hostUrl, Action<List<NodeModel>> intAction, Action<List<NodeModel>, bool> actionOnResult) {
         if(calculationActive) {
             throw new NotImplementedException("Caculation still active. Cannot start a new one!");
         }
@@ -33,18 +34,29 @@ public class SchedulerRestClient : MonoBehaviour {
         else StartCoroutine(DoCalculation(nodes, hostUrl, intAction, actionOnResult));
     }
 
-
-    private IEnumerator DoCalculationEmulated(List<NodeModel> nodes, Action<List<NodeModel>> actionOnResult) {
-        Debug.Log("Emulating Scheduler is enabled.");
-        yield return new WaitForSeconds(Random.Range(0.5f, 2f));
-
-        Debug.Log("Got result.");
-        calculationActive = false;
-        actionOnResult(nodes);
+    public void CancelCalculation() {
+        if(calculationActive) cancelCalculation = true;
     }
 
 
-    private IEnumerator DoCalculation(List<NodeModel> nodes, string hostUrl, Action<List<NodeModel>> intAction, Action<List<NodeModel>> actionOnResult) {
+    private IEnumerator DoCalculationEmulated(List<NodeModel> nodes, Action<List<NodeModel>, bool> actionOnResult) {
+        Debug.Log("Emulating Scheduler is enabled.");
+        var remainingTime = Random.Range(1.5f, 3f);
+
+        while(remainingTime > 0 && !cancelCalculation) {
+            remainingTime -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        Debug.Log("Calculation done. Canceled: " + cancelCalculation);
+        calculationActive = false;
+        actionOnResult(nodes, cancelCalculation);
+
+        cancelCalculation = false;
+    }
+
+
+    private IEnumerator DoCalculation(List<NodeModel> nodes, string hostUrl, Action<List<NodeModel>> intAction, Action<List<NodeModel>, bool> actionOnResult) {
         var request = CreatePostShoppingListRequest(nodes, hostUrl);
         yield return request.SendWebRequest();
 
@@ -58,11 +70,11 @@ public class SchedulerRestClient : MonoBehaviour {
         }
     }
 
-    private IEnumerator QueryCalculationResult(string hostUrl, Action<List<NodeModel>> intAction, Action<List<NodeModel>> actionOnResult) {
+    private IEnumerator QueryCalculationResult(string hostUrl, Action<List<NodeModel>> intAction, Action<List<NodeModel>, bool> actionOnResult) {
         Debug.Log("Checking for result...");
         List<NodeModel> result = null;
 
-        while(result == null) {
+        while(result == null && !cancelCalculation) {
             var request = CreateGetCalculatedWaypointsRequest(hostUrl);
             yield return request.SendWebRequest();
 
@@ -85,7 +97,9 @@ public class SchedulerRestClient : MonoBehaviour {
         }
 
         calculationActive = false;
-        actionOnResult(result);
+        actionOnResult(result, cancelCalculation);
+
+        cancelCalculation = false;
     }
 
     private IEnumerator HandleIntermediateRequest(string hostUrl, Action<List<NodeModel>> intAction) {

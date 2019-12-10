@@ -40,7 +40,9 @@ public class Shelf : MonoBehaviour {
 
     private void OnValidate() {
         if(textPlane == null) textPlane = transform.GetComponentInChildren<TextMeshPro>();
-        textPlane.text = productName;       
+        textPlane.text = productName;
+
+        name = $"Shelf ({productName})";
     }
 #endif
 

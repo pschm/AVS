@@ -8,11 +8,11 @@ public class NodeModel {
     public string name;
     public Vector2 position;
     
-    public static List<NodeModel> CreateList(List<Shelf> shelves) {
+    public static List<NodeModel> CreateList(List<ShopAsset> shopAssets) {
         var nodes = new List<NodeModel>();
-        shelves.ForEach(x => nodes.Add(new NodeModel() {
-            name = x.productName,
-            position = new Vector2(x.GetWalkToPoint().x, x.GetWalkToPoint().z)
+        shopAssets.ForEach(x => nodes.Add(new NodeModel() {
+            name = x.AssetName,
+            position = new Vector2(x.WalkToPoint.x, x.WalkToPoint.z)
         }));
 
         return nodes;

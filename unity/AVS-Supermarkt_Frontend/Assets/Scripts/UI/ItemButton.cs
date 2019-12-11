@@ -6,7 +6,7 @@ using TMPro;
 
 public class ItemButton : MonoBehaviour {
 
-    public Shelf Shelf { get; private set; }
+    public ShopAsset ShopAsset { get; private set; }
 
     //Used if the button is moved back in the shop list to remain its original position
     //and not get moved to the list as the last element
@@ -26,13 +26,13 @@ public class ItemButton : MonoBehaviour {
     /// Setup the button with all the required information like product name etc.
     /// </summary>
     /// <param name="plannerUI"></param>
-    /// <param name="shelf"></param>
+    /// <param name="shopAsset"></param>
     /// <param name="siblingIndex">Index on which position the button is in the shop-list child hierachy</param>
-    public void Setup(ShoppingPlannerUI plannerUI, Shelf shelf, int siblingIndex) {
+    public void Setup(ShoppingPlannerUI plannerUI, ShopAsset shopAsset, int siblingIndex) {
         this.plannerUI = plannerUI;
-        Shelf = shelf;
+        ShopAsset = shopAsset;
         SiblingIndex = siblingIndex;
-        nameLabel.text = shelf.productName;
+        nameLabel.text = shopAsset.AssetName;
 
         transform.localScale = Vector3.one;
     }

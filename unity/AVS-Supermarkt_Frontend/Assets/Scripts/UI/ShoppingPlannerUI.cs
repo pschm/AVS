@@ -14,14 +14,14 @@ public class ShoppingPlannerUI : MonoBehaviour {
 
     [Header("Transform Parents")]
     public Transform shelfParent;
-    public Transform entrypointParent;
+    public Cashdesk entrypoint;
     public Transform checkoutParent;
 
     [Header("Predefined Lists")]
     public List<Shelf> preListSmall;
     public List<Shelf> preListLarge;
 
-    private List<Shelf> shoppingList;
+    private List<ShopAsset> shoppingList;
     private ItemButton entrypointBtn;
     private ItemButton checkoutBtn;
 
@@ -36,13 +36,13 @@ public class ShoppingPlannerUI : MonoBehaviour {
             item.Setup(this, shelf, item.transform.GetSiblingIndex());
         }
 
-        shoppingList = new List<Shelf>();
+        shoppingList = new List<ShopAsset>();
 
 
         //Add the entrypoint and checkout to the shopping list as not clickable buttons
         entrypointBtn = Instantiate(itemPrefab);
         entrypointBtn.transform.SetParent(listViewPortContent);
-        entrypointBtn.Setup(this, GetRandomEntrypoint(), -1);
+        entrypointBtn.Setup(this, GetEntrypoint(), -1);
         entrypointBtn.buttonComponent.interactable = false;
 
         checkoutBtn = Instantiate(itemPrefab);
@@ -55,26 +55,25 @@ public class ShoppingPlannerUI : MonoBehaviour {
         ResetShopList();
     }
 
-    public List<Shelf> GetShoppingList() {
-        var list = new List<Shelf>(shoppingList);
+    public List<ShopAsset> GetShoppingList() {
+        var list = new List<ShopAsset>(shoppingList);
 
         //Add the entrypoint and checkout to the list
         //The buttons are only visable in the list but not added to the internal list
         //This way its easier to handle because otherwise every time when a button gets added
         //to the shopping list, the checkout has to be move to the end of the list.
-        list.Insert(0, entrypointBtn.Shelf);
-        list.Add(checkoutBtn.Shelf);
+        list.Insert(0, entrypointBtn.ShopAsset);
+        list.Add(checkoutBtn.ShopAsset);
 
         return list;
     }
 
-    public Shelf GetRandomEntrypoint() {
-        var entrypoints = entrypointParent.GetComponentsInChildren<Shelf>();
-        return entrypoints[Random.Range(0, entrypoints.Length)];
+    public Cashdesk GetEntrypoint() {
+        return entrypoint;
     }
 
-    public Shelf GetRandomCheckout() {
-        var checkouts = checkoutParent.GetComponentsInChildren<Shelf>();
+    public Cashdesk GetRandomCheckout() {
+        var checkouts = checkoutParent.GetComponentsInChildren<Cashdesk>();
         return checkouts[Random.Range(0, checkouts.Length)];
     }
 
@@ -95,18 +94,18 @@ public class ShoppingPlannerUI : MonoBehaviour {
 
     public void MoveToShoppingList(ItemButton itmBtn) {
         itmBtn.transform.SetParent(listViewPortContent);
-        shoppingList.Add(itmBtn.Shelf);
+        shoppingList.Add(itmBtn.ShopAsset);
 
         //Set the checkout as the last elements
         checkoutBtn.transform.SetAsLastSibling();
     }
 
     public void MoveOutOfShoppingList(ItemButton itmBtn) {
-        if(!shoppingList.Contains(itmBtn.Shelf)) return;
+        if(!shoppingList.Contains(itmBtn.ShopAsset)) return;
 
         itmBtn.transform.SetParent(shopViewPortContent);
         itmBtn.transform.SetSiblingIndex(itmBtn.SiblingIndex);
-        shoppingList.Remove(itmBtn.Shelf);
+        shoppingList.Remove(itmBtn.ShopAsset);
     }
 
 
@@ -133,7 +132,7 @@ public class ShoppingPlannerUI : MonoBehaviour {
         ResetShopList();
         var btns = new List<ItemButton>(shopViewPortContent.GetComponentsInChildren<ItemButton>());
         foreach(var shelf in list) {
-            MoveToShoppingList(btns.Find(x => x.Shelf == shelf));
+            MoveToShoppingList(btns.Find(x => x.ShopAsset == shelf));
         }
     }
 }

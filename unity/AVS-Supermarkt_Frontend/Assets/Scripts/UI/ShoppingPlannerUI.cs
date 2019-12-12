@@ -132,6 +132,8 @@ public class ShoppingPlannerUI : MonoBehaviour {
     }
 
     private void LoadPredefinedList(List<Shelf> list) {
+        SetCashdesk(4);
+
         if(list == null || list.Count <= 0) {
             Debug.LogWarning("Given predefined list is null or empty.");
             return;

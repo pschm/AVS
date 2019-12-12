@@ -1,0 +1,60 @@
+{
+    "Items": [
+        {
+            "name": "Eingang",
+            "position": {
+                "x": -29.0,
+                "y": -54.0
+            }
+        },
+        {
+            "name": "Pizza",
+            "position": {
+                "x": -37.5,
+                "y": -17.0
+            }
+        },
+        {
+            "name": "Backzutaten",
+            "position": {
+                "x": 38.0,
+                "y": -4.5
+            }
+        },
+        {
+            "name": "Sushi",
+            "position": {
+                "x": 20.0,
+                "y": -38.0
+            }
+        },
+        {
+            "name": "Kaffeé",
+            "position": {
+                "x": 38.0,
+                "y": -9.0
+            }
+        },
+        {
+            "name": "Wurst/Salami",
+            "position": {
+                "x": 14.5,
+                "y": 33.70000076293945
+            }
+        },
+        {
+            "name": "Bio Saucen",
+            "position": {
+                "x": 48.5,
+                "y": -7.0
+            }
+        },
+        {
+            "name": "Kasse 4",
+            "position": {
+                "x": -33.5,
+                "y": -30.0
+            }
+        }
+    ]
+}

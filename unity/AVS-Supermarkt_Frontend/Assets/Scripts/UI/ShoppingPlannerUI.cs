@@ -15,7 +15,7 @@ public class ShoppingPlannerUI : MonoBehaviour {
     [Header("Transform Parents")]
     public Transform shelfParent;
     public Cashdesk entrypoint;
-    public Transform checkoutParent;
+    public List<Cashdesk> checkouts;
 
     [Header("Predefined Lists")]
     public List<Shelf> preListSmall;
@@ -24,7 +24,7 @@ public class ShoppingPlannerUI : MonoBehaviour {
     private List<ShopAsset> shoppingList;
     private ItemButton entrypointBtn;
     private ItemButton checkoutBtn;
-    private Cashdesk choosenCheckout;
+
 
     private void Awake() {
         var shelfs = new List<Shelf>(shelfParent.GetComponentsInChildren<Shelf>());
@@ -46,8 +46,6 @@ public class ShoppingPlannerUI : MonoBehaviour {
         entrypointBtn.Setup(this, GetEntrypoint(), -1);
         entrypointBtn.buttonComponent.interactable = false;
 
-        
-
         checkoutBtn = Instantiate(itemPrefab);
         checkoutBtn.transform.SetParent(listViewPortContent);
         checkoutBtn.Setup(this, ChooseRandomCheckout(), -1);
@@ -56,6 +54,10 @@ public class ShoppingPlannerUI : MonoBehaviour {
 
     private void OnEnable() {
         ResetShopList();
+    }
+
+    private void ChangeCheckout(int index) {
+        checkoutBtn.Setup(this, checkouts[index], -1);
     }
 
     public List<ShopAsset> GetShoppingList() {
@@ -76,13 +78,11 @@ public class ShoppingPlannerUI : MonoBehaviour {
     }
 
     public Cashdesk GetCheckout() {
-        return choosenCheckout;
+        return checkoutBtn.ShopAsset as Cashdesk;
     }
 
     private Cashdesk ChooseRandomCheckout() {
-        var checkouts = checkoutParent.GetComponentsInChildren<Cashdesk>();
-        choosenCheckout = checkouts[Random.Range(0, checkouts.Length)];
-        return choosenCheckout;
+        return checkouts[Random.Range(0, checkouts.Count)];
     }
 
 
@@ -122,7 +122,7 @@ public class ShoppingPlannerUI : MonoBehaviour {
             btn.ResetButtonToShopList();
         }
     }
-    
+
     public void LoadSmallPredefinedList() {
         LoadPredefinedList(preListSmall);
     }
@@ -142,5 +142,10 @@ public class ShoppingPlannerUI : MonoBehaviour {
         foreach(var shelf in list) {
             MoveToShoppingList(btns.Find(x => x.ShopAsset == shelf));
         }
+    }
+
+
+    public void SetCashdesk(int deskNumber) {
+        ChangeCheckout(deskNumber - 1);
     }
 }

@@ -24,7 +24,7 @@ public class SchedulerRestClient : MonoBehaviour {
     }
 
 
-    public void StartCalculationForShoppinglist(List<NodeModel> nodes, string hostUrl, Action<List<NodeModel>> intAction, Action<List<NodeModel>, bool> actionOnResult) {
+    public void StartCalculationForShoppinglist(List<NodeModel> nodes, string hostUrl, Action<PathResponse> intAction, Action<PathResponse, bool> actionOnResult) {
         if(calculationActive) {
             throw new NotImplementedException("Caculation still active. Cannot start a new one!");
         }
@@ -39,7 +39,7 @@ public class SchedulerRestClient : MonoBehaviour {
     }
 
 
-    private IEnumerator DoCalculationEmulated(List<NodeModel> nodes, Action<List<NodeModel>, bool> actionOnResult) {
+    private IEnumerator DoCalculationEmulated(List<NodeModel> nodes, Action<PathResponse, bool> actionOnResult) {
         Debug.Log("Emulating Scheduler is enabled.");
         var remainingTime = Random.Range(1.5f, 3f);
 
@@ -50,13 +50,13 @@ public class SchedulerRestClient : MonoBehaviour {
 
         Debug.Log("Calculation done. Canceled: " + cancelCalculation);
         calculationActive = false;
-        actionOnResult(nodes, cancelCalculation);
+        actionOnResult(new PathResponse() { Items = nodes, distance = -42f }, cancelCalculation);
 
         cancelCalculation = false;
     }
 
 
-    private IEnumerator DoCalculation(List<NodeModel> nodes, string hostUrl, Action<List<NodeModel>> intAction, Action<List<NodeModel>, bool> actionOnResult) {
+    private IEnumerator DoCalculation(List<NodeModel> nodes, string hostUrl, Action<PathResponse> intAction, Action<PathResponse, bool> actionOnResult) {
         var request = CreatePostShoppingListRequest(nodes, hostUrl);
         yield return request.SendWebRequest();
 
@@ -70,9 +70,9 @@ public class SchedulerRestClient : MonoBehaviour {
         }
     }
 
-    private IEnumerator QueryCalculationResult(string hostUrl, Action<List<NodeModel>> intAction, Action<List<NodeModel>, bool> actionOnResult) {
+    private IEnumerator QueryCalculationResult(string hostUrl, Action<PathResponse> intAction, Action<PathResponse, bool> actionOnResult) {
         Debug.Log("Checking for result...");
-        List<NodeModel> result = null;
+        PathResponse result = null;
 
         while(result == null && !cancelCalculation) {
             var request = CreateGetCalculatedWaypointsRequest(hostUrl);
@@ -82,7 +82,7 @@ public class SchedulerRestClient : MonoBehaviour {
                 Debug.Log("Got result.");
 
                 var response = Encoding.UTF8.GetString(request.downloadHandler.data);
-                result = JsonHelper.FromJson<NodeModel>(response);
+                result = JsonUtility.FromJson<PathResponse>(response);
 
             } else if(request.isNetworkError /*|| request.responseCode == 503*/) {
                 Debug.LogWarning($"Cant get result. Network-Error: {request.isNetworkError}, Response-Code: {request.responseCode}");
@@ -102,13 +102,13 @@ public class SchedulerRestClient : MonoBehaviour {
         cancelCalculation = false;
     }
 
-    private IEnumerator HandleIntermediateRequest(string hostUrl, Action<List<NodeModel>> intAction) {
+    private IEnumerator HandleIntermediateRequest(string hostUrl, Action<PathResponse> intAction) {
         var request = CreateGetIntermediateWaypointsRequest(hostUrl);
         yield return request.SendWebRequest();
 
         if(!request.isNetworkError && request.responseCode == 200) {
             var response = Encoding.UTF8.GetString(request.downloadHandler.data);
-            var result = JsonHelper.FromJson<NodeModel>(response);
+            var result = JsonUtility.FromJson<PathResponse>(response);
             intAction(result);
         }
     }

@@ -582,7 +582,7 @@ PrefabInstance:
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_Name
-      value: Shelf (Wasser)
+      value: Shelf (Wasser (Budget))
       objectReference: {fileID: 0}
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -592,12 +592,12 @@ PrefabInstance:
     - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: productName
-      value: Wasser
+      value: Wasser (Budget)
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18
+      value: -21
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -692,7 +692,7 @@ PrefabInstance:
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_text
-      value: Wasser
+      value: Wasser (Budget)
       objectReference: {fileID: 0}
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -708,6 +708,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5935565936804708365, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -737,7 +742,7 @@ PrefabInstance:
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_Name
-      value: Shelf (Obst)
+      value: Shelf (Obst (Kiwi))
       objectReference: {fileID: 0}
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -747,7 +752,7 @@ PrefabInstance:
     - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: productName
-      value: Obst
+      value: Obst (Kiwi)
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -842,7 +847,7 @@ PrefabInstance:
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_text
-      value: Obst
+      value: Obst (Kiwi)
       objectReference: {fileID: 0}
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -1673,7 +1678,7 @@ PrefabInstance:
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_Name
-      value: Shelf (Fleisch)
+      value: "Shelf (Fleisch (Gefl\xFCgel))"
       objectReference: {fileID: 0}
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -1683,7 +1688,7 @@ PrefabInstance:
     - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: productName
-      value: Fleisch
+      value: "Fleisch (Gefl\xFCgel)"
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -1753,7 +1758,7 @@ PrefabInstance:
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_text
-      value: Fleisch
+      value: "Fleisch (Gefl\xFCgel)"
       objectReference: {fileID: 0}
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -2335,7 +2340,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -3025,7 +3030,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.37
+      value: 14.25
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -3035,7 +3040,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 22.900002
+      value: 21.94
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -3045,7 +3050,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.13052616
+      value: 0.08715578
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -3055,7 +3060,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9914449
+      value: 0.9961947
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -3070,7 +3075,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -3080,7 +3085,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 16
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 2295165880329245899, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -3120,7 +3125,7 @@ PrefabInstance:
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.0625
+      value: 0.055555556
       objectReference: {fileID: 0}
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -3160,7 +3165,7 @@ PrefabInstance:
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_Name
-      value: Shelf (Spirituosen)
+      value: "Shelf (Spirituosen (Wein, wei\xDF))"
       objectReference: {fileID: 0}
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -3170,12 +3175,12 @@ PrefabInstance:
     - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: productName
-      value: Spirituosen
+      value: "Spirituosen (Wein, wei\xDF)"
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.25
+      value: 23.25
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -3245,7 +3250,7 @@ PrefabInstance:
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_text
-      value: Spirituosen
+      value: "Spirituosen (Wein, wei\xDF)"
       objectReference: {fileID: 0}
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -3861,7 +3866,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -32.5
+      value: -34.5
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -4021,7 +4026,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18
+      value: -21
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -4823,7 +4828,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18
+      value: -21
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -5285,7 +5290,7 @@ PrefabInstance:
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_Name
-      value: Shelf (Wasser/Softdrings)
+      value: Shelf (Softdrinks)
       objectReference: {fileID: 0}
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -5295,12 +5300,12 @@ PrefabInstance:
     - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: productName
-      value: Wasser/Softdrings
+      value: Softdrinks
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18
+      value: -21
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -5395,7 +5400,7 @@ PrefabInstance:
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_text
-      value: Wasser/Softdrings
+      value: Softdrinks
       objectReference: {fileID: 0}
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -5772,7 +5777,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -7112,7 +7117,7 @@ PrefabInstance:
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_Name
-      value: "Shelf (K\xE4se)"
+      value: "Shelf (Frischk\xE4se)"
       objectReference: {fileID: 0}
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -7122,12 +7127,12 @@ PrefabInstance:
     - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: productName
-      value: "K\xE4se"
+      value: "Frischk\xE4se"
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20
+      value: -21
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -7182,7 +7187,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 16
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 2295165880329245899, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -7192,7 +7197,7 @@ PrefabInstance:
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_text
-      value: "K\xE4se"
+      value: "Frischk\xE4se"
       objectReference: {fileID: 0}
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -7222,7 +7227,7 @@ PrefabInstance:
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.0625
+      value: 0.045454547
       objectReference: {fileID: 0}
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -7794,7 +7799,7 @@ PrefabInstance:
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_Name
-      value: Shelf (Wasser)
+      value: Shelf (Wasser (Premium))
       objectReference: {fileID: 0}
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -7804,12 +7809,12 @@ PrefabInstance:
     - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: productName
-      value: Wasser
+      value: Wasser (Premium)
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18
+      value: -21
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -7904,7 +7909,7 @@ PrefabInstance:
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_text
-      value: Wasser
+      value: Wasser (Premium)
       objectReference: {fileID: 0}
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -8663,7 +8668,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12
+      value: -14
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -8899,7 +8904,7 @@ PrefabInstance:
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_Name
-      value: Shelf (Eier)
+      value: Shelf (Eier (Kat. 2,3))
       objectReference: {fileID: 0}
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -8909,7 +8914,7 @@ PrefabInstance:
     - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: productName
-      value: Eier
+      value: Eier (Kat. 2,3)
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -8984,7 +8989,7 @@ PrefabInstance:
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_text
-      value: Eier
+      value: Eier (Kat. 2,3)
       objectReference: {fileID: 0}
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -9316,7 +9321,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18
+      value: -21
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -9456,7 +9461,7 @@ PrefabInstance:
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_Name
-      value: Shelf (Brot)
+      value: Shelf (Brot (Mehrkorn))
       objectReference: {fileID: 0}
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -9466,7 +9471,7 @@ PrefabInstance:
     - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: productName
-      value: Brot
+      value: Brot (Mehrkorn)
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -9556,7 +9561,7 @@ PrefabInstance:
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_text
-      value: Brot
+      value: Brot (Mehrkorn)
       objectReference: {fileID: 0}
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -10505,7 +10510,7 @@ PrefabInstance:
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_Name
-      value: Shelf (Obst)
+      value: Shelf (Obst (Grapefruit))
       objectReference: {fileID: 0}
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -10515,7 +10520,7 @@ PrefabInstance:
     - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: productName
-      value: Obst
+      value: Obst (Grapefruit)
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -10610,7 +10615,7 @@ PrefabInstance:
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_text
-      value: Obst
+      value: Obst (Grapefruit)
       objectReference: {fileID: 0}
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -10660,7 +10665,7 @@ PrefabInstance:
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_Name
-      value: Shelf (Saucen)
+      value: "Shelf (Essig und \xD6l)"
       objectReference: {fileID: 0}
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -10670,7 +10675,7 @@ PrefabInstance:
     - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: productName
-      value: Saucen
+      value: "Essig und \xD6l"
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -10735,7 +10740,7 @@ PrefabInstance:
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_text
-      value: Saucen
+      value: "Essig und \xD6l"
       objectReference: {fileID: 0}
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -10805,7 +10810,7 @@ PrefabInstance:
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_Name
-      value: Shelf (Bier)
+      value: "Shelf (Bier (K\xE4sten))"
       objectReference: {fileID: 0}
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -10815,12 +10820,12 @@ PrefabInstance:
     - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: productName
-      value: Bier
+      value: "Bier (K\xE4sten)"
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18
+      value: -21
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -10915,7 +10920,7 @@ PrefabInstance:
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_text
-      value: Bier
+      value: "Bier (K\xE4sten)"
       objectReference: {fileID: 0}
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -10960,7 +10965,7 @@ PrefabInstance:
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_Name
-      value: Shelf (Obst)
+      value: Shelf (Obst (Exotisch))
       objectReference: {fileID: 0}
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -10970,7 +10975,7 @@ PrefabInstance:
     - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: productName
-      value: Obst
+      value: Obst (Exotisch)
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -11065,7 +11070,7 @@ PrefabInstance:
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_text
-      value: Obst
+      value: Obst (Exotisch)
       objectReference: {fileID: 0}
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -11553,7 +11558,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -23
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -13090,7 +13095,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -13842,7 +13847,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -14152,7 +14157,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.5
+      value: -12.5
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -14312,7 +14317,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -14322,7 +14327,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 21.480003
+      value: 20.480001
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -14332,7 +14337,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.99144495
+      value: 0.9961947
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -14342,7 +14347,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.13052607
+      value: -0.08715578
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -14357,7 +14362,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 195
+      value: 190
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -14367,7 +14372,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 16
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 2295165880329245899, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -14407,7 +14412,7 @@ PrefabInstance:
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.0625
+      value: 0.055555556
       objectReference: {fileID: 0}
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -15538,7 +15543,7 @@ PrefabInstance:
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_Name
-      value: Shelf (Obst)
+      value: Shelf (Obst (Orangen))
       objectReference: {fileID: 0}
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -15548,7 +15553,7 @@ PrefabInstance:
     - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: productName
-      value: Obst
+      value: Obst (Orangen)
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -15643,7 +15648,7 @@ PrefabInstance:
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_text
-      value: Obst
+      value: Obst (Orangen)
       objectReference: {fileID: 0}
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -15878,7 +15883,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -34
+      value: -36
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -16023,7 +16028,7 @@ PrefabInstance:
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_Name
-      value: Shelf (Fleisch)
+      value: Shelf (Fleisch (Schwein))
       objectReference: {fileID: 0}
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -16033,7 +16038,7 @@ PrefabInstance:
     - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: productName
-      value: Fleisch
+      value: Fleisch (Schwein)
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -16103,7 +16108,7 @@ PrefabInstance:
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_text
-      value: Fleisch
+      value: Fleisch (Schwein)
       objectReference: {fileID: 0}
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -16416,7 +16421,7 @@ PrefabInstance:
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_Name
-      value: Shelf (Spirituosen)
+      value: Shelf (Spirituosen (Hoch %))
       objectReference: {fileID: 0}
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -16426,12 +16431,12 @@ PrefabInstance:
     - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: productName
-      value: Spirituosen
+      value: Spirituosen (Hoch %)
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.25
+      value: 15.25
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -16501,7 +16506,7 @@ PrefabInstance:
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_text
-      value: Spirituosen
+      value: Spirituosen (Hoch %)
       objectReference: {fileID: 0}
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -17172,7 +17177,7 @@ PrefabInstance:
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_Name
-      value: Shelf (Obst)
+      value: Shelf (Obst (Apfel und Co.))
       objectReference: {fileID: 0}
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -17182,7 +17187,12 @@ PrefabInstance:
     - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: productName
-      value: Obst
+      value: Obst (Apfel und Co.)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -17277,7 +17287,7 @@ PrefabInstance:
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_text
-      value: Obst
+      value: Obst (Apfel und Co.)
       objectReference: {fileID: 0}
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -17293,6 +17303,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5935565936804708365, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -17327,7 +17342,7 @@ PrefabInstance:
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_Name
-      value: Shelf (Fleisch)
+      value: Shelf (Fleisch (Rind))
       objectReference: {fileID: 0}
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -17337,7 +17352,7 @@ PrefabInstance:
     - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: productName
-      value: Fleisch
+      value: Fleisch (Rind)
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -17407,7 +17422,7 @@ PrefabInstance:
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_text
-      value: Fleisch
+      value: Fleisch (Rind)
       objectReference: {fileID: 0}
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -17744,7 +17759,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -18031,7 +18046,7 @@ PrefabInstance:
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_Name
-      value: Shelf (Wasser)
+      value: Shelf (Wasser (PET))
       objectReference: {fileID: 0}
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -18041,12 +18056,12 @@ PrefabInstance:
     - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: productName
-      value: Wasser
+      value: Wasser (PET)
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18
+      value: -21
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -18141,7 +18156,7 @@ PrefabInstance:
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_text
-      value: Wasser
+      value: Wasser (PET)
       objectReference: {fileID: 0}
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -18854,7 +18869,7 @@ PrefabInstance:
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_Name
-      value: Shelf (Eier)
+      value: Shelf (Eier (Kat. 0,1))
       objectReference: {fileID: 0}
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -18864,7 +18879,7 @@ PrefabInstance:
     - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: productName
-      value: Eier
+      value: Eier (Kat. 0,1)
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -18939,7 +18954,7 @@ PrefabInstance:
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_text
-      value: Eier
+      value: Eier (Kat. 0,1)
       objectReference: {fileID: 0}
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -19024,7 +19039,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18
+      value: 14.5
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -19034,7 +19049,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 33
+      value: 32.2
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -19079,7 +19094,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 16
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 2295165880329245899, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -19119,7 +19134,7 @@ PrefabInstance:
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.0625
+      value: 0.055555556
       objectReference: {fileID: 0}
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -19191,7 +19206,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -21.5
+      value: -23.5
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -20073,7 +20088,7 @@ PrefabInstance:
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_Name
-      value: Shelf (Fleisch)
+      value: Shelf (Fleisch (Mariniert))
       objectReference: {fileID: 0}
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -20083,7 +20098,7 @@ PrefabInstance:
     - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: productName
-      value: Fleisch
+      value: Fleisch (Mariniert)
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -20153,7 +20168,7 @@ PrefabInstance:
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_text
-      value: Fleisch
+      value: Fleisch (Mariniert)
       objectReference: {fileID: 0}
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -20243,7 +20258,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18
+      value: -21
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -21000,7 +21015,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.36
+      value: 14.26
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -21010,7 +21025,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.880001
+      value: 12.91
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -21020,7 +21035,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.13052616
+      value: 0.08715578
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -21030,7 +21045,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9914449
+      value: 0.9961947
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -21045,7 +21060,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -21055,7 +21070,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 16
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 2295165880329245899, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -21095,7 +21110,7 @@ PrefabInstance:
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.0625
+      value: 0.055555556
       objectReference: {fileID: 0}
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -21833,7 +21848,7 @@ PrefabInstance:
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_Name
-      value: Shelf (Brot)
+      value: Shelf (Brot (Weizen))
       objectReference: {fileID: 0}
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -21843,7 +21858,7 @@ PrefabInstance:
     - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: productName
-      value: Brot
+      value: Brot (Weizen)
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -21908,7 +21923,7 @@ PrefabInstance:
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_text
-      value: Brot
+      value: Brot (Weizen)
       objectReference: {fileID: 0}
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -22395,7 +22410,7 @@ PrefabInstance:
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_Name
-      value: Shelf (Spirituosen)
+      value: Shelf (Spirituosen (Wein, rot))
       objectReference: {fileID: 0}
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -22405,12 +22420,12 @@ PrefabInstance:
     - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: productName
-      value: Spirituosen
+      value: Spirituosen (Wein, rot)
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -22475,7 +22490,7 @@ PrefabInstance:
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_text
-      value: Spirituosen
+      value: Spirituosen (Wein, rot)
       objectReference: {fileID: 0}
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -22963,7 +22978,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -22973,7 +22988,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.48
+      value: 11.479998
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -22983,7 +22998,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.99144495
+      value: 0.9961947
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -22993,7 +23008,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.13052607
+      value: -0.08715578
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -23008,7 +23023,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 195
+      value: 190
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -23018,7 +23033,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 16
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 2295165880329245899, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -23058,7 +23073,7 @@ PrefabInstance:
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.0625
+      value: 0.055555556
       objectReference: {fileID: 0}
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -23490,7 +23505,7 @@ PrefabInstance:
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_Name
-      value: Shelf (Spirituosen)
+      value: Shelf (Spirituosen (Mini))
       objectReference: {fileID: 0}
     - target: {fileID: 380786985501419834, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -23500,12 +23515,12 @@ PrefabInstance:
     - target: {fileID: 6082937220159554529, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: productName
-      value: Spirituosen
+      value: Spirituosen (Mini)
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.25
+      value: 7.25
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -23575,7 +23590,7 @@ PrefabInstance:
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_text
-      value: Spirituosen
+      value: Spirituosen (Mini)
       objectReference: {fileID: 0}
     - target: {fileID: 880373296401732312, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -24250,7 +24265,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -24260,7 +24275,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 29.480003
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -24270,7 +24285,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.99144495
+      value: 0.9961947
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -24280,7 +24295,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.13052607
+      value: -0.08715578
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -24295,7 +24310,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 195
+      value: 190
       objectReference: {fileID: 0}
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -24305,7 +24320,7 @@ PrefabInstance:
     - target: {fileID: 5238627091461290353, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 16
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 2295165880329245899, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
@@ -24345,7 +24360,7 @@ PrefabInstance:
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.0625
+      value: 0.055555556
       objectReference: {fileID: 0}
     - target: {fileID: 6231469931408656748, guid: 471db8f0bfd2033419677d1b19d98b86,
         type: 3}

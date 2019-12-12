@@ -24,6 +24,7 @@ public class ShoppingPlannerUI : MonoBehaviour {
     private List<ShopAsset> shoppingList;
     private ItemButton entrypointBtn;
     private ItemButton checkoutBtn;
+    private Cashdesk choosenCheckout;
 
     private void Awake() {
         var shelfs = new List<Shelf>(shelfParent.GetComponentsInChildren<Shelf>());
@@ -45,9 +46,11 @@ public class ShoppingPlannerUI : MonoBehaviour {
         entrypointBtn.Setup(this, GetEntrypoint(), -1);
         entrypointBtn.buttonComponent.interactable = false;
 
+        
+
         checkoutBtn = Instantiate(itemPrefab);
         checkoutBtn.transform.SetParent(listViewPortContent);
-        checkoutBtn.Setup(this, GetRandomCheckout(), -1);
+        checkoutBtn.Setup(this, ChooseRandomCheckout(), -1);
         checkoutBtn.buttonComponent.interactable = false; ;
     }
 
@@ -72,9 +75,14 @@ public class ShoppingPlannerUI : MonoBehaviour {
         return entrypoint;
     }
 
-    public Cashdesk GetRandomCheckout() {
+    public Cashdesk GetCheckout() {
+        return choosenCheckout;
+    }
+
+    private Cashdesk ChooseRandomCheckout() {
         var checkouts = checkoutParent.GetComponentsInChildren<Cashdesk>();
-        return checkouts[Random.Range(0, checkouts.Length)];
+        choosenCheckout = checkouts[Random.Range(0, checkouts.Length)];
+        return choosenCheckout;
     }
 
 

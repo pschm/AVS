@@ -9,7 +9,8 @@ public class PathDisplayer : MonoBehaviour {
     [SerializeField] private LineRenderer rendererPath = null;
     [SerializeField] private LineRenderer rendererStraight = null;
 
-    private const float hightOffset = .1f;
+    private const float hightOffsetPath = .1f;
+    private const float hightOffsetStraight = 2.5f;
 
     public static PathDisplayer Instance { get; private set; }
 
@@ -33,7 +34,7 @@ public class PathDisplayer : MonoBehaviour {
     public void DisplayStraightPath(List<Vector3> waypoints) {
         var renderPoints = waypoints.ToArray();
         for(int i = 0; i < renderPoints.Length; i++) {
-            renderPoints[i].y += hightOffset; //Apply hight offset
+            renderPoints[i].y += hightOffsetStraight; //Apply hight offset
         }
 
         rendererStraight.positionCount = waypoints.Count;
@@ -49,7 +50,7 @@ public class PathDisplayer : MonoBehaviour {
             if(NavMesh.CalculatePath(waypoints[i], waypoints[i + 1], NavMesh.AllAreas, path)) {
 
                 foreach(var point in path.corners) {
-                    linePoints.Add(new Vector3(point.x, point.y + hightOffset, point.z));
+                    linePoints.Add(new Vector3(point.x, point.y + hightOffsetPath, point.z));
                 }
             }
         }

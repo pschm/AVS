@@ -68,9 +68,22 @@ public class UiManager : MonoBehaviour {
         loadingPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Einkauf läuft...";
         loadingPanel.SetActive(true);
 
+        //Get the waypoints from the displayer ui
         var waypoints = NodeModel.GetVector3List(resultPanel.ResultNodeList);
+
+        //Display the waypoints beeline before adding the additional points for visualisation puropses
+        PathDisplayer.Instance.DisplayStraightPath(waypoints);
+
+        //Add the second point of the cashdesk and the entry/exit point to the list
+        //Only for visual puropses :)
+        waypoints.Add(plannerPanel.GetCheckout().CheckoutPoint);
+        waypoints.Add(plannerPanel.GetEntrypoint().CheckoutPoint);
+
+        //Set the waypoints to the customer which walks through the store
         customer.SetWaypoints(waypoints, OpenOpenerUi);
-        PathDisplayer.Instance.DisplayAllPath(waypoints);
+
+        //Display the all waypoints as the customers real path
+        PathDisplayer.Instance.DisplayNavPath(waypoints);
     }
 
     public void OpenPlannerUi() {

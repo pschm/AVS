@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5238627091461290353}
   - component: {fileID: 6082937220159554529}
+  - component: {fileID: 4197017018559854425}
   m_Layer: 0
   m_Name: Shelf
   m_TagString: Untagged
@@ -45,7 +46,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc7d69f733eb314bb26329d65503906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rangeRadius: 6
   productName: Sample Product
+--- !u!65 &4197017018559854425
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380786985501419834}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.05, y: 0.3, z: 0.4}
+  m_Center: {x: 0, y: 0, z: 1}
 --- !u!1 &5401527586198668230
 GameObject:
   m_ObjectHideFlags: 0

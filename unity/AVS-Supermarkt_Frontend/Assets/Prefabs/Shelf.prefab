@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangeRadius: 6
+  alwaysShowGizmos: 0
   productName: Sample Product
 --- !u!65 &4197017018559854425
 BoxCollider:

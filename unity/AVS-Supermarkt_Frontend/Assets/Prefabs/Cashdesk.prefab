@@ -328,6 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangeRadius: 6
+  alwaysShowGizmos: 0
   cashdeskName: Kasse
   offsetZ: 1.5
   walkOffsetX: 0

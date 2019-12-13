@@ -12,13 +12,13 @@ public class NavNode : MonoBehaviour {
     public bool alwaysShowGizmos;
 
 
-    internal List<NavNode> nextNodes = new List<NavNode>();
+    protected List<NavNode> nextNodes = new List<NavNode>();
 
 
     protected virtual void Update() {
         if(!EditorApplication.isPlaying && transform.hasChanged) {
             nextNodes = new List<NavNode>();
-
+            
             Collider[] hits = Physics.OverlapSphere(ColliderCenter, rangeRadius, LayerMask.NameToLayer("Everything"), QueryTriggerInteraction.Collide);
             foreach(var hit in hits) {
                 var node = hit.GetComponent<NavNode>();
@@ -32,7 +32,11 @@ public class NavNode : MonoBehaviour {
         }
     }
 
-    internal virtual Vector3 ColliderCenter => transform.position;
+    protected virtual Vector3 ColliderCenter => transform.position;
+    
+    public List<NavNode> NextNodes => new List<NavNode>(nextNodes);
+
+
 
     private void OnValidate() {
         var bc = GetComponent<BoxCollider>();

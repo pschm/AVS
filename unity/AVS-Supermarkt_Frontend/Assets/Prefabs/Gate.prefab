@@ -283,6 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangeRadius: 6
+  alwaysShowGizmos: 0
   cashdeskName: Eingang
   offsetZ: 0
   walkOffsetX: 1

@@ -35,7 +35,7 @@ public abstract class ShopAsset : NavNode {
 #endif
     }
 
-    protected override Vector3 ColliderCenter => WalkToPoint;
+    public override Vector3 NodeCenter => WalkToPoint;
 
 
 

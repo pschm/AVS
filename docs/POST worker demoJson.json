@@ -1,5 +1,5 @@
 {
-    "uuid": "cc099a88-e503-4574-8923-911ff2493c6e",
+    "uuid": "1fce88c1-11b0-48bb-9967-4b08290f3fee",
     "population": {
         "paths": [
             {
@@ -8,101 +8,38 @@
                 "IndividualPath": [
                     {
                         "position": {
-                            "x": -18.0,
-                            "y": 46.5
+                            "x": -29.0,
+                            "y": -54.0
                         },
-                        "name": "Käsetheke"
+                        "name": "Eingang"
                     },
                     {
                         "position": {
-                            "x": -49.0,
-                            "y": 35.5
+                            "x": 14.0,
+                            "y": -29.0
                         },
-                        "name": "Butter"
+                        "name": "Tiernahrung"
                     },
                     {
                         "position": {
-                            "x": -55.0,
-                            "y": 46.5
+                            "x": -2.2299997806549072,
+                            "y": -31.770000457763672
                         },
-                        "name": "Milchprodukte"
+                        "name": "Gutscheinkarten"
                     },
                     {
                         "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
+                            "x": 4.800000190734863,
+                            "y": -38.0
                         },
-                        "name": "Kuchen"
+                        "name": "Gemüse"
                     },
                     {
                         "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
+                            "x": -39.0,
+                            "y": -30.0
                         },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
+                        "name": "Kasse 5"
                     }
                 ]
             },
@@ -112,101 +49,38 @@
                 "IndividualPath": [
                     {
                         "position": {
-                            "x": 20.0,
-                            "y": -46.0
+                            "x": -29.0,
+                            "y": -54.0
                         },
-                        "name": "Obst"
+                        "name": "Eingang"
                     },
                     {
                         "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
+                            "x": 14.0,
+                            "y": -29.0
                         },
-                        "name": "Bier"
+                        "name": "Tiernahrung"
                     },
                     {
                         "position": {
-                            "x": 16.0,
-                            "y": -33.5
+                            "x": -2.2299997806549072,
+                            "y": -31.770000457763672
                         },
-                        "name": "Zeitschriften"
+                        "name": "Gutscheinkarten"
                     },
                     {
                         "position": {
-                            "x": -37.0,
-                            "y": 21.0
+                            "x": 4.800000190734863,
+                            "y": -38.0
                         },
-                        "name": "Eier"
+                        "name": "Gemüse"
                     },
                     {
                         "position": {
-                            "x": 9.0,
-                            "y": 46.5
+                            "x": -39.0,
+                            "y": -30.0
                         },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
+                        "name": "Kasse 5"
                     }
                 ]
             },
@@ -216,101 +90,38 @@
                 "IndividualPath": [
                     {
                         "position": {
-                            "x": -55.0,
-                            "y": 46.5
+                            "x": -29.0,
+                            "y": -54.0
                         },
-                        "name": "Milchprodukte"
+                        "name": "Eingang"
                     },
                     {
                         "position": {
-                            "x": 38.0,
-                            "y": -26.0
+                            "x": 4.800000190734863,
+                            "y": -38.0
                         },
-                        "name": "Brot"
+                        "name": "Gemüse"
                     },
                     {
                         "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
+                            "x": -2.2299997806549072,
+                            "y": -31.770000457763672
                         },
-                        "name": "Kuchen"
+                        "name": "Gutscheinkarten"
                     },
                     {
                         "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
+                            "x": 14.0,
+                            "y": -29.0
                         },
-                        "name": "Schokolade"
+                        "name": "Tiernahrung"
                     },
                     {
                         "position": {
-                            "x": 38.0,
-                            "y": -17.0
+                            "x": -39.0,
+                            "y": -30.0
                         },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
+                        "name": "Kasse 5"
                     }
                 ]
             },
@@ -320,101 +131,38 @@
                 "IndividualPath": [
                     {
                         "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
+                            "x": -29.0,
+                            "y": -54.0
                         },
-                        "name": "Bier"
+                        "name": "Eingang"
                     },
                     {
                         "position": {
-                            "x": 9.0,
-                            "y": 46.5
+                            "x": 14.0,
+                            "y": -29.0
                         },
-                        "name": "Fleischtheke"
+                        "name": "Tiernahrung"
                     },
                     {
                         "position": {
-                            "x": -49.0,
-                            "y": 35.5
+                            "x": 4.800000190734863,
+                            "y": -38.0
                         },
-                        "name": "Butter"
+                        "name": "Gemüse"
                     },
                     {
                         "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
+                            "x": -2.2299997806549072,
+                            "y": -31.770000457763672
                         },
-                        "name": "Kuchen"
+                        "name": "Gutscheinkarten"
                     },
                     {
                         "position": {
-                            "x": -55.0,
-                            "y": 46.5
+                            "x": -39.0,
+                            "y": -30.0
                         },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
+                        "name": "Kasse 5"
                     }
                 ]
             },
@@ -424,101 +172,38 @@
                 "IndividualPath": [
                     {
                         "position": {
-                            "x": 9.0,
-                            "y": 46.5
+                            "x": -29.0,
+                            "y": -54.0
                         },
-                        "name": "Fleischtheke"
+                        "name": "Eingang"
                     },
                     {
                         "position": {
-                            "x": 38.0,
-                            "y": -26.0
+                            "x": 14.0,
+                            "y": -29.0
                         },
-                        "name": "Brot"
+                        "name": "Tiernahrung"
                     },
                     {
                         "position": {
-                            "x": 38.0,
-                            "y": -17.0
+                            "x": 4.800000190734863,
+                            "y": -38.0
                         },
-                        "name": "Brotaufstrich"
+                        "name": "Gemüse"
                     },
                     {
                         "position": {
-                            "x": -18.0,
-                            "y": 46.5
+                            "x": -2.2299997806549072,
+                            "y": -31.770000457763672
                         },
-                        "name": "KÃ¤setheke"
+                        "name": "Gutscheinkarten"
                     },
                     {
                         "position": {
-                            "x": -59.5,
-                            "y": 30.0
+                            "x": -39.0,
+                            "y": -30.0
                         },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
+                        "name": "Kasse 5"
                     }
                 ]
             },
@@ -528,101 +213,38 @@
                 "IndividualPath": [
                     {
                         "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
+                            "x": -29.0,
+                            "y": -54.0
                         },
-                        "name": "Bier"
+                        "name": "Eingang"
                     },
                     {
                         "position": {
-                            "x": 16.0,
-                            "y": -33.5
+                            "x": 14.0,
+                            "y": -29.0
                         },
-                        "name": "Zeitschriften"
+                        "name": "Tiernahrung"
                     },
                     {
                         "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
+                            "x": 4.800000190734863,
+                            "y": -38.0
                         },
-                        "name": "Schokolade"
+                        "name": "Gemüse"
                     },
                     {
                         "position": {
-                            "x": 38.0,
-                            "y": -17.0
+                            "x": -2.2299997806549072,
+                            "y": -31.770000457763672
                         },
-                        "name": "Brotaufstrich"
+                        "name": "Gutscheinkarten"
                     },
                     {
                         "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
+                            "x": -39.0,
+                            "y": -30.0
                         },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
+                        "name": "Kasse 5"
                     }
                 ]
             },
@@ -632,101 +254,38 @@
                 "IndividualPath": [
                     {
                         "position": {
-                            "x": -37.0,
-                            "y": 21.0
+                            "x": -29.0,
+                            "y": -54.0
                         },
-                        "name": "Eier"
+                        "name": "Eingang"
                     },
                     {
                         "position": {
-                            "x": -59.5,
-                            "y": 30.0
+                            "x": 4.800000190734863,
+                            "y": -38.0
                         },
-                        "name": "Johgurt"
+                        "name": "Gemüse"
                     },
                     {
                         "position": {
-                            "x": 38.0,
-                            "y": -17.0
+                            "x": 14.0,
+                            "y": -29.0
                         },
-                        "name": "Brotaufstrich"
+                        "name": "Tiernahrung"
                     },
                     {
                         "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
+                            "x": -2.2299997806549072,
+                            "y": -31.770000457763672
                         },
-                        "name": "Bier"
+                        "name": "Gutscheinkarten"
                     },
                     {
                         "position": {
-                            "x": 38.0,
-                            "y": -26.0
+                            "x": -39.0,
+                            "y": -30.0
                         },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
+                        "name": "Kasse 5"
                     }
                 ]
             },
@@ -736,101 +295,38 @@
                 "IndividualPath": [
                     {
                         "position": {
-                            "x": -59.5,
-                            "y": 30.0
+                            "x": -29.0,
+                            "y": -54.0
                         },
-                        "name": "Johgurt"
+                        "name": "Eingang"
                     },
                     {
                         "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
+                            "x": -2.2299997806549072,
+                            "y": -31.770000457763672
                         },
-                        "name": "Schokolade"
+                        "name": "Gutscheinkarten"
                     },
                     {
                         "position": {
-                            "x": 38.0,
-                            "y": -17.0
+                            "x": 14.0,
+                            "y": -29.0
                         },
-                        "name": "Brotaufstrich"
+                        "name": "Tiernahrung"
                     },
                     {
                         "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
+                            "x": 4.800000190734863,
+                            "y": -38.0
                         },
-                        "name": "Kuchen"
+                        "name": "Gemüse"
                     },
                     {
                         "position": {
-                            "x": 16.0,
-                            "y": -33.5
+                            "x": -39.0,
+                            "y": -30.0
                         },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
+                        "name": "Kasse 5"
                     }
                 ]
             },
@@ -840,101 +336,38 @@
                 "IndividualPath": [
                     {
                         "position": {
-                            "x": -37.0,
-                            "y": 21.0
+                            "x": -29.0,
+                            "y": -54.0
                         },
-                        "name": "Eier"
+                        "name": "Eingang"
                     },
                     {
                         "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
+                            "x": 4.800000190734863,
+                            "y": -38.0
                         },
-                        "name": "Kuchen"
+                        "name": "Gemüse"
                     },
                     {
                         "position": {
-                            "x": -49.0,
-                            "y": 35.5
+                            "x": 14.0,
+                            "y": -29.0
                         },
-                        "name": "Butter"
+                        "name": "Tiernahrung"
                     },
                     {
                         "position": {
-                            "x": -55.0,
-                            "y": 46.5
+                            "x": -2.2299997806549072,
+                            "y": -31.770000457763672
                         },
-                        "name": "Milchprodukte"
+                        "name": "Gutscheinkarten"
                     },
                     {
                         "position": {
-                            "x": -18.0,
-                            "y": 46.5
+                            "x": -39.0,
+                            "y": -30.0
                         },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
+                        "name": "Kasse 5"
                     }
                 ]
             },
@@ -944,101 +377,38 @@
                 "IndividualPath": [
                     {
                         "position": {
-                            "x": -18.0,
-                            "y": 46.5
+                            "x": -29.0,
+                            "y": -54.0
                         },
-                        "name": "KÃ¤setheke"
+                        "name": "Eingang"
                     },
                     {
                         "position": {
-                            "x": -37.0,
-                            "y": 21.0
+                            "x": 4.800000190734863,
+                            "y": -38.0
                         },
-                        "name": "Eier"
+                        "name": "Gemüse"
                     },
                     {
                         "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
+                            "x": -2.2299997806549072,
+                            "y": -31.770000457763672
                         },
-                        "name": "Kuchen"
+                        "name": "Gutscheinkarten"
                     },
                     {
                         "position": {
-                            "x": 16.0,
-                            "y": -33.5
+                            "x": 14.0,
+                            "y": -29.0
                         },
-                        "name": "Zeitschriften"
+                        "name": "Tiernahrung"
                     },
                     {
                         "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
+                            "x": -39.0,
+                            "y": -30.0
                         },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
+                        "name": "Kasse 5"
                     }
                 ]
             },
@@ -1048,101 +418,38 @@
                 "IndividualPath": [
                     {
                         "position": {
-                            "x": -18.0,
-                            "y": 1.5
+                            "x": -29.0,
+                            "y": -54.0
                         },
-                        "name": "Wasser"
+                        "name": "Eingang"
                     },
                     {
                         "position": {
-                            "x": 16.0,
-                            "y": -33.5
+                            "x": 14.0,
+                            "y": -29.0
                         },
-                        "name": "Zeitschriften"
+                        "name": "Tiernahrung"
                     },
                     {
                         "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
+                            "x": 4.800000190734863,
+                            "y": -38.0
                         },
-                        "name": "Bier"
+                        "name": "Gemüse"
                     },
                     {
                         "position": {
-                            "x": -59.5,
-                            "y": 30.0
+                            "x": -2.2299997806549072,
+                            "y": -31.770000457763672
                         },
-                        "name": "Johgurt"
+                        "name": "Gutscheinkarten"
                     },
                     {
                         "position": {
-                            "x": -55.0,
-                            "y": 46.5
+                            "x": -39.0,
+                            "y": -30.0
                         },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
+                        "name": "Kasse 5"
                     }
                 ]
             },
@@ -1152,101 +459,38 @@
                 "IndividualPath": [
                     {
                         "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
+                            "x": -29.0,
+                            "y": -54.0
                         },
-                        "name": "Schokolade"
+                        "name": "Eingang"
                     },
                     {
                         "position": {
-                            "x": -18.0,
-                            "y": 46.5
+                            "x": -2.2299997806549072,
+                            "y": -31.770000457763672
                         },
-                        "name": "KÃ¤setheke"
+                        "name": "Gutscheinkarten"
                     },
                     {
                         "position": {
-                            "x": 16.0,
-                            "y": -33.5
+                            "x": 4.800000190734863,
+                            "y": -38.0
                         },
-                        "name": "Zeitschriften"
+                        "name": "Gemüse"
                     },
                     {
                         "position": {
-                            "x": -37.0,
-                            "y": 21.0
+                            "x": 14.0,
+                            "y": -29.0
                         },
-                        "name": "Eier"
+                        "name": "Tiernahrung"
                     },
                     {
                         "position": {
-                            "x": 9.0,
-                            "y": 46.5
+                            "x": -39.0,
+                            "y": -30.0
                         },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
+                        "name": "Kasse 5"
                     }
                 ]
             },
@@ -1256,101 +500,38 @@
                 "IndividualPath": [
                     {
                         "position": {
-                            "x": -55.0,
-                            "y": 46.5
+                            "x": -29.0,
+                            "y": -54.0
                         },
-                        "name": "Milchprodukte"
+                        "name": "Eingang"
                     },
                     {
                         "position": {
-                            "x": 38.0,
-                            "y": -17.0
+                            "x": 14.0,
+                            "y": -29.0
                         },
-                        "name": "Brotaufstrich"
+                        "name": "Tiernahrung"
                     },
                     {
                         "position": {
-                            "x": -49.0,
-                            "y": 35.5
+                            "x": -2.2299997806549072,
+                            "y": -31.770000457763672
                         },
-                        "name": "Butter"
+                        "name": "Gutscheinkarten"
                     },
                     {
                         "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
+                            "x": 4.800000190734863,
+                            "y": -38.0
                         },
-                        "name": "Schokolade"
+                        "name": "Gemüse"
                     },
                     {
                         "position": {
-                            "x": 38.0,
-                            "y": -26.0
+                            "x": -39.0,
+                            "y": -30.0
                         },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
+                        "name": "Kasse 5"
                     }
                 ]
             },
@@ -1360,101 +541,38 @@
                 "IndividualPath": [
                     {
                         "position": {
-                            "x": -59.5,
-                            "y": 30.0
+                            "x": -29.0,
+                            "y": -54.0
                         },
-                        "name": "Johgurt"
+                        "name": "Eingang"
                     },
                     {
                         "position": {
-                            "x": -18.0,
-                            "y": 46.5
+                            "x": -2.2299997806549072,
+                            "y": -31.770000457763672
                         },
-                        "name": "KÃ¤setheke"
+                        "name": "Gutscheinkarten"
                     },
                     {
                         "position": {
-                            "x": -37.0,
-                            "y": 21.0
+                            "x": 14.0,
+                            "y": -29.0
                         },
-                        "name": "Eier"
+                        "name": "Tiernahrung"
                     },
                     {
                         "position": {
-                            "x": -18.0,
-                            "y": 1.5
+                            "x": 4.800000190734863,
+                            "y": -38.0
                         },
-                        "name": "Wasser"
+                        "name": "Gemüse"
                     },
                     {
                         "position": {
-                            "x": -49.0,
-                            "y": 35.5
+                            "x": -39.0,
+                            "y": -30.0
                         },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
+                        "name": "Kasse 5"
                     }
                 ]
             },
@@ -1464,2808 +582,727 @@
                 "IndividualPath": [
                     {
                         "position": {
-                            "x": -18.0,
-                            "y": 1.5
+                            "x": -29.0,
+                            "y": -54.0
                         },
-                        "name": "Wasser"
+                        "name": "Eingang"
                     },
                     {
                         "position": {
-                            "x": 9.0,
-                            "y": 46.5
+                            "x": -2.2299997806549072,
+                            "y": -31.770000457763672
                         },
-                        "name": "Fleischtheke"
+                        "name": "Gutscheinkarten"
                     },
                     {
                         "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
+                            "x": 4.800000190734863,
+                            "y": -38.0
                         },
-                        "name": "Kuchen"
+                        "name": "Gemüse"
                     },
                     {
                         "position": {
-                            "x": 20.0,
-                            "y": -46.0
+                            "x": 14.0,
+                            "y": -29.0
                         },
-                        "name": "Obst"
+                        "name": "Tiernahrung"
                     },
                     {
                         "position": {
-                            "x": -37.0,
-                            "y": 21.0
+                            "x": -39.0,
+                            "y": -30.0
                         },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
-                    }
-                ]
-            },
-            {
-                "fitness": 0.0,
-                "distance": 0,
-                "IndividualPath": [
-                    {
-                        "position": {
-                            "x": -17.26177406311035,
-                            "y": 7.818887710571289
-                        },
-                        "name": "Bier"
-                    },
-                    {
-                        "position": {
-                            "x": 9.0,
-                            "y": 46.5
-                        },
-                        "name": "Fleischtheke"
-                    },
-                    {
-                        "position": {
-                            "x": 17.611772537231445,
-                            "y": 20.03111457824707
-                        },
-                        "name": "Kuchen"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 46.5
-                        },
-                        "name": "KÃ¤setheke"
-                    },
-                    {
-                        "position": {
-                            "x": -37.0,
-                            "y": 21.0
-                        },
-                        "name": "Eier"
-                    },
-                    {
-                        "position": {
-                            "x": 20.0,
-                            "y": -46.0
-                        },
-                        "name": "Obst"
-                    },
-                    {
-                        "position": {
-                            "x": -49.0,
-                            "y": 35.5
-                        },
-                        "name": "Butter"
-                    },
-                    {
-                        "position": {
-                            "x": 18.74822998046875,
-                            "y": 15.328889846801758
-                        },
-                        "name": "Schokolade"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -17.0
-                        },
-                        "name": "Brotaufstrich"
-                    },
-                    {
-                        "position": {
-                            "x": -55.0,
-                            "y": 46.5
-                        },
-                        "name": "Milchprodukte"
-                    },
-                    {
-                        "position": {
-                            "x": 38.0,
-                            "y": -26.0
-                        },
-                        "name": "Brot"
-                    },
-                    {
-                        "position": {
-                            "x": 16.0,
-                            "y": -33.5
-                        },
-                        "name": "Zeitschriften"
-                    },
-                    {
-                        "position": {
-                            "x": -18.0,
-                            "y": 1.5
-                        },
-                        "name": "Wasser"
-                    },
-                    {
-                        "position": {
-                            "x": -59.5,
-                            "y": 30.0
-                        },
-                        "name": "Johgurt"
+                        "name": "Kasse 5"
                     }
                 ]
             }
         ]
-    }
+    },
+    "navMesh": [
+        {
+            "id": -4114,
+            "position": {
+                "x": -29.0,
+                "y": -54.0
+            },
+            "nextNodes": [
+                -32780
+            ]
+        },
+        {
+            "id": -32780,
+            "position": {
+                "x": -24.469999313354492,
+                "y": -50.36000061035156
+            },
+            "nextNodes": [
+                -4114,
+                -67150
+            ]
+        },
+        {
+            "id": -67150,
+            "position": {
+                "x": -19.469999313354492,
+                "y": -48.36000061035156
+            },
+            "nextNodes": [
+                -32780,
+                -67248
+            ]
+        },
+        {
+            "id": -67248,
+            "position": {
+                "x": -13.800000190734863,
+                "y": -47.36000061035156
+            },
+            "nextNodes": [
+                -35684,
+                -67150
+            ]
+        },
+        {
+            "id": -35684,
+            "position": {
+                "x": -9.0,
+                "y": -47.0
+            },
+            "nextNodes": [
+                -67436,
+                -67248
+            ]
+        },
+        {
+            "id": -67436,
+            "position": {
+                "x": -6.0,
+                "y": -46.0
+            },
+            "nextNodes": [
+                -38024,
+                -35684,
+                -35766
+            ]
+        },
+        {
+            "id": -38024,
+            "position": {
+                "x": -2.0,
+                "y": -48.0
+            },
+            "nextNodes": [
+                -38186,
+                -35766,
+                -67436
+            ]
+        },
+        {
+            "id": -38186,
+            "position": {
+                "x": 3.0,
+                "y": -49.0
+            },
+            "nextNodes": [
+                -3078,
+                -38252,
+                -38024
+            ]
+        },
+        {
+            "id": -3078,
+            "position": {
+                "x": 7.0,
+                "y": -47.0
+            },
+            "nextNodes": [
+                -38376,
+                -38252,
+                -38186
+            ]
+        },
+        {
+            "id": -38376,
+            "position": {
+                "x": 12.430000305175781,
+                "y": -46.720001220703125
+            },
+            "nextNodes": [
+                -38294,
+                -67716,
+                -3078,
+                -3232,
+                -38252,
+                -67808
+            ]
+        },
+        {
+            "id": -38294,
+            "position": {
+                "x": 17.290000915527344,
+                "y": -49.59000015258789
+            },
+            "nextNodes": [
+                -38910,
+                -38376,
+                -3232,
+                -2684,
+                -67808
+            ]
+        },
+        {
+            "id": -38910,
+            "position": {
+                "x": 23.290000915527344,
+                "y": -49.59000015258789
+            },
+            "nextNodes": [
+                -39322,
+                -38294,
+                -2684
+            ]
+        },
+        {
+            "id": -39322,
+            "position": {
+                "x": 25.920000076293945,
+                "y": -45.58000183105469
+            },
+            "nextNodes": [
+                -37682,
+                -38910,
+                -39488,
+                -2684
+            ]
+        },
+        {
+            "id": -37682,
+            "position": {
+                "x": 24.0,
+                "y": -40.0
+            },
+            "nextNodes": [
+                -39488,
+                -39322,
+                -1648,
+                -37772,
+                -2730
+            ]
+        },
+        {
+            "id": -39488,
+            "position": {
+                "x": 29.290000915527344,
+                "y": -40.59000015258789
+            },
+            "nextNodes": [
+                -37682,
+                -39562,
+                -39322
+            ]
+        },
+        {
+            "id": -39562,
+            "position": {
+                "x": 29.290000915527344,
+                "y": -36.59000015258789
+            },
+            "nextNodes": [
+                -39926,
+                -39488
+            ]
+        },
+        {
+            "id": -39926,
+            "position": {
+                "x": 29.290000915527344,
+                "y": -30.59000015258789
+            },
+            "nextNodes": [
+                -39984,
+                -39562
+            ]
+        },
+        {
+            "id": -39984,
+            "position": {
+                "x": 23.290000915527344,
+                "y": -30.59000015258789
+            },
+            "nextNodes": [
+                -39926,
+                -40042
+            ]
+        },
+        {
+            "id": -40042,
+            "position": {
+                "x": 17.290000915527344,
+                "y": -30.59000015258789
+            },
+            "nextNodes": [
+                -39984,
+                -3302,
+                -3162,
+                -40076
+            ]
+        },
+        {
+            "id": -3302,
+            "position": {
+                "x": 14.0,
+                "y": -29.0
+            },
+            "nextNodes": [
+                -40076,
+                -40042
+            ]
+        },
+        {
+            "id": -40076,
+            "position": {
+                "x": 11.289999961853027,
+                "y": -30.59000015258789
+            },
+            "nextNodes": [
+                -3302,
+                -3162,
+                -40042,
+                -40142
+            ]
+        },
+        {
+            "id": -3162,
+            "position": {
+                "x": 16.0,
+                "y": -33.5
+            },
+            "nextNodes": [
+                -40076,
+                -40042
+            ]
+        },
+        {
+            "id": -40142,
+            "position": {
+                "x": 5.289999961853027,
+                "y": -30.59000015258789
+            },
+            "nextNodes": [
+                -40242,
+                -40076,
+                -40192,
+                -2800
+            ]
+        },
+        {
+            "id": -40242,
+            "position": {
+                "x": 0.8199999928474426,
+                "y": -26.59000015258789
+            },
+            "nextNodes": [
+                -40192,
+                -40142,
+                -1904,
+                -87268
+            ]
+        },
+        {
+            "id": -40192,
+            "position": {
+                "x": 0.28999999165534973,
+                "y": -30.59000015258789
+            },
+            "nextNodes": [
+                -40242,
+                -40142,
+                -2800,
+                -1904
+            ]
+        },
+        {
+            "id": -2800,
+            "position": {
+                "x": 1.5,
+                "y": -33.5
+            },
+            "nextNodes": [
+                -40192,
+                -40142
+            ]
+        },
+        {
+            "id": -1904,
+            "position": {
+                "x": -2.2299997806549072,
+                "y": -31.770000457763672
+            },
+            "nextNodes": [
+                -40242,
+                -40192
+            ]
+        },
+        {
+            "id": -87268,
+            "position": {
+                "x": -3.640000104904175,
+                "y": -25.459999084472656
+            },
+            "nextNodes": [
+                -40242,
+                -3326,
+                -87138
+            ]
+        },
+        {
+            "id": -3326,
+            "position": {
+                "x": -6.752000331878662,
+                "y": -30.0
+            },
+            "nextNodes": [
+                -87268,
+                -87138
+            ]
+        },
+        {
+            "id": -87138,
+            "position": {
+                "x": -8.640000343322754,
+                "y": -25.459999084472656
+            },
+            "nextNodes": [
+                -2708,
+                -3326,
+                -91204,
+                -87268
+            ]
+        },
+        {
+            "id": -2708,
+            "position": {
+                "x": -12.499999046325684,
+                "y": -30.0
+            },
+            "nextNodes": [
+                -91204,
+                -87138
+            ]
+        },
+        {
+            "id": -91204,
+            "position": {
+                "x": -13.319999694824219,
+                "y": -24.809999465942383
+            },
+            "nextNodes": [
+                -2708,
+                -91146,
+                -87138
+            ]
+        },
+        {
+            "id": -91146,
+            "position": {
+                "x": -18.31999969482422,
+                "y": -24.809999465942383
+            },
+            "nextNodes": [
+                -2342,
+                -91204,
+                -91272
+            ]
+        },
+        {
+            "id": -2342,
+            "position": {
+                "x": -19.0,
+                "y": -30.0
+            },
+            "nextNodes": [
+                -91146
+            ]
+        },
+        {
+            "id": -91272,
+            "position": {
+                "x": -23.31999969482422,
+                "y": -24.809999465942383
+            },
+            "nextNodes": [
+                -1696,
+                -91146,
+                -91338
+            ]
+        },
+        {
+            "id": -1696,
+            "position": {
+                "x": -23.5,
+                "y": -30.0
+            },
+            "nextNodes": [
+                -91272
+            ]
+        },
+        {
+            "id": -91338,
+            "position": {
+                "x": -28.31999969482422,
+                "y": -24.809999465942383
+            },
+            "nextNodes": [
+                -1604,
+                -91272,
+                -91404
+            ]
+        },
+        {
+            "id": -1604,
+            "position": {
+                "x": -29.0,
+                "y": -30.0
+            },
+            "nextNodes": [
+                -91338
+            ]
+        },
+        {
+            "id": -91404,
+            "position": {
+                "x": -33.31999969482422,
+                "y": -24.809999465942383
+            },
+            "nextNodes": [
+                -3056,
+                -91338,
+                -91438
+            ]
+        },
+        {
+            "id": -3056,
+            "position": {
+                "x": -33.5,
+                "y": -30.0
+            },
+            "nextNodes": [
+                -91404
+            ]
+        },
+        {
+            "id": -91438,
+            "position": {
+                "x": -38.31999969482422,
+                "y": -24.809999465942383
+            },
+            "nextNodes": [
+                -4070,
+                -91404
+            ]
+        },
+        {
+            "id": -4070,
+            "position": {
+                "x": -39.0,
+                "y": -30.0
+            },
+            "nextNodes": [
+                -91438
+            ]
+        },
+        {
+            "id": -1648,
+            "position": {
+                "x": 20.0,
+                "y": -41.5
+            },
+            "nextNodes": [
+                -37682,
+                -37772,
+                -37576
+            ]
+        },
+        {
+            "id": -37772,
+            "position": {
+                "x": 20.0,
+                "y": -40.0
+            },
+            "nextNodes": [
+                -37682,
+                -1648,
+                -2730,
+                -37576
+            ]
+        },
+        {
+            "id": -2730,
+            "position": {
+                "x": 20.0,
+                "y": -38.0
+            },
+            "nextNodes": [
+                -37682,
+                -37772,
+                -37576
+            ]
+        },
+        {
+            "id": -37576,
+            "position": {
+                "x": 16.0,
+                "y": -40.0
+            },
+            "nextNodes": [
+                -1648,
+                -37772,
+                -2730,
+                -37226,
+                -67716
+            ]
+        },
+        {
+            "id": -37226,
+            "position": {
+                "x": 10.0,
+                "y": -40.0
+            },
+            "nextNodes": [
+                -37576,
+                -2612,
+                -1672,
+                -36422,
+                -67716
+            ]
+        },
+        {
+            "id": -2612,
+            "position": {
+                "x": 7.0,
+                "y": -42.5
+            },
+            "nextNodes": [
+                -37226,
+                -36422,
+                -35952
+            ]
+        },
+        {
+            "id": -36422,
+            "position": {
+                "x": 5.940000057220459,
+                "y": -40.16999816894531
+            },
+            "nextNodes": [
+                -2612,
+                -37226,
+                -1672,
+                -35952
+            ]
+        },
+        {
+            "id": -1672,
+            "position": {
+                "x": 4.800000190734863,
+                "y": -38.0
+            },
+            "nextNodes": [
+                -37226,
+                -36422,
+                -35952
+            ]
+        },
+        {
+            "id": -35952,
+            "position": {
+                "x": 2.0,
+                "y": -41.0
+            },
+            "nextNodes": [
+                -2612,
+                -1672,
+                -36422,
+                -35766
+            ]
+        },
+        {
+            "id": -35766,
+            "position": {
+                "x": -3.0,
+                "y": -43.0
+            },
+            "nextNodes": [
+                -35952,
+                -38024,
+                -67436
+            ]
+        },
+        {
+            "id": -67716,
+            "position": {
+                "x": 13.420000076293945,
+                "y": -43.400001525878906
+            },
+            "nextNodes": [
+                -37576,
+                -37226,
+                -38376,
+                -67808
+            ]
+        },
+        {
+            "id": -67808,
+            "position": {
+                "x": 15.859999656677246,
+                "y": -46.439998626708984
+            },
+            "nextNodes": [
+                -38376,
+                -38294,
+                -67716,
+                -2684
+            ]
+        },
+        {
+            "id": -2684,
+            "position": {
+                "x": 20.0,
+                "y": -46.0
+            },
+            "nextNodes": [
+                -38910,
+                -39322,
+                -37772,
+                -38294,
+                -67808
+            ]
+        },
+        {
+            "id": -3232,
+            "position": {
+                "x": 12.0,
+                "y": -51.29999923706055
+            },
+            "nextNodes": [
+                -38376,
+                -38294,
+                -38252
+            ]
+        },
+        {
+            "id": -38252,
+            "position": {
+                "x": 8.1899995803833,
+                "y": -50.0
+            },
+            "nextNodes": [
+                -38376,
+                -3078,
+                -3232,
+                -38186
+            ]
+        }
+    ]
 }

@@ -120,7 +120,7 @@ class RestService {
                 scheduler.bestIndividual?.IndividualPath?.forEach {p ->
                     p?.let { mList.add(it) }
                 }
-                val unityProducts = UnityProducts(mList)
+                val unityProducts = UnityProducts(mList, scheduler.bestIndividual?.distance ?: 0)
                 val json = Gson().toJson(unityProducts)
                 call.respondText(json, ContentType.Application.Json, HttpStatusCode.OK)
             }

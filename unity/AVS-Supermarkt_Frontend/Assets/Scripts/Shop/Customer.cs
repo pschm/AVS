@@ -7,11 +7,14 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Customer : MonoBehaviour {
 
+    public bool onlyBeeLine = true;
+
     private List<Vector3> waypoints = new List<Vector3>();
     private int waypointIndex;
     private float grabCooldown;
 
     private NavMeshAgent agent;
+    private Vector3? destination = null;
     private Vector3 initialPos;
     private Action finishAction;
 
@@ -21,9 +24,19 @@ public class Customer : MonoBehaviour {
         initialPos = transform.position;
     }
 
-
     private void Update() {
-        if(!agent.isStopped && !agent.pathPending && agent.remainingDistance < 0.2f) {
+        if(onlyBeeLine && destination.HasValue && Vector3.Distance(transform.position, destination.Value + Vector3.up) > 0.2f) {
+            transform.position = Vector3.MoveTowards(transform.position, destination.Value + Vector3.up, 5f * Time.deltaTime);
+
+            transform.LookAt(destination.Value);
+            var rot = transform.rotation.eulerAngles;
+            rot.x = 0;
+            transform.rotation = Quaternion.Euler(rot);
+        }
+        
+
+        if( (agent.enabled && !agent.isStopped && !agent.pathPending && agent.remainingDistance < 0.2f) || 
+            (onlyBeeLine && destination.HasValue && Vector3.Distance(transform.position, destination.Value + Vector3.up) < 0.2f) ) {
 
             if(grabCooldown <= 0) {
                 GotoNextPoint();
@@ -35,6 +48,7 @@ public class Customer : MonoBehaviour {
 
         }
 
+
     }
 
     private void GotoNextPoint() {
@@ -43,27 +57,33 @@ public class Customer : MonoBehaviour {
 
         //Special Action when the agent reached the final waypoint
         if(waypointIndex >= waypoints.Count) {
-            agent.isStopped = true;
+            if(agent.enabled) agent.isStopped = true;
             finishAction?.Invoke();
             finishAction = null;
             return;
         }
 
         //Set the agent to go to the currently selected waypoint.
-        agent.destination = waypoints[waypointIndex];
+        destination = waypoints[waypointIndex];
+        if(agent.enabled) agent.destination = destination.Value;
 
         //Choose the next point in the list as the destination
         waypointIndex++;
     }
 
     public void SetWaypoints(List<Vector3> waypoints, Action finishAction = null) {
-        ResetPosition(waypoints[0]);
+        ResetPosition(waypoints[0] + Vector3.up); //Add y-Offset to not end up in the floor
+
+        if(onlyBeeLine) agent.enabled = false;
+        else agent.enabled = true;
 
         this.waypoints = waypoints;
         waypointIndex = 0;
-        agent.isStopped = false;
+        if(agent.enabled) agent.isStopped = false;
 
         this.finishAction = finishAction;
+
+        GotoNextPoint(); //Get and set the first waypoint as the destination
     }
 
     public void ResetPosition() {
@@ -72,6 +92,7 @@ public class Customer : MonoBehaviour {
 
     public void ResetPosition(Vector3 position) {
         agent.isStopped = true;
+        destination = null;
         transform.position = position;
     }
 

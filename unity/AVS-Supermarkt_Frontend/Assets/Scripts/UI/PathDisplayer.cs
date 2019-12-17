@@ -60,4 +60,9 @@ public class PathDisplayer : MonoBehaviour {
 
         rendererPath.Simplify(1);
     }
+
+    public void ClearAllPath() {
+        rendererPath.positionCount = 0;
+        rendererStraight.positionCount = 0;
+    }
 }

@@ -21,6 +21,9 @@ public class UiManager : MonoBehaviour {
 
     public void StartCalculation() {
         CloseAllUis();
+        statisticsUI.ClearStatistics();
+        PathDisplayer.Instance.ClearAllPath();
+
         loadingPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Berechnung läuft...";
         loadingPanel.SetActive(true);
 
@@ -56,10 +59,10 @@ public class UiManager : MonoBehaviour {
         CloseAllUis();
         resultPanel.SetResult(result.Items);
         resultPanel.gameObject.SetActive(true);
-
+       
         statisticsUI.StopTimerAndDisplay();
         statisticsUI.UpdateCalcDistance(result.distance);
-        statisticsUI.UpdateRealDistance(NodeModel.GetVector3List(result.Items));
+        if(!customer.onlyBeeLine) statisticsUI.UpdateRealDistance(NodeModel.GetVector3List(result.Items));
     }
 
     private void ProcessIntermediateResult(PathResponse intermediateRes) {
@@ -95,7 +98,7 @@ public class UiManager : MonoBehaviour {
         customer.SetWaypoints(waypoints, OpenOpenerUi);
 
         //Display the all waypoints as the customers real path
-        PathDisplayer.Instance.DisplayNavPath(waypoints);
+        if(!customer.onlyBeeLine) PathDisplayer.Instance.DisplayNavPath(waypoints);
     }
 
     public void OpenPlannerUi() {

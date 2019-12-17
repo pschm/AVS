@@ -13,25 +13,27 @@ Der Server läuft dann auf localhost mit dem Port 8080.
 ### Scheduler Ressourcentabelle
 |Ressource  |Verb |URI |Semantik |Contenttype-Request | Contenttype-Response |
 |-----------|-----|----|---------|--------------------|----------------------|
+|Ping||||
+||Get|/ping|Liefert "pong"||PlainText|
 |Worker||||
-||Post|/worker|Erstellt einen Worker und gibt UUID und Population zurück|application/json|application/json|
+||Get|/worker|Liefert UUID und Population zurück|application/json|application/json|
 ||Put |/worker?uuid={parameter}|Akutalisiert den entsprechenden Worker und liefert eine neue Population zurück|applicaiton/json |applicaiton/json|
 |Map||||
-||Get|/map|Liefert die Karte der Unity Instanz ||application/json|
 ||Post|/map|Setzt die Karte der Unity Instanz |application/json||
+||Delete|/map|Löscht die Karte. Berechnung wird abgebrochen. ||application/json|
 |Path||||
-||Get|/path|Liefert den aktuell besten Weg zurück. ||application/json|
+||Get|/path|Liefert den aktuell besten Weg zurück. Sowie den "besten", wenn die Verbesserung der Ergebnisse ein Minimum erreicht hat ||application/json|
 
 ### Scheduler HTTP-Fehlercodes
 | Ressource | Verb | Fehlercode |                     | Beschreibung                                                            |
 |-----------|------|------------|---------------------|-------------------------------------------------------------------------|
-| /worker   | POST | 503        | Service Unavailable | Die Map ist nicht gesetzt.                                              |
-|           |      |            |                     | Die maximale Anzahl der Arbeiter wurde erreicht.                        |
-|           | PUT  | 400        | Bad Request         | Population ist nicht valide (enthält z.B. null-Werte).                  |
+| /worker   | GET  | 204        | No Content          | Die Map ist nicht gesetzt.                                              |
+|           |      | 503        | Service Unavailable | Die maximale Anzahl der Arbeiter wurde erreicht.                        |
+|           | PUT  | 204        | No Content          | Die Map ist nicht gesetzt.  
+|           |      | 400        | Bad Request         | Population ist nicht valide (enthält z.B. null-Werte).
 |           |      |            |                     | Das JSON konnte nicht gelesen werden.                                   |
 |           |      |            |                     | Die UUID fehlt.                                                         |
 |           |      |            |                     | Der Nutzer ist nicht registriert.                                       |
-| /map      | GET  | 204        | No Content          | Die Map ist nicht verfügbar.                                            |
-|           | POST | 400        | Bad Request         | Das JSON konnte nicht gelesen werden.                                   |
+| /map       | POST | 400        | Bad Request         | Das JSON konnte nicht gelesen werden.                                   |
 | /path     | GET  | 503        | Service Unavailable | Es gibt momentan keine registrieren Worker, die an der Lösung arbeiten. |
 |           |      | 204        | No Content          | Die Worker haben noch kein Ergebnis geliefert.

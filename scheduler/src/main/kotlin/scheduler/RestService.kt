@@ -23,11 +23,11 @@ import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import io.ktor.server.netty.NettyApplicationEngine
 import json_structure.MeshNode
+import json_structure.PathResponse
 import json_structure.UnityProducts
 import json_structure.WorkerRespond
 import java.time.LocalDateTime
 import java.util.*
-import kotlin.text.Charsets
 
 /**
  * The [RestService] provides the server and the API for the workers
@@ -65,10 +65,6 @@ class RestService {
                 }
 
                 // map
-                get("/map") {
-                    logRequest(call)
-                    respondMap(call)
-                }
                 post("/map") {
                     logRequest(call)
                     saveMap(call)
@@ -116,19 +112,15 @@ class RestService {
      */
     private suspend fun respondPath(call: ApplicationCall) {
         when {
-            scheduler.bestIndividual != null -> {
+            scheduler.demoIndividual.isNotEmpty() -> {
                 println("Send best Individual")
 
-                val mList = mutableListOf<Product>()
-                scheduler.bestIndividual?.IndividualPath?.forEach {p ->
-                    p?.let { mList.add(it) }
-                }
-                val unityProducts = UnityProducts(
-                    mList,
-                    scheduler.map ?: listOf(),
-                    scheduler.bestIndividual?.distance ?: 0
+                val pathResponse = PathResponse(
+                    scheduler.bestIndividual?.getIndividualPathWithoutNulls(),
+                    scheduler.demoIndividual.last().getIndividualPathWithoutNulls(),
+                    scheduler.bestDistance
                 )
-                val json = Gson().toJson(unityProducts)
+                val json = gson.toJson(pathResponse)
                 call.respondText(json, ContentType.Application.Json, HttpStatusCode.OK)
             }
             scheduler.workers.isEmpty() -> call.respondText(
@@ -158,7 +150,7 @@ class RestService {
 
         ensureMapAndProducts { products, navMesh ->
             scheduler.createPopulation(products)
-            call.respondText(gson.toJson(UnityProducts(products, navMesh)), status = HttpStatusCode.OK)
+            call.respondText(gson.toJson(UnityProducts(products, navMesh)), ContentType.Application.Json, HttpStatusCode.OK)
         } ?: respondJsonError(call)
     }
 
@@ -271,13 +263,10 @@ class RestService {
             // save worker
             scheduler.workers.add(worker)
 
-
             val gson = GsonBuilder().serializeNulls().create()
             val json = gson.toJson(WorkerRespond(worker.uuid, worker.subPopulation, navMesh))
 
-            // println("POST - JSON send to Worker: $json")
-            call.respondText(json, status = HttpStatusCode.Created)
-
+            call.respondText(json, ContentType.Application.Json, HttpStatusCode.Created)
         } ?: call.respondText(
             "No map available, therefore no population could be created",
             status = HttpStatusCode.ServiceUnavailable

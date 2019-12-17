@@ -10,8 +10,10 @@ import io.ktor.application.call
 import io.ktor.features.origin
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
-import io.ktor.http.charset
-import io.ktor.request.*
+import io.ktor.request.ContentTransformationException
+import io.ktor.request.httpMethod
+import io.ktor.request.path
+import io.ktor.request.receiveStream
 import io.ktor.response.respondText
 import io.ktor.routing.get
 import io.ktor.routing.post
@@ -20,11 +22,12 @@ import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import io.ktor.server.netty.NettyApplicationEngine
+import json_structure.MeshNode
 import json_structure.UnityProducts
 import json_structure.WorkerRespond
-import kotlinx.io.charsets.Charset
 import java.time.LocalDateTime
 import java.util.*
+import kotlin.text.Charsets
 
 /**
  * The [RestService] provides the server and the API for the workers
@@ -120,7 +123,11 @@ class RestService {
                 scheduler.bestIndividual?.IndividualPath?.forEach {p ->
                     p?.let { mList.add(it) }
                 }
-                val unityProducts = UnityProducts(mList, scheduler.bestIndividual?.distance ?: 0)
+                val unityProducts = UnityProducts(
+                    mList,
+                    scheduler.map ?: listOf(),
+                    scheduler.bestIndividual?.distance ?: 0
+                )
                 val json = Gson().toJson(unityProducts)
                 call.respondText(json, ContentType.Application.Json, HttpStatusCode.OK)
             }
@@ -136,32 +143,48 @@ class RestService {
      * save sent json to map
      */
     private suspend fun saveMap(call: ApplicationCall) {
-        scheduler.map = try {
+        try {
 //            val string = call.receive<String>()
             val string = call.receiveTextWithCorrectEncoding()
-            val items = Gson().fromJson<UnityProducts>(string, UnityProducts::class.java)
+            val items = gson.fromJson(string, UnityProducts::class.java)
 
-            items.Items
+            scheduler.products = items.Items
+            scheduler.map = items.NavMesh
         } catch (e: Exception) {
             println("Could not read map")
             e.printStackTrace()
-            null
         }
 
-        scheduler.map?.let {
-            scheduler.createPopulation(it)
-            call.respondText(Gson().toJson(UnityProducts(it)), status = HttpStatusCode.OK)
-        } ?: call.respondText("Could not read json", ContentType.Text.Plain, HttpStatusCode.BadRequest)
+
+        ensureMapAndProducts { products, navMesh ->
+            scheduler.createPopulation(products)
+            call.respondText(gson.toJson(UnityProducts(products, navMesh)), status = HttpStatusCode.OK)
+        } ?: respondJsonError(call)
+    }
+
+    private suspend fun ensureMapAndProducts(f: suspend (List<Product>, List<MeshNode>) -> Unit): Unit? {
+        scheduler.products?.let { products ->
+            scheduler.map?.let { navMesh ->
+                f(products, navMesh)
+            } ?: return null
+        } ?: return null
+
+        return Unit
+    }
+
+    private suspend fun respondJsonError(call: ApplicationCall) {
+        call.respondText("Could not read json", ContentType.Text.Plain, HttpStatusCode.BadRequest)
+        println("Could not read json")
     }
 
     /**
      * responds map data (200) or error (204) if map is not yet available
      */
     private suspend fun respondMap(call: ApplicationCall) {
-        scheduler.map?.let {
-            val json = Gson().toJson(UnityProducts(it))
+        ensureMapAndProducts { products, navMesh ->
+            val json = gson.toJson(UnityProducts(products, navMesh))
             println("send map: $json")
-            call.respondText(json, status = HttpStatusCode.OK)
+            call.respondText(json, ContentType.Application.Json, HttpStatusCode.OK)
         } ?: call.respondText("Map is not set yet, try later", ContentType.Text.Plain, HttpStatusCode.NoContent)
     }
 
@@ -219,8 +242,9 @@ class RestService {
             println("Worker is not registered. Use POST instead - 400")
         }
         else {
-            val json = Gson().toJson(respondPopulation)
-            call.respondText(json, status = HttpStatusCode.OK)
+            // TODO fix that ugly thingy... (WorkerRespond everything is nullable)
+            val json = Gson().toJson(WorkerRespond(population = respondPopulation, navMesh = scheduler.map))
+            call.respondText(json, ContentType.Application.Json, HttpStatusCode.OK)
         }
     }
 
@@ -230,36 +254,34 @@ class RestService {
     private suspend fun addWorker(call: ApplicationCall) {
         val workerAddress = call.request.origin.remoteHost
 
-        // if no map is available no population can becreated
-        if  (scheduler.map == null) {
-            call.respondText(
-                "No map available, therefore no population could be created",
-                status = HttpStatusCode.ServiceUnavailable
-            )
-            return
-        }
+        // if no map is available no population can be created
+        ensureMapAndProducts { _, navMesh ->
+            val subPopulation = scheduler.getSubPopulation()
 
-        val subPopulation = scheduler.getSubPopulation()
+            if (subPopulation == null) {
+                call.respondText(
+                    "Max worker count is reached: ${Scheduler.WORKER_COUNT} Workers",
+                    status = HttpStatusCode.ServiceUnavailable
+                )
+                return@ensureMapAndProducts
+            }
 
-        if (subPopulation == null) {
-            call.respondText(
-                "Max worker count is reached: ${Scheduler.WORKER_COUNT} Workers",
-                status = HttpStatusCode.ServiceUnavailable
-            )
-            return
-        }
+            val worker = Worker(UUID.randomUUID(), workerAddress, subPopulation, LocalDateTime.now())
 
-        val worker = Worker(UUID.randomUUID(), workerAddress, subPopulation, LocalDateTime.now())
-
-        // save worker
-        scheduler.workers.add(worker)
+            // save worker
+            scheduler.workers.add(worker)
 
 
-        val gson = GsonBuilder().serializeNulls().create()
-        val json = gson.toJson(WorkerRespond(worker.uuid, worker.subPopulation))
+            val gson = GsonBuilder().serializeNulls().create()
+            val json = gson.toJson(WorkerRespond(worker.uuid, worker.subPopulation, navMesh))
 
-        // println("POST - JSON send to Worker: $json")
-        call.respondText(json, status = HttpStatusCode.Created)
+            // println("POST - JSON send to Worker: $json")
+            call.respondText(json, status = HttpStatusCode.Created)
+
+        } ?: call.respondText(
+            "No map available, therefore no population could be created",
+            status = HttpStatusCode.ServiceUnavailable
+        )
     }
 
     /**
@@ -281,8 +303,7 @@ class RestService {
             null
         } else population
     } catch (e: ContentTransformationException) {
-        call.respondText("couldn't read json", status = HttpStatusCode.BadRequest)
-        println("could read json - 400")
+        respondJsonError(call)
         null
     }
 
@@ -297,13 +318,5 @@ class RestService {
  * But use UTF-8 as default charset for application/json, see https://tools.ietf.org/html/rfc4627#section-3
  * from https://github.com/ktorio/ktor/issues/384
  */
-private suspend fun ApplicationCall.receiveTextWithCorrectEncoding(): String {
-    fun ContentType.defaultCharset(): Charset = when (this) {
-        ContentType.Application.Json -> Charsets.UTF_8
-        else -> Charsets.ISO_8859_1
-    }
-
-    val contentType = request.contentType()
-    val suitableCharset = contentType.charset() ?: contentType.defaultCharset()
-    return receiveStream().bufferedReader(charset = suitableCharset).readText()
-}
+private suspend fun ApplicationCall.receiveTextWithCorrectEncoding(): String =
+    receiveStream().bufferedReader(charset = Charsets.UTF_8).readText()

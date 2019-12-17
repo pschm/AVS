@@ -4,6 +4,7 @@ import genetic_algorithm.IndividualPath
 import genetic_algorithm.PathManager
 import genetic_algorithm.Population
 import genetic_algorithm.Product
+import json_structure.MeshNode
 import java.time.LocalDateTime
 import kotlin.math.pow
 import kotlin.random.Random
@@ -18,11 +19,12 @@ class Scheduler {
 
     @get:Synchronized
     val workers =  mutableListOf<Worker>()
-//    val workers: MutableList<Worker> = Collections.synchronizedList( mutableListOf<Worker>() )
-
-
     var bestIndividual: IndividualPath? = null
-    var map: List<Product>? = null
+
+
+    //    val workers: MutableList<Worker> = Collections.synchronizedList( mutableListOf<Worker>() )
+    var products: List<Product>? = null
+    var map: List<MeshNode>? = null
     val subPopulations = mutableListOf<Population>()
 
     /**

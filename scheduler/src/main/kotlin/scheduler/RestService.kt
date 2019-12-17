@@ -15,10 +15,7 @@ import io.ktor.request.httpMethod
 import io.ktor.request.path
 import io.ktor.request.receiveStream
 import io.ktor.response.respondText
-import io.ktor.routing.get
-import io.ktor.routing.post
-import io.ktor.routing.put
-import io.ktor.routing.routing
+import io.ktor.routing.*
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import io.ktor.server.netty.NettyApplicationEngine
@@ -38,6 +35,15 @@ class RestService {
     private val scheduler = Scheduler()
     private val gson = Gson()
 
+
+    /*
+        POST /worker rausnehmen DONE
+        GET /worker liefert neue uuid und population DONE
+        GET /path erweitern oder neuer Endpunkt für demo Ergebnis. DONE
+        GET /map löschen DONE
+
+        DELETE /map abbrechen der Berechnung (siehe Issue #14)
+     */
     init {
         server = embeddedServer(Netty, port = 8080) {
             routing {
@@ -48,7 +54,7 @@ class RestService {
                 }
 
                 // worker
-                post("/worker") {
+                get("/worker") {
                     logRequest(call)
                     addWorker(call)
                 }
@@ -69,6 +75,10 @@ class RestService {
                     logRequest(call)
                     saveMap(call)
                 }
+                delete("/map") {
+                    logRequest(call)
+                    deleteMap(call)
+                }
 
                 // path
                 get("/path") {
@@ -77,6 +87,26 @@ class RestService {
                 }
             }
         }
+    }
+
+    private suspend fun deleteMap(call: ApplicationCall) {
+        scheduler.bestDistance = 0
+        scheduler.bestIndividual = null
+        scheduler.subPopulations.clear()
+        scheduler.demoIndividual.clear()
+
+        scheduler.calculationRunning = false
+
+        call.respondText("Current map has been deleted", ContentType.Text.Plain, HttpStatusCode.OK)
+    }
+
+    private suspend fun calculationIsRunning(call: ApplicationCall): Unit? {
+        if (!scheduler.calculationRunning) {
+            call.respondText("Map not available", ContentType.Text.Plain, HttpStatusCode.NoContent)
+            return null
+        }
+
+        return Unit
     }
 
     private suspend fun respondPopulation(call: ApplicationCall) {
@@ -142,6 +172,7 @@ class RestService {
 
             scheduler.products = items.Items
             scheduler.map = items.NavMesh
+            scheduler.calculationRunning = true
         } catch (e: Exception) {
             println("Could not read map")
             e.printStackTrace()
@@ -204,6 +235,10 @@ class RestService {
             if (it.uuid == UUID.fromString(workerId)) {
 
                 println("Update worker ${it.uuid}")
+                if (calculationIsRunning(call) == null) {
+                    it.timestamp = LocalDateTime.now()
+                    return
+                }
 
                 // get a new population for the worker
                 val newPopulation = scheduler.getSubPopulation() ?: throw NoSuchElementException()
@@ -245,6 +280,8 @@ class RestService {
      */
     private suspend fun addWorker(call: ApplicationCall) {
         val workerAddress = call.request.origin.remoteHost
+
+        calculationIsRunning(call) ?: return
 
         // if no map is available no population can be created
         ensureMapAndProducts { _, navMesh ->

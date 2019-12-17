@@ -22,9 +22,10 @@ class Scheduler {
     @get:Synchronized
     val workers =  mutableListOf<Worker>()
     var bestIndividual: IndividualPath? = null
-    var demoIndividual = mutableListOf<IndividualPath>()
+    val demoIndividual = mutableListOf<IndividualPath>()
     var bestDistance = 0
 
+    var calculationRunning = false
 
     //    val workers: MutableList<Worker> = Collections.synchronizedList( mutableListOf<Worker>() )
     var products: List<Product>? = null

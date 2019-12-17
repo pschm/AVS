@@ -5,12 +5,17 @@ using UnityEngine;
 [System.Serializable]
 public class NodeModel {
 
+    public string id;
     public string name;
     public Vector2 position;
+
+    public NodeModel() { }
+
     
     public static List<NodeModel> CreateList(List<ShopAsset> shopAssets) {
         var nodes = new List<NodeModel>();
         shopAssets.ForEach(x => nodes.Add(new NodeModel() {
+            id = x.gameObject.GetInstanceID().ToString(),
             name = x.AssetName,
             position = new Vector2(x.WalkToPoint.x, x.WalkToPoint.z)
         }));

@@ -19,8 +19,8 @@ public class Cashdesk : ShopAsset {
     public Vector3 CheckoutPoint => transform.position + transform.forward * offsetZ + transform.right * checkoutOffsetX;
 
 
-    protected override void OnDrawGizmosSelected() {
-        base.OnDrawGizmosSelected();
+    protected void OnDrawGizmosSelected() {
+        //base.OnDrawGizmosSelected();
         Gizmos.color = Color.yellow;
         Gizmos.DrawSphere(CheckoutPoint, .5f);
     }

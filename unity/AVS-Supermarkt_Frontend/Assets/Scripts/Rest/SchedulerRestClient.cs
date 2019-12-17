@@ -8,10 +8,13 @@ using Random = UnityEngine.Random;
 
 public class SchedulerRestClient : MonoBehaviour {
 
+    public NavNode startNavNode;
     public float delayBetweenRequests = 2f;
 
     private bool calculationActive;
     private bool cancelCalculation;
+
+    private List<NavNode> navMesh = new List<NavNode>();
 
     public static SchedulerRestClient Instance { get; private set; }
 
@@ -20,6 +23,21 @@ public class SchedulerRestClient : MonoBehaviour {
             Instance = this;
         } else {
             Destroy(gameObject);
+            return;
+        }
+    }
+
+    private void Start() {
+        //Debug.Log("Generating custom nav mesh..");
+        SetupNavMeshList(startNavNode);
+    }
+
+    private void SetupNavMeshList(NavNode startNode) {
+        foreach(var node in startNode.NextNodes) {
+            if(navMesh.Contains(node)) continue;
+
+            navMesh.Add(node);
+            SetupNavMeshList(node);
         }
     }
 
@@ -29,9 +47,14 @@ public class SchedulerRestClient : MonoBehaviour {
             throw new NotImplementedException("Caculation still active. Cannot start a new one!");
         }
 
+        PathRequest pathRequest = new PathRequest() {
+            Items = nodes,
+            NavMesh = NavNodeModel.CreateList(navMesh)
+        };
+
         calculationActive = true;
         if(string.IsNullOrWhiteSpace(hostUrl)) StartCoroutine(DoCalculationEmulated(nodes, actionOnResult));
-        else StartCoroutine(DoCalculation(nodes, hostUrl, intAction, actionOnResult));
+        else StartCoroutine(DoCalculation(pathRequest, hostUrl, intAction, actionOnResult));
     }
 
     public void CancelCalculation() {
@@ -56,8 +79,8 @@ public class SchedulerRestClient : MonoBehaviour {
     }
 
 
-    private IEnumerator DoCalculation(List<NodeModel> nodes, string hostUrl, Action<PathResponse> intAction, Action<PathResponse, bool> actionOnResult) {
-        var request = CreatePostShoppingListRequest(nodes, hostUrl);
+    private IEnumerator DoCalculation(PathRequest requestBody, string hostUrl, Action<PathResponse> intAction, Action<PathResponse, bool> actionOnResult) {
+        var request = CreatePostShoppingListRequest(requestBody, hostUrl);
         yield return request.SendWebRequest();
 
         if(request.responseCode != 200) {
@@ -114,8 +137,8 @@ public class SchedulerRestClient : MonoBehaviour {
     }
 
 
-    private static UnityWebRequest CreatePostShoppingListRequest(List<NodeModel> nodes, string hostUrl) {
-        var jsonBody = JsonHelper.ToJson(nodes);
+    private static UnityWebRequest CreatePostShoppingListRequest(PathRequest requestBody, string hostUrl) {
+        var jsonBody = JsonUtility.ToJson(requestBody);
 
         var request = new UnityWebRequest(hostUrl + "/map", "POST");
         byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonBody);

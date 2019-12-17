@@ -23,8 +23,10 @@ import json_structure.MeshNode
 import json_structure.PathResponse
 import json_structure.UnityProducts
 import json_structure.WorkerRespond
+import utility.get
 import java.time.LocalDateTime
 import java.util.*
+import kotlin.NoSuchElementException
 
 /**
  * The [RestService] provides the server and the API for the workers
@@ -36,14 +38,6 @@ class RestService {
     private val gson = Gson()
 
 
-    /*
-        POST /worker rausnehmen DONE
-        GET /worker liefert neue uuid und population DONE
-        GET /path erweitern oder neuer Endpunkt für demo Ergebnis. DONE
-        GET /map löschen DONE
-
-        DELETE /map abbrechen der Berechnung (siehe Issue #14)
-     */
     init {
         server = embeddedServer(Netty, port = 8080) {
             routing {
@@ -56,18 +50,11 @@ class RestService {
                 // worker
                 get("/worker") {
                     logRequest(call)
-                    addWorker(call)
+                    call.parameters["uuid"]?.let { respondPopulation(call, it) } ?: addWorker(call)
                 }
                 put("/worker") {
                     logRequest(call)
                     updateWorker(call)
-                }
-                get("/worker/uuid") {
-                    // TODO delete post /worker and get /map and implement
-                }
-                get("/worker") {
-                    logRequest(call)
-                    respondPopulation(call)
                 }
 
                 // map
@@ -109,15 +96,14 @@ class RestService {
         return Unit
     }
 
-    private suspend fun respondPopulation(call: ApplicationCall) {
-        val workerId = call.parameters["uuid"]
-
-        if (workerId == null) {
-            call.respondText("parameter uuid missing", ContentType.Text.Plain, HttpStatusCode.BadRequest)
-            println("worker id missing")
+    private suspend fun respondPopulation(call: ApplicationCall, workerId: String) {
+        val worker = scheduler.workers.get { it.uuid == UUID.fromString(workerId) }
+        if (worker == null) {
+            call.respondText("uuid is not registered", ContentType.Text.Plain, HttpStatusCode.BadRequest)
             return
         }
 
+        // return population if set
         scheduler.subPopulations.forEach {
             if (it.worker?.uuid.toString() == workerId) {
                 val json = gson.toJson(it)
@@ -126,10 +112,20 @@ class RestService {
             }
         }
 
-        call.respondText("uuid is not registered", ContentType.Text.Plain, HttpStatusCode.BadRequest)
+        // try to utility.get new population
+        val population = scheduler.getSubPopulation()
+
+        if (population == null) {
+            call.respondText("No population available", ContentType.Text.Plain, HttpStatusCode.NoContent)
+            return
+        }
+
+        worker.changePopulation(population)
+
+        val json = gson.toJson(population, Population::class.java)
+        call.respondText(json, ContentType.Application.Json, HttpStatusCode.OK)
     }
 
-    fun start() = server.start(wait = true)
 
     /**
      * responds:
@@ -201,17 +197,6 @@ class RestService {
     }
 
     /**
-     * responds map data (200) or error (204) if map is not yet available
-     */
-    private suspend fun respondMap(call: ApplicationCall) {
-        ensureMapAndProducts { products, navMesh ->
-            val json = gson.toJson(UnityProducts(products, navMesh))
-            println("send map: $json")
-            call.respondText(json, ContentType.Application.Json, HttpStatusCode.OK)
-        } ?: call.respondText("Map is not set yet, try later", ContentType.Text.Plain, HttpStatusCode.NoContent)
-    }
-
-    /**
      * update [IndividualPath] of the calling worker
      */
     private suspend fun updateWorker(call: ApplicationCall) {
@@ -240,7 +225,7 @@ class RestService {
                     return
                 }
 
-                // get a new population for the worker
+                // utility.get a new population for the worker
                 val newPopulation = scheduler.getSubPopulation() ?: throw NoSuchElementException()
 
                 if (scheduler.subPopulations.any { subPop -> subPop.worker == it }) {
@@ -310,6 +295,8 @@ class RestService {
         )
     }
 
+
+
     /**
      * Try to parse an [Population] from send json in [call].
      * If no [Population] could be parsed the call responds with [HttpStatusCode.BadRequest]
@@ -319,8 +306,7 @@ class RestService {
 //        val string = call.receive<String>()
         val string = call.receiveTextWithCorrectEncoding()
 
-        println("popupaltion from worker $string")
-        val population = Gson().fromJson<Population>(string, Population::class.java)
+        val population = Gson().fromJson(string, Population::class.java)
         population.paths.forEach { print("$it |") }
 
         if (population.paths.contains(null) || population.paths.isNullOrEmpty()) {
@@ -336,6 +322,8 @@ class RestService {
     private fun logRequest(call: ApplicationCall) {
         println("${call.request.httpMethod.value} ${call.request.path()} from ${call.request.origin.remoteHost}")
     }
+
+    fun start() = server.start(wait = true)
 }
 
 /**

@@ -4,6 +4,7 @@ import genetic_algorithm.IndividualPath
 import genetic_algorithm.PathManager
 import genetic_algorithm.Population
 import genetic_algorithm.Product
+import json_structure.MeshNode
 import java.time.LocalDateTime
 import kotlin.math.pow
 import kotlin.random.Random
@@ -14,15 +15,21 @@ class Scheduler {
         const val WORKER_COUNT = 12
         const val POPULATION_SIZE = 200 // min (WORKER_COUNT+1)²
         const val WORKER_RESPONSE_TIME = 5 // time in minutes
+        const val DEMO_INDIVIDUAL_SIZE = 30 // TODO test sizes
+        const val MIN_DELTA = 25
     }
 
     @get:Synchronized
     val workers =  mutableListOf<Worker>()
-//    val workers: MutableList<Worker> = Collections.synchronizedList( mutableListOf<Worker>() )
-
-
     var bestIndividual: IndividualPath? = null
-    var map: List<Product>? = null
+    val demoIndividual = mutableListOf<IndividualPath>()
+    var bestDistance = 0
+
+    var calculationRunning = false
+
+    //    val workers: MutableList<Worker> = Collections.synchronizedList( mutableListOf<Worker>() )
+    var products: List<Product>? = null
+    var map: List<MeshNode>? = null
     val subPopulations = mutableListOf<Population>()
 
     /**
@@ -32,28 +39,27 @@ class Scheduler {
         // best individual of the given population
         val individual = population.getFittest()
 
+        individual?.let { addDemoIndividual(it) } ?: return
 
-        //println(individual?.fitness)
-
-        println("bestIndiviual: $bestIndividual (distance: ${bestIndividual?.distance})")
-        println("newIndividual: $individual (distance ${individual?.distance})")
-
-        val bIndividual = bestIndividual
-        if (bIndividual == null) {
-            bestIndividual = individual
-            return
+        if (demoIndividual.size == DEMO_INDIVIDUAL_SIZE) {
+            val delta = demoIndividual.first().distance - demoIndividual.last().distance
+            if (delta < MIN_DELTA) bestIndividual = demoIndividual.last()
         }
 
-        if (individual != null && individual.distance < bIndividual.distance) {
-            bestIndividual = individual
+        println("BEST distance: ${bestIndividual?.distance})")
+        println("DEMO distance: ${demoIndividual.lastOrNull()?.distance})")
+        println("new distance ${individual.distance})")
+    }
+
+    private fun addDemoIndividual(individual: IndividualPath) {
+        if (demoIndividual.size < DEMO_INDIVIDUAL_SIZE) demoIndividual.add(individual)
+        else if (individual.distance < demoIndividual.first().distance) {
+            demoIndividual.removeAt(0)
+            demoIndividual.add(0, individual)
         }
 
-//        bestIndividual = individual?.let {
-//            if (it.distance < bestIndividual?.distance ?: -1) individual
-//            else bestIndividual
-//        } ?: bestIndividual
-
-
+        demoIndividual.sortBy { it.distance }
+        bestDistance = demoIndividual.last().distance
     }
 
     /**

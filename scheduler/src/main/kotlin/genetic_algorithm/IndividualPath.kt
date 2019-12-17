@@ -25,6 +25,15 @@ class IndividualPath(var IndividualPath: ArrayList<Product?> = ArrayList()) {
         }
     }
 
+    fun getIndividualPathWithoutNulls(): List<Product> {
+        val list = mutableListOf<Product>()
+        IndividualPath.forEach { p ->
+            p?.let { list.add(it) }
+        }
+
+        return list.toList()
+    }
+
     /**
      * Creates a random individual
      */

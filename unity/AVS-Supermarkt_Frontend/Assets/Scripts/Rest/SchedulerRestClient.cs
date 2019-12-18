@@ -57,7 +57,12 @@ public class SchedulerRestClient : MonoBehaviour {
         else StartCoroutine(DoCalculation(pathRequest, hostUrl, intAction, actionOnResult));
     }
 
-    public void CancelCalculation() {
+    public void CancelCalculation(string hostUrl = "") {
+        //If hosturl given, call DELETE endpoint for the waypoints etc.
+        if(!string.IsNullOrWhiteSpace(hostUrl)) {           
+            StartCoroutine(HandleDeleteWaypoints(hostUrl));
+        }
+        
         if(calculationActive) cancelCalculation = true;
     }
 
@@ -168,6 +173,14 @@ public class SchedulerRestClient : MonoBehaviour {
         request.SetRequestHeader("Accept", "application/json");
 
         return request;
+    }
+
+
+    private IEnumerator HandleDeleteWaypoints(string hostUrl) {
+        UnityWebRequest request = UnityWebRequest.Delete(hostUrl + "/map");
+        request.SetRequestHeader("Accept", "application/json");
+
+        yield return request.SendWebRequest();
     }
 
 }

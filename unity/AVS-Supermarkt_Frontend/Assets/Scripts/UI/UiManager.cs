@@ -41,7 +41,7 @@ public class UiManager : MonoBehaviour {
     }
 
     public void CancelCalculation() {
-        SchedulerRestClient.Instance.CancelCalculation();
+        SchedulerRestClient.Instance.CancelCalculation(schedulerIpField.text);
     }
 
     private void ProcessCalculationResult(PathResponse result, bool wasCanceled) {

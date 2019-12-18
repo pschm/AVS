@@ -18,7 +18,7 @@ public class Cashdesk : ShopAsset {
 
     public Vector3 CheckoutPoint => transform.position + transform.forward * offsetZ + transform.right * checkoutOffsetX;
 
-
+#if UNITY_EDITOR
     protected void OnDrawGizmosSelected() {
         //base.OnDrawGizmosSelected();
         Gizmos.color = Color.yellow;
@@ -32,5 +32,5 @@ public class Cashdesk : ShopAsset {
         walkOffsetX = Mathf.Clamp(walkOffsetX, -clamp, clamp);
         checkoutOffsetX = Mathf.Clamp(checkoutOffsetX, -clamp, clamp);
     }
-
+#endif
 }

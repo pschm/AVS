@@ -19,9 +19,11 @@ public class NavNode : MonoBehaviour {
     }
 
     protected virtual void Update() {
+#if UNITY_EDITOR
         if(!EditorApplication.isPlaying && transform.hasChanged) {
             UpdateNextNodes();                        
         }
+#endif
     }
 
     private void UpdateNextNodes() {

@@ -7,10 +7,17 @@ using UnityEngine.AI;
 
 public class StatisticsUI : MonoBehaviour {
 
+    public Color diffColorNormal;
+    public Color diffColorCritical;
+
     public TextMeshProUGUI txtWaypointCnt;
     public TextMeshProUGUI txtTime;
     public TextMeshProUGUI txtCalcDistance;
     public TextMeshProUGUI txtRealDistance;
+    public TextMeshProUGUI txtDiffDistanceMeters;
+    public TextMeshProUGUI txtDiffDistancePercent;
+
+    private float? realDist, calcDist;
 
     private bool runTimer;
     private float timer;
@@ -31,6 +38,14 @@ public class StatisticsUI : MonoBehaviour {
         txtTime.text = "-";
         txtCalcDistance.text = "-";
         txtRealDistance.text = "-";
+        txtDiffDistanceMeters.text = "-";
+        txtDiffDistancePercent.text = "";
+
+        txtDiffDistanceMeters.color = diffColorNormal;
+        txtDiffDistancePercent.color = diffColorNormal;
+
+        realDist = null;
+        calcDist = null;
     }
 
 
@@ -55,12 +70,40 @@ public class StatisticsUI : MonoBehaviour {
         UpdateTime(timer);
     }
 
+    private void UpdateDistanceDifference() {
+        if(!realDist.HasValue || !calcDist.HasValue) return;
+
+        float diff = realDist.Value - calcDist.Value;
+        float percent = diff / calcDist.Value * 100;
+
+        txtDiffDistanceMeters.text = $"{diff.ToString("F2")}m";
+        txtDiffDistancePercent.text = $"({percent.ToString("F2")}%)";
+
+        if(diff > 0) {
+            txtDiffDistanceMeters.text = "+" + txtDiffDistanceMeters.text;
+            txtDiffDistancePercent.text = "(+" + txtDiffDistancePercent.text.Substring(1);
+        }
+
+
+        if(diff > 40) {
+            txtDiffDistanceMeters.color = diffColorCritical;
+            txtDiffDistancePercent.color = diffColorCritical;
+        } else {
+            txtDiffDistanceMeters.color = diffColorNormal;
+            txtDiffDistancePercent.color = diffColorNormal;
+        }
+    }
+
     public void UpdateCalcDistance(float distance) {
         txtCalcDistance.text = $"{distance.ToString("F2")}m";
+        calcDist = distance;
+        UpdateDistanceDifference();
     }
 
     public void UpdateRealDistance(float distance) {
         txtRealDistance.text = $"{distance.ToString("F2")}m";
+        realDist = distance;
+        UpdateDistanceDifference();
     }
 
     public void UpdateRealDistance(List<Vector3> waypoints) {

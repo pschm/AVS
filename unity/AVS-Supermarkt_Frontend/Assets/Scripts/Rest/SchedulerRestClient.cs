@@ -73,7 +73,13 @@ public class SchedulerRestClient : MonoBehaviour {
 
         Debug.Log("Calculation done. Canceled: " + cancelCalculation);
         calculationActive = false;
-        actionOnResult(new PathResponse() { Items = nodes, distance = -42f }, cancelCalculation);
+
+        float calDistance = 0f;
+        for(int i = 0; i < nodes.Count - 1; i++) {
+            calDistance += Vector2.Distance(nodes[i].position, nodes[i + 1].position);
+        }
+
+        actionOnResult(new PathResponse() { Items = nodes, distance = calDistance }, cancelCalculation);
 
         cancelCalculation = false;
     }

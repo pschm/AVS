@@ -66,10 +66,10 @@ public class UiManager : MonoBehaviour {
     }
 
     private void ProcessIntermediateResult(PathResponse intermediateRes) {
-        if(intermediateRes == null || intermediateRes.Items.Count <= 0) return;
+        if(intermediateRes == null || intermediateRes.DemoItems.Count <= 0) return;
 
         statisticsUI.UpdateCalcDistance(intermediateRes.distance);
-        PathDisplayer.Instance.DisplayStraightPath(NodeModel.GetVector3List(intermediateRes.Items));
+        PathDisplayer.Instance.DisplayStraightPath(NodeModel.GetVector3List(intermediateRes.DemoItems));
     }
 
 

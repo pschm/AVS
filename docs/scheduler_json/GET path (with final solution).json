@@ -1,0 +1,78 @@
+{
+    "Items": [
+        {
+            "position": {
+                "x": -29.0,
+                "y": -54.0
+            },
+            "name": "Eingang"
+        },
+        {
+            "position": {
+                "x": 4.800000190734863,
+                "y": -38.0
+            },
+            "name": "Gemüse"
+        },
+        {
+            "position": {
+                "x": 14.0,
+                "y": -29.0
+            },
+            "name": "Tiernahrung"
+        },
+        {
+            "position": {
+                "x": -2.2299997806549072,
+                "y": -31.770000457763672
+            },
+            "name": "Gutscheinkarten"
+        },
+        {
+            "position": {
+                "x": -39.0,
+                "y": -30.0
+            },
+            "name": "Kasse 5"
+        }
+    ],
+    "DemoItems": [
+        {
+            "position": {
+                "x": -29.0,
+                "y": -54.0
+            },
+            "name": "Eingang"
+        },
+        {
+            "position": {
+                "x": 4.800000190734863,
+                "y": -38.0
+            },
+            "name": "Gemüse"
+        },
+        {
+            "position": {
+                "x": 14.0,
+                "y": -29.0
+            },
+            "name": "Tiernahrung"
+        },
+        {
+            "position": {
+                "x": -2.2299997806549072,
+                "y": -31.770000457763672
+            },
+            "name": "Gutscheinkarten"
+        },
+        {
+            "position": {
+                "x": -39.0,
+                "y": -30.0
+            },
+            "name": "Kasse 5"
+        }
+    ],
+    
+	"Distance": 127
+}

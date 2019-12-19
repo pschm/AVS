@@ -108,7 +108,7 @@ public class SchedulerRestClient : MonoBehaviour {
         Debug.Log("Checking for result...");
         PathResponse result = null;
 
-        while(result == null && !cancelCalculation) {
+        while(result == null && result.Items == null && !cancelCalculation) {
             var request = CreateGetCalculatedWaypointsRequest(hostUrl);
             yield return request.SendWebRequest();
 
@@ -118,13 +118,12 @@ public class SchedulerRestClient : MonoBehaviour {
                 var response = Encoding.UTF8.GetString(request.downloadHandler.data);
                 result = JsonUtility.FromJson<PathResponse>(response);
 
+                if(result != null) intAction(result);
+
             } else if(request.isNetworkError /*|| request.responseCode == 503*/) {
                 Debug.LogWarning($"Cant get result. Network-Error: {request.isNetworkError}, Response-Code: {request.responseCode}");
                 break;
 
-            } else {
-
-                yield return HandleIntermediateRequest(hostUrl, intAction);
             }
 
             yield return new WaitForSeconds(delayBetweenRequests);
@@ -134,17 +133,6 @@ public class SchedulerRestClient : MonoBehaviour {
         actionOnResult(result, cancelCalculation);
 
         cancelCalculation = false;
-    }
-
-    private IEnumerator HandleIntermediateRequest(string hostUrl, Action<PathResponse> intAction) {
-        var request = CreateGetIntermediateWaypointsRequest(hostUrl);
-        yield return request.SendWebRequest();
-
-        if(!request.isNetworkError && request.responseCode == 200) {
-            var response = Encoding.UTF8.GetString(request.downloadHandler.data);
-            var result = JsonUtility.FromJson<PathResponse>(response);
-            intAction(result);
-        }
     }
 
 
@@ -161,15 +149,8 @@ public class SchedulerRestClient : MonoBehaviour {
         return request;
     }
 
-    private static UnityWebRequest CreateGetIntermediateWaypointsRequest(string hostUrl) {
-        UnityWebRequest request = UnityWebRequest.Get(hostUrl + "/path"); //TODO Adjust to Scheduler-Endpoint
-        request.SetRequestHeader("Accept", "application/json");
-
-        return request;
-    }
-
     private static UnityWebRequest CreateGetCalculatedWaypointsRequest(string hostUrl) {
-        UnityWebRequest request = UnityWebRequest.Get(hostUrl + "/path"); //TODO Adjust to Scheduler-Endpoint
+        UnityWebRequest request = UnityWebRequest.Get(hostUrl + "/path");
         request.SetRequestHeader("Accept", "application/json");
 
         return request;

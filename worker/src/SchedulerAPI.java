@@ -17,34 +17,24 @@ public class SchedulerAPI {
     private static final String urlMap = "http://139.6.65.27:8080/map";
     //private static final String urlWorker = "http://192.168.0.136:8080/worker";
     //private static final String urlMap = "http://192.168.0.136:8080/map";
-    //private static final Path UUIDPATH = Paths.get("/Users/wi2885/Desktop/uuid/uuid.txt");
 
-    public JSONObject postWorker() throws IOException
-    {
+    public String getWorker() throws IOException, InterruptedException {
         try
         {
             URL myurl = new URL(urlWorker);
             con = (HttpURLConnection) myurl.openConnection();
     
             con.setDoOutput(true);
-            con.setRequestMethod("POST");
+            con.setRequestMethod("GET");
             con.setRequestProperty("User-Agent", "Java client");
             con.setRequestProperty("Content-Type", "application/json; utf-8");
-
-            try(OutputStream os = con.getOutputStream()) {
-                byte[] input = new byte[0];
-                os.write(input, 0, input.length);
-            }
 
             StringBuilder response = null;
 
             InputStream inputStream;
             int status = con.getResponseCode();
 
-            if (status != HttpURLConnection.HTTP_OK)  {
-                inputStream = con.getErrorStream();
-            }
-            else  {
+            if (status == HttpURLConnection.HTTP_CREATED){
                 try(BufferedReader br = new BufferedReader(
                         new InputStreamReader(con.getInputStream(), "utf-8"))) {
                     response = new StringBuilder();
@@ -52,13 +42,29 @@ public class SchedulerAPI {
                     while ((responseLine = br.readLine()) != null) {
                         response.append(responseLine.trim());
                     }
-                    System.out.println("POST RESPONSE:" + response.toString());
+                    System.out.println("GET RESPONSE:" + response.toString());
                 }
             }
+            else if(status == HttpURLConnection.HTTP_NO_CONTENT)
+            {
+                inputStream = con.getErrorStream();
+                System.out.println("NO CONTENT: Versuche es in 5 Sekunden nochmal => " + inputStream.toString());
+                con.disconnect();
+                Thread.sleep(5000);
+                getWorker();
+            }
+            else if(status == HttpURLConnection.HTTP_UNAVAILABLE)
+            {
+                inputStream = con.getErrorStream();
+                System.out.println("SERVICE UNAVAILABLE: Die maximale Anzahl der Arbeiter wurde erreicht. =>" + inputStream.toString());
+                con.disconnect();
+                Thread.sleep(30000);
+                getWorker();
+            }
     
-            JSONObject jsonObject = new JSONObject(response.toString());
+            //JSONObject jsonObject = new JSONObject(response.toString());
 
-            return jsonObject;
+            return response.toString();
     
         } finally {
     
@@ -66,8 +72,7 @@ public class SchedulerAPI {
         }
     }
 
-    public JSONObject putWorker(String uuidAsString,Population population) throws IOException
-    {
+    public JSONObject putWorker(String uuidAsString,Population population) throws IOException, InterruptedException {
         String urlParameters = "?uuid="+uuidAsString;
 
         Gson gson = new Gson();
@@ -93,10 +98,7 @@ public class SchedulerAPI {
             InputStream inputStream;
             int status = con.getResponseCode();
 
-            if (status != HttpURLConnection.HTTP_OK)  {
-                inputStream = con.getErrorStream();
-            }
-            else {
+            if(status == HttpURLConnection.HTTP_OK) {
                 try (BufferedReader br = new BufferedReader(
                         new InputStreamReader(con.getInputStream(), "utf-8"))) {
                     response = new StringBuilder();
@@ -106,6 +108,23 @@ public class SchedulerAPI {
                     }
                     System.out.println("RESPONSE:" + response.toString());
                 }
+            }
+            else if(status == HttpURLConnection.HTTP_NO_CONTENT)
+            {
+                inputStream = con.getErrorStream();
+                System.out.println("NO CONTENT: Versuche es in 5 Sekunden nochmal => " + inputStream.toString());
+                con.disconnect();
+                Thread.sleep(5000);
+                putWorker(uuidAsString, population);
+            }
+            else if(status == HttpURLConnection.HTTP_BAD_REQUEST)
+            {
+                inputStream = con.getErrorStream();
+                System.out.println("BAD REQUEST: Rufe getWorker auf, um einen frischen Start machen zu können. => " + inputStream.toString());
+                JSONObject bad = new JSONObject();
+                bad.put("status", "bad");
+
+                return bad;
             }
 
             JSONObject jsonObject = new JSONObject(response.toString());

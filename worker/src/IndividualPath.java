@@ -1,3 +1,4 @@
+import com.google.gson.annotations.Expose;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -5,9 +6,12 @@ import java.util.Collections;
 
 public class IndividualPath {
 	 // Holds our IndividualPath of products
+    @Expose
     private ArrayList<Product> IndividualPath = new ArrayList<Product>();
     // Cache
+    @Expose
     private double fitness = 0;
+    @Expose
     private int distance = 0;
     
     /**

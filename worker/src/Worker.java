@@ -1,4 +1,5 @@
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,21 +19,23 @@ public class Worker {
         SchedulerAPI schedulerAPI = new SchedulerAPI();
 
         Population actualPopulation = null;
+        String uuid = "";
 
         while(true)
         {
-            Thread.sleep(5000);
+            Thread.sleep(1000);
 
-            //Path UUIDPATH = Paths.get("C:\\Users\\volka\\Desktop\\uuid.txt");
-            Path UUIDPATH = Paths.get("/Users/wi2885/Desktop/uuid/uuid.txt");
-            File f = UUIDPATH.toFile();
-            if (f.exists() && f.isFile()) {
-                if (actualPopulation != null) {
-                    List<String> allLines = Files.readAllLines(UUIDPATH, StandardCharsets.UTF_8);
-
+            if (!uuid.isEmpty())
+            {
+                if (actualPopulation != null)
+                {
                     System.out.println("Initial distance: " + actualPopulation.getFittest().getDistance());
 
                     actualPopulation = GA.evolvePopulation(actualPopulation);
+                    for (int i = 0; i < 100; i++)
+                    {
+                        actualPopulation = GA.evolvePopulation(actualPopulation);
+                    }
 
                     // Print final results
                     System.out.println("Finished");
@@ -40,11 +43,31 @@ public class Worker {
                     System.out.println("Solution:");
                     System.out.println(actualPopulation.getFittest());
 
-                    JSONObject pop = schedulerAPI.putWorker(allLines.get(0), actualPopulation);
+                    JSONObject obj = schedulerAPI.putWorker(uuid, actualPopulation);
 
-                    if (pop != null) {
-                        Gson gson = new Gson();
-                        actualPopulation = gson.fromJson(pop.toString(), Population.class);
+                    if (obj != null) {
+                        if(obj.has("status") && obj.getJSONObject("status").toString().equals("bad"))
+                        {
+                            String popAndUUID = schedulerAPI.getWorker();
+
+                            if (popAndUUID != null) {
+
+                                JSONObject popUUIDObj = new JSONObject(popAndUUID);
+
+                                JSONObject popObj = popUUIDObj.getJSONObject("population");
+
+                                String s = popObj.toString();
+
+                                Gson gson = new Gson();
+                                actualPopulation = gson.fromJson(popObj.toString(), Population.class);
+
+                                uuid = popUUIDObj.getString("uuid");
+                            }
+                        }
+                        else {
+                            Gson gson = new Gson();
+                            actualPopulation = gson.fromJson(obj.getJSONObject("population").toString(), Population.class);
+                        }
                     } else {
                         System.out.println("PUT Worker: Response NULL");
                     }
@@ -52,15 +75,20 @@ public class Worker {
                     //...
                 }
             } else {
-                JSONObject popAndUUID = schedulerAPI.postWorker();
+                String popAndUUID = schedulerAPI.getWorker();
 
                 if (popAndUUID != null) {
-                    Gson gson = new Gson();
-                    actualPopulation = gson.fromJson(popAndUUID.get("population").toString(), Population.class);
 
-                    PrintWriter writer = new PrintWriter(UUIDPATH.toString());
-                    writer.println(popAndUUID.get("uuid").toString());
-                    writer.close();
+                    JSONObject popUUIDObj = new JSONObject(popAndUUID);
+
+                    JSONObject popObj = popUUIDObj.getJSONObject("population");
+
+                    String s = popObj.toString();
+
+                    Gson gson = new Gson();
+                    actualPopulation = gson.fromJson(popObj.toString(), Population.class);
+
+                    uuid = popUUIDObj.getString("uuid");
                 }
             }
         }

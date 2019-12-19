@@ -1,5 +1,9 @@
+import com.google.gson.annotations.Expose;
+
 public class Position {
+    @Expose
     double x;
+    @Expose
     double y;
 
     public Position(double x, double y) {

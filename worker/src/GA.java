@@ -92,19 +92,23 @@ public class GA {
      */
     private static void mutate(IndividualPath path) {
         // Loop through path products
-        for(int tourPos1=0; tourPos1 < path.pathSize(); tourPos1++){
+        for(int tourPos1=1; tourPos1 < path.pathSize()-1; tourPos1++){
             // Apply mutation rate
             if(Math.random() < mutationRate){
                 // Get a second random position in the path
+
                 int tourPos2 = (int) (path.pathSize() * Math.random());
 
-                // Get the products at target position in path
-                Product city1 = path.getProduct(tourPos1);
-                Product city2 = path.getProduct(tourPos2);
+                if(tourPos2!=0 || tourPos2!=path.pathSize()-1)
+                {
+                    // Get the products at target position in path
+                    Product city1 = path.getProduct(tourPos1);
+                    Product city2 = path.getProduct(tourPos2);
 
-                // Swap them around
-                path.setProduct(tourPos2, city1);
-                path.setProduct(tourPos1, city2);
+                    // Swap them around
+                    path.setProduct(tourPos2, city1);
+                    path.setProduct(tourPos1, city2);
+                }
             }
         }
     }

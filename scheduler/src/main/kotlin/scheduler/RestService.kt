@@ -2,9 +2,9 @@ package scheduler
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import genetic_algorithm.IndividualPath
 import genetic_algorithm.Population
 import genetic_algorithm.Product
+import io.ktor.application.Application
 import io.ktor.application.ApplicationCall
 import io.ktor.application.call
 import io.ktor.features.origin
@@ -16,9 +16,6 @@ import io.ktor.request.path
 import io.ktor.request.receiveStream
 import io.ktor.response.respondText
 import io.ktor.routing.*
-import io.ktor.server.engine.embeddedServer
-import io.ktor.server.netty.Netty
-import io.ktor.server.netty.NettyApplicationEngine
 import json_structure.MeshNode
 import json_structure.PathResponse
 import json_structure.UnityProducts
@@ -31,71 +28,85 @@ import kotlin.NoSuchElementException
 /**
  * The [RestService] provides the server and the API for the workers
  */
-class RestService {
+object RestService {
 
-    private val server: NettyApplicationEngine
     private val scheduler = Scheduler()
     private val gson = Gson()
 
+    fun initRouting(application: Application) {
+        application.routing {
+            // enable REST-Calls
+            get("/ping") {
+                logRequest(call)
+                call.respondText("pong", ContentType.Text.Plain, HttpStatusCode.OK)
+            }
 
-    init {
-        server = embeddedServer(Netty, port = 8080) {
-            routing {
-                // enable REST-Calls
-                get("/ping") {
-                    logRequest(call)
-                    call.respondText("pong", ContentType.Text.Plain, HttpStatusCode.OK)
-                }
+            // worker
+            get("/worker") {
+                logRequest(call)
+                call.parameters["uuid"]?.let { respondPopulation(call, it) } ?: addWorker(call)
+            }
+            put("/worker") {
+                logRequest(call)
+                updateWorker(call)
+            }
 
-                // worker
-                get("/worker") {
-                    logRequest(call)
-                    call.parameters["uuid"]?.let { respondPopulation(call, it) } ?: addWorker(call)
-                }
-                put("/worker") {
-                    logRequest(call)
-                    updateWorker(call)
-                }
+            // map
+            post("/map") {
+                logRequest(call)
+                saveMap(call)
+            }
+            delete("/map") {
+                logRequest(call)
+                deleteMap(call)
+            }
 
-                // map
-                post("/map") {
-                    logRequest(call)
-                    saveMap(call)
-                }
-                delete("/map") {
-                    logRequest(call)
-                    deleteMap(call)
-                }
-
-                // path
-                get("/path") {
-                    logRequest(call)
-                    respondPath(call)
-                }
+            // path
+            get("/path") {
+                logRequest(call)
+                respondPath(call)
             }
         }
     }
 
-    private suspend fun deleteMap(call: ApplicationCall) {
-        scheduler.bestDistance = 0
-        scheduler.bestIndividual = null
-        scheduler.subPopulations.clear()
-        scheduler.demoIndividual.clear()
+    /**
+     * parse json from [call] and try to add a worker to the list
+     */
+    private suspend fun addWorker(call: ApplicationCall) {
+        val workerAddress = call.request.origin.remoteHost
 
-        scheduler.calculationRunning = false
+        if(!calculationIsRunning(call) ) return
 
-        call.respondText("Current map has been deleted", ContentType.Text.Plain, HttpStatusCode.OK)
+        // if no map is available no population can be created
+        ensureMapAndProducts { _, navMesh ->
+            val subPopulation = scheduler.getSubPopulation()
+
+            if (subPopulation == null) {
+                call.respondText(
+                    "Max worker count is reached: ${Scheduler.WORKER_COUNT} Workers",
+                    status = HttpStatusCode.ServiceUnavailable
+                )
+                return@ensureMapAndProducts
+            }
+
+            val worker = Worker(UUID.randomUUID(), workerAddress, subPopulation, LocalDateTime.now())
+
+            // save worker
+            scheduler.workers.add(worker)
+
+            val gson = GsonBuilder().serializeNulls().create()
+            val json = gson.toJson(WorkerRespond(worker.uuid, worker.subPopulation, navMesh))
+
+            call.respondText(json, ContentType.Application.Json, HttpStatusCode.Created)
+        } ?: call.respondText(
+            "No map available, therefore no population could be created",
+            status = HttpStatusCode.ServiceUnavailable
+        )
     }
 
-    private suspend fun calculationIsRunning(call: ApplicationCall): Unit? {
-        if (!scheduler.calculationRunning) {
-            call.respondText("Map not available", ContentType.Text.Plain, HttpStatusCode.NoContent)
-            return null
-        }
-
-        return Unit
-    }
-
+    /**
+     * respond [Population] to [Worker] with uuid == [workerId]
+     */
     private suspend fun respondPopulation(call: ApplicationCall, workerId: String) {
         val worker = scheduler.workers.get { it.uuid == UUID.fromString(workerId) }
         if (worker == null) {
@@ -126,78 +137,8 @@ class RestService {
         call.respondText(json, ContentType.Application.Json, HttpStatusCode.OK)
     }
 
-
     /**
-     * responds:
-     *
-     *  200 -> found best path
-     *
-     *  204 -> the path is not yet available
-     *
-     *  503 -> the path is not yet available and no worker is registered
-     */
-    private suspend fun respondPath(call: ApplicationCall) {
-        when {
-            scheduler.demoIndividual.isNotEmpty() -> {
-                println("Send best Individual")
-
-                val pathResponse = PathResponse(
-                    scheduler.bestIndividual?.getIndividualPathWithoutNulls(),
-                    scheduler.demoIndividual.last().getIndividualPathWithoutNulls(),
-                    scheduler.bestDistance
-                )
-                val json = gson.toJson(pathResponse)
-                call.respondText(json, ContentType.Application.Json, HttpStatusCode.OK)
-            }
-            scheduler.workers.isEmpty() -> call.respondText(
-                "Currently no worker is registered, try later",
-                    status = HttpStatusCode.NoContent
-            )
-            else -> call.respondText("The Path is not set yet, try later", ContentType.Text.Plain, HttpStatusCode.NoContent) // TODO change back to ServiceUnavailable
-        }
-    }
-
-    /**
-     * save sent json to map
-     */
-    private suspend fun saveMap(call: ApplicationCall) {
-        try {
-//            val string = call.receive<String>()
-            val string = call.receiveTextWithCorrectEncoding()
-            val items = gson.fromJson(string, UnityProducts::class.java)
-
-            scheduler.products = items.Items
-            scheduler.map = items.NavMesh
-            scheduler.calculationRunning = true
-        } catch (e: Exception) {
-            println("Could not read map")
-            e.printStackTrace()
-        }
-
-
-        ensureMapAndProducts { products, navMesh ->
-            scheduler.createPopulation(products)
-            call.respondText(gson.toJson(UnityProducts(products, navMesh)), ContentType.Application.Json, HttpStatusCode.OK)
-        } ?: respondJsonError(call)
-    }
-
-    private suspend fun ensureMapAndProducts(f: suspend (List<Product>, List<MeshNode>) -> Unit): Unit? {
-        scheduler.products?.let { products ->
-            scheduler.map?.let { navMesh ->
-                f(products, navMesh)
-            } ?: return null
-        } ?: return null
-
-        return Unit
-    }
-
-    private suspend fun respondJsonError(call: ApplicationCall) {
-        call.respondText("Could not read json", ContentType.Text.Plain, HttpStatusCode.BadRequest)
-        println("Could not read json")
-    }
-
-    /**
-     * update [IndividualPath] of the calling worker
+     * update [Population] of the calling worker and respond new one
      */
     private suspend fun updateWorker(call: ApplicationCall) {
         // check if worker is in list
@@ -220,7 +161,7 @@ class RestService {
             if (it.uuid == UUID.fromString(workerId)) {
 
                 println("Update worker ${it.uuid}")
-                if (calculationIsRunning(call) == null) {
+                if (!calculationIsRunning(call)) {
                     it.timestamp = LocalDateTime.now()
                     return
                 }
@@ -261,41 +202,97 @@ class RestService {
     }
 
     /**
-     * parse json from [call] and try to add a worker to the list
+     * save sent json to map
      */
-    private suspend fun addWorker(call: ApplicationCall) {
-        val workerAddress = call.request.origin.remoteHost
+    private suspend fun saveMap(call: ApplicationCall) {
+        try {
+            val string = call.receiveTextWithCorrectEncoding()
+            val items = gson.fromJson(string, UnityProducts::class.java)
 
-        calculationIsRunning(call) ?: return
+            scheduler.products = items.Items
+            scheduler.map = items.NavMesh
+            scheduler.calculationRunning = true
+        } catch (e: Exception) {
+            println("Could not read map")
+            e.printStackTrace()
+        }
 
-        // if no map is available no population can be created
-        ensureMapAndProducts { _, navMesh ->
-            val subPopulation = scheduler.getSubPopulation()
 
-            if (subPopulation == null) {
-                call.respondText(
-                    "Max worker count is reached: ${Scheduler.WORKER_COUNT} Workers",
-                    status = HttpStatusCode.ServiceUnavailable
-                )
-                return@ensureMapAndProducts
-            }
-
-            val worker = Worker(UUID.randomUUID(), workerAddress, subPopulation, LocalDateTime.now())
-
-            // save worker
-            scheduler.workers.add(worker)
-
-            val gson = GsonBuilder().serializeNulls().create()
-            val json = gson.toJson(WorkerRespond(worker.uuid, worker.subPopulation, navMesh))
-
-            call.respondText(json, ContentType.Application.Json, HttpStatusCode.Created)
-        } ?: call.respondText(
-            "No map available, therefore no population could be created",
-            status = HttpStatusCode.ServiceUnavailable
-        )
+        ensureMapAndProducts { products, navMesh ->
+            scheduler.createPopulation(products)
+            call.respondText(gson.toJson(UnityProducts(products, navMesh)), ContentType.Application.Json, HttpStatusCode.OK)
+        } ?: respondJsonError(call)
     }
 
+    /**
+     * delete map and set calculationRunning flag to false
+     */
+    private suspend fun deleteMap(call: ApplicationCall) {
+        scheduler.bestDistance = 0
+        scheduler.bestIndividual = null
+        scheduler.subPopulations.clear()
+        scheduler.demoIndividual.clear()
 
+        scheduler.calculationRunning = false
+
+        call.respondText("Current map has been deleted", ContentType.Text.Plain, HttpStatusCode.OK)
+    }
+
+    /**
+     * responds:
+     *
+     *  200 -> found best path
+     *
+     *  204 -> the path is not yet available
+     *
+     *  503 -> the path is not yet available and no worker is registered
+     */
+    private suspend fun respondPath(call: ApplicationCall) {
+        when {
+            scheduler.demoIndividual.isNotEmpty() -> {
+                println("Send best Individual")
+
+                val pathResponse = PathResponse(
+                    scheduler.bestIndividual?.getIndividualPathWithoutNulls(),
+                    scheduler.demoIndividual.last().getIndividualPathWithoutNulls(),
+                    scheduler.bestDistance
+                )
+                val json = gson.toJson(pathResponse)
+                call.respondText(json, ContentType.Application.Json, HttpStatusCode.OK)
+            }
+            scheduler.workers.isEmpty() -> call.respondText(
+                "Currently no worker is registered, try later",
+                status = HttpStatusCode.NoContent
+            )
+            else -> call.respondText("The Path is not set yet, try later", ContentType.Text.Plain, HttpStatusCode.NoContent) // TODO change back to ServiceUnavailable
+        }
+    }
+
+    /**
+     * Check if a calculation is running, if not respond [HttpStatusCode.NoContent] to [call]
+     * @return true if a calculation is running
+     */
+    private suspend fun calculationIsRunning(call: ApplicationCall): Boolean {
+        if (!scheduler.calculationRunning)
+            call.respondText("Map not available", ContentType.Text.Plain, HttpStatusCode.NoContent)
+
+        return scheduler.calculationRunning
+    }
+
+    private suspend fun ensureMapAndProducts(f: suspend (List<Product>, List<MeshNode>) -> Unit): Unit? {
+        scheduler.products?.let { products ->
+            scheduler.map?.let { navMesh ->
+                f(products, navMesh)
+            } ?: return null
+        } ?: return null
+
+        return Unit
+    }
+
+    private suspend fun respondJsonError(call: ApplicationCall) {
+        call.respondText("Could not read json", ContentType.Text.Plain, HttpStatusCode.BadRequest)
+        println("Could not read json")
+    }
 
     /**
      * Try to parse an [Population] from send json in [call].
@@ -303,7 +300,6 @@ class RestService {
      * @return send [Population] or null
      */
     private suspend fun parsePopulation(call: ApplicationCall): Population? = try {
-//        val string = call.receive<String>()
         val string = call.receiveTextWithCorrectEncoding()
 
         val population = Gson().fromJson(string, Population::class.java)
@@ -322,8 +318,6 @@ class RestService {
     private fun logRequest(call: ApplicationCall) {
         println("${call.request.httpMethod.value} ${call.request.path()} from ${call.request.origin.remoteHost}")
     }
-
-    fun start() = server.start(wait = true)
 }
 
 /**

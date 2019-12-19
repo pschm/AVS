@@ -27,7 +27,6 @@ class Scheduler {
 
     var calculationRunning = false
 
-    //    val workers: MutableList<Worker> = Collections.synchronizedList( mutableListOf<Worker>() )
     var products: List<Product>? = null
     var map: List<MeshNode>? = null
     val subPopulations = mutableListOf<Population>()
@@ -104,7 +103,7 @@ class Scheduler {
      * Returns if the there are more workers than subPopulations or if no free population was found
      */
     fun getSubPopulation(): Population? {
-        if (workers.size + 1 > subPopulations.size) {
+        if (workers.size + 1 > subPopulations.size && calculationRunning) {
             println("Worker size to large")
             return null
         }

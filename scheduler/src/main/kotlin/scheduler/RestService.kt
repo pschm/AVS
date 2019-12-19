@@ -18,7 +18,7 @@ import io.ktor.response.respondText
 import io.ktor.routing.*
 import json_structure.MeshNode
 import json_structure.PathResponse
-import json_structure.UnityProducts
+import json_structure.UnityMapStructure
 import json_structure.WorkerRespond
 import utility.get
 import java.time.LocalDateTime
@@ -207,10 +207,10 @@ object RestService {
     private suspend fun saveMap(call: ApplicationCall) {
         try {
             val string = call.receiveTextWithCorrectEncoding()
-            val items = gson.fromJson(string, UnityProducts::class.java)
+            val unityData = gson.fromJson(string, UnityMapStructure::class.java)
 
-            scheduler.products = items.Items
-            scheduler.map = items.NavMesh
+            scheduler.products = unityData.products
+            scheduler.map = unityData.navMesh
             scheduler.calculationRunning = true
         } catch (e: Exception) {
             println("Could not read map")
@@ -220,7 +220,7 @@ object RestService {
 
         ensureMapAndProducts { products, navMesh ->
             scheduler.createPopulation(products)
-            call.respondText(gson.toJson(UnityProducts(products, navMesh)), ContentType.Application.Json, HttpStatusCode.OK)
+            call.respondText(gson.toJson(UnityMapStructure(products, navMesh)), ContentType.Application.Json, HttpStatusCode.OK)
         } ?: respondJsonError(call)
     }
 

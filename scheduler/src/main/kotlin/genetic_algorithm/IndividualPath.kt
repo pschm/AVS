@@ -1,11 +1,15 @@
 package genetic_algorithm
 
+import com.google.gson.annotations.SerializedName
 import genetic_algorithm.PathManager.Companion.numberOfProducts
 
 /**
- * @property IndividualPath Holds our IndividualPath of products
+ * @property individualPath Holds our IndividualPath of products
  */
-class IndividualPath(var IndividualPath: ArrayList<Product?> = ArrayList()) {
+class IndividualPath(
+    @SerializedName("IndividualPath")
+    var individualPath: ArrayList<Product?> = ArrayList()
+) {
 
     var fitness = 0.0
         get() {
@@ -18,16 +22,16 @@ class IndividualPath(var IndividualPath: ArrayList<Product?> = ArrayList()) {
         get() = calcDistance(field)
 
     init {
-        if (IndividualPath.isEmpty()) {
+        if (individualPath.isEmpty()) {
             for (i in 0 until numberOfProducts()) {
-                IndividualPath.add(null)
+                individualPath.add(null)
             }
         }
     }
 
     fun getIndividualPathWithoutNulls(): List<Product> {
         val list = mutableListOf<Product>()
-        IndividualPath.forEach { p ->
+        individualPath.forEach { p ->
             p?.let { list.add(it) }
         }
 
@@ -42,14 +46,14 @@ class IndividualPath(var IndividualPath: ArrayList<Product?> = ArrayList()) {
             setProduct(productIndex, PathManager.getProduct(productIndex))
         }
 
-        val start = IndividualPath.removeAt(0)
-        val finish = IndividualPath.removeAt(IndividualPath.lastIndex)
+        val start = individualPath.removeAt(0)
+        val finish = individualPath.removeAt(individualPath.lastIndex)
 
         // Randomly reorder the IndividualPath
-        IndividualPath.shuffle()
+        individualPath.shuffle()
 
-        IndividualPath.add(0, start)
-        IndividualPath.add(finish)
+        individualPath.add(0, start)
+        individualPath.add(finish)
     }
 
     /**
@@ -57,17 +61,17 @@ class IndividualPath(var IndividualPath: ArrayList<Product?> = ArrayList()) {
      * @param tourPosition
      * @return Product
      */
-    fun getProduct(tourPosition: Int): Product? {
-        return IndividualPath[tourPosition]
+    private fun getProduct(tourPosition: Int): Product? {
+        return individualPath[tourPosition]
     }
 
     /**
      * Sets a product in a certain position within a IndividualPath
-     * @param IndividualPathPosition
+     * @param individualPathPosition
      * @param product
      */
-    fun setProduct(IndividualPathPosition: Int, product: Product?) {
-        IndividualPath[IndividualPathPosition] = product
+    private fun setProduct(individualPathPosition: Int, product: Product?) {
+        individualPath[individualPathPosition] = product
         // If the IndividualPaths been altered we need to reset the fitness and distance
         fitness = 0.0
         distance = 0
@@ -104,17 +108,8 @@ class IndividualPath(var IndividualPath: ArrayList<Product?> = ArrayList()) {
      * Get number of products on our IndividualPath
      * @return
      */
-    fun pathSize(): Int {
-        return IndividualPath.size
-    }
-
-    /**
-     * Check if the IndividualPath contains a product
-     * @param product
-     * @return Boolean
-     */
-    fun containsProduct(product: Product?): Boolean {
-        return IndividualPath.contains(product)
+    private fun pathSize(): Int {
+        return individualPath.size
     }
 
     override fun toString(): String {

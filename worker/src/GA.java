@@ -99,7 +99,7 @@ public class GA {
 
                 int tourPos2 = (int) (path.pathSize() * Math.random());
 
-                if(tourPos2!=0 || tourPos2!=path.pathSize()-1)
+                if(tourPos2!=0 && tourPos2!=path.pathSize()-1)
                 {
                     // Get the products at target position in path
                     Product city1 = path.getProduct(tourPos1);

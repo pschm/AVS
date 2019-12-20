@@ -47,19 +47,15 @@ public class SchedulerAPI {
             }
             else if(status == HttpURLConnection.HTTP_NO_CONTENT)
             {
-                inputStream = con.getErrorStream();
-                System.out.println("NO CONTENT: Versuche es in 5 Sekunden nochmal => " + inputStream.toString());
                 con.disconnect();
                 Thread.sleep(5000);
-                getWorker();
+                return getWorker();
             }
             else if(status == HttpURLConnection.HTTP_UNAVAILABLE)
             {
-                inputStream = con.getErrorStream();
-                System.out.println("SERVICE UNAVAILABLE: Die maximale Anzahl der Arbeiter wurde erreicht. =>" + inputStream.toString());
                 con.disconnect();
                 Thread.sleep(30000);
-                getWorker();
+                return getWorker();
             }
     
             //JSONObject jsonObject = new JSONObject(response.toString());
@@ -111,16 +107,12 @@ public class SchedulerAPI {
             }
             else if(status == HttpURLConnection.HTTP_NO_CONTENT)
             {
-                inputStream = con.getErrorStream();
-                System.out.println("NO CONTENT: Versuche es in 5 Sekunden nochmal => " + inputStream.toString());
                 con.disconnect();
                 Thread.sleep(5000);
-                putWorker(uuidAsString, population);
+                return putWorker(uuidAsString, population);
             }
             else if(status == HttpURLConnection.HTTP_BAD_REQUEST)
             {
-                inputStream = con.getErrorStream();
-                System.out.println("BAD REQUEST: Rufe getWorker auf, um einen frischen Start machen zu können. => " + inputStream.toString());
                 JSONObject bad = new JSONObject();
                 bad.put("status", "bad");
 

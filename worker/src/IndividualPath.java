@@ -12,7 +12,7 @@ public class IndividualPath {
     @Expose
     private double fitness = 0;
     @Expose
-    private int distance = 0;
+    private double distance = 0;
     
     /**
      * Constructs a blank IndividualPath
@@ -102,7 +102,7 @@ public class IndividualPath {
      * Gets the total distance of the IndividualPath
      * @return Distance (INT)
      */
-    public int getDistance(){
+    public double getDistance(){
         if (distance == 0 || distance == 0.0) {
             int IndividualPathDistance = 0;
             // Loop through our IndividualPath's products

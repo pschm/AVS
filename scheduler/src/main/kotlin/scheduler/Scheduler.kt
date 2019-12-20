@@ -14,9 +14,9 @@ class Scheduler {
     companion object {
         const val WORKER_COUNT = 12
         const val POPULATION_SIZE = 200 // min (WORKER_COUNT+1)²
-        const val WORKER_RESPONSE_TIME = 5 // time in minutes
-        const val DEMO_INDIVIDUAL_SIZE = 30 // TODO test sizes
-        const val MIN_DELTA = 25
+        const val WORKER_RESPONSE_TIME = 2 // time in minutes
+        const val DEMO_INDIVIDUAL_SIZE = 90 // TODO test sizes
+        const val MIN_DELTA = 10
     }
 
     @get:Synchronized
@@ -40,25 +40,27 @@ class Scheduler {
 
         individual?.let { addDemoIndividual(it) } ?: return
 
-        if (demoIndividual.size == DEMO_INDIVIDUAL_SIZE) {
-            val delta = demoIndividual.first().distance - demoIndividual.last().distance
-            if (delta < MIN_DELTA) bestIndividual = demoIndividual.last()
+        if (demoIndividual.size >= DEMO_INDIVIDUAL_SIZE) {
+            println("Demo worst: ${demoIndividual.last().distance}; Demo best: ${demoIndividual.first().distance}")
+            val delta = demoIndividual.last().distance - demoIndividual.first().distance
+            if (delta < MIN_DELTA) bestIndividual = demoIndividual.first()
         }
 
         println("BEST distance: ${bestIndividual?.distance})")
-        println("DEMO distance: ${demoIndividual.lastOrNull()?.distance})")
+        println("DEMO distance: ${demoIndividual.firstOrNull()?.distance})")
         println("new distance ${individual.distance})")
     }
 
     private fun addDemoIndividual(individual: IndividualPath) {
-        if (demoIndividual.size < DEMO_INDIVIDUAL_SIZE) demoIndividual.add(individual)
-        else if (individual.distance < demoIndividual.first().distance) {
-            demoIndividual.removeAt(0)
-            demoIndividual.add(0, individual)
+        if (demoIndividual.size <= DEMO_INDIVIDUAL_SIZE) demoIndividual.add(individual)
+        else if (individual.distance < demoIndividual.last().distance) {
+            demoIndividual.removeAt(demoIndividual.size - 1)
+            demoIndividual.add(individual)
+            println("new distance ${individual.distance})")
         }
 
         demoIndividual.sortBy { it.distance }
-        bestDistance = demoIndividual.last().distance
+        bestDistance = demoIndividual.first().distance
     }
 
     /**
@@ -66,6 +68,7 @@ class Scheduler {
      */
     fun createPopulation(products: List<Product>) {
         subPopulations.clear()
+        demoIndividual.clear()
         bestIndividual = null
         PathManager.clear()
         products.forEach { PathManager.addProduct(it) }
@@ -142,9 +145,9 @@ class Scheduler {
 
     fun printPopulations(header: String) {
         println(header)
-        subPopulations.forEach { println("${it.worker?.uuid} -" + it.getPaths()) }
+        workers.forEach { println("${it.uuid} (${it.subPopulation.getFittest()?.distance})") }
         println("---------------")
-        workers.forEach { println(it.uuid) }
+        subPopulations.forEach { println(it.getPaths().first()) }
         println("---------------")
     }
 

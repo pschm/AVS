@@ -235,6 +235,7 @@ object RestService {
 
         scheduler.calculationRunning = false
 
+        println("Map has been deleted")
         call.respondText("Current map has been deleted", ContentType.Text.Plain, HttpStatusCode.OK)
     }
 
@@ -254,7 +255,7 @@ object RestService {
 
                 val pathResponse = PathResponse(
                     scheduler.bestIndividual?.getIndividualPathWithoutNulls(),
-                    scheduler.demoIndividual.last().getIndividualPathWithoutNulls(),
+                    scheduler.demoIndividual.first().getIndividualPathWithoutNulls(),
                     scheduler.bestDistance
                 )
                 val json = gson.toJson(pathResponse)
@@ -264,7 +265,7 @@ object RestService {
                 "Currently no worker is registered, try later",
                 status = HttpStatusCode.NoContent
             )
-            else -> call.respondText("The Path is not set yet, try later", ContentType.Text.Plain, HttpStatusCode.NoContent) // TODO change back to ServiceUnavailable
+            else -> call.respondText("The Path is not set yet, try later", ContentType.Text.Plain, HttpStatusCode.ServiceUnavailable)
         }
     }
 

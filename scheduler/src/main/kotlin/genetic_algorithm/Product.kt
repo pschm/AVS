@@ -25,6 +25,6 @@ class Product(
     }
 
     override fun toString(): String {
-        return "$position,$name"
+        return "$name"
     }
 }

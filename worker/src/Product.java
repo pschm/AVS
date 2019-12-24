@@ -1,5 +1,9 @@
+import com.google.gson.annotations.Expose;
+
 public class Product {
+    @Expose
     Position position;
+    @Expose
     String name;
     
     /**

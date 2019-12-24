@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Worker:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="4bff9c72-6ccd-42a8-bca1-945968d3eaa9" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Worker_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/GA.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/GA.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/IndividualPath.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/IndividualPath.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/PathManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/PathManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Population.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Population.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Product.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/SchedulerAPI.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SchedulerAPI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Worker.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Worker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GA.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/IndividualPath.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/PathManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Population.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Product.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SchedulerAPI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Worker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GA.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/IndividualPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IndividualPath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Population.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Population.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SchedulerAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SchedulerAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Worker.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,6 +36,11 @@
   </component>
   <component name="ProjectId" id="1ThZ4UpVstExPcCsB2tAl7nwf13" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
@@ -35,23 +49,11 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JAR Application.Worker.jar">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -79,6 +81,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Worker.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/classes/artifacts/Worker_jar/Worker.jar" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="TestNG">
       <option name="TEST_OBJECT" value="CLASS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -99,9 +105,22 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JAR Application.Worker.jar" />
         <item itemvalue="Application.Worker" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -115,6 +134,10 @@
       <updated>1573730101301</updated>
       <workItem from="1573914099969" duration="2691000" />
       <workItem from="1573916900208" duration="1883000" />
+      <workItem from="1575805819718" duration="25481000" />
+      <workItem from="1575915964738" duration="5743000" />
+      <workItem from="1576781010651" duration="7091000" />
+      <workItem from="1576788423916" duration="62000" />
     </task>
     <servers />
   </component>
@@ -134,98 +157,91 @@
       </map>
     </option>
   </component>
+  <component name="WindowStateProjectService">
+    <state x="488" y="64" key="#com.intellij.ide.util.MemberChooser" timestamp="1575824291362">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="488" y="64" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575824291362" />
+    <state x="2066" y="241" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1576787707490">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2066" y="241" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1576787707490" />
+    <state width="651" height="666" key="DebuggerActiveHint" timestamp="1576783105849">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state width="463" height="466" key="DebuggerActiveHint/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575922756722" />
+    <state width="651" height="666" key="DebuggerActiveHint/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1576783105849" />
+    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog" timestamp="1575820078973">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575820078973" />
+    <state width="1877" height="280" key="GridCell.Tab.0.bottom" timestamp="1576788243477">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1323" height="174" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575922760109" />
+    <state width="1877" height="280" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1576788243477" />
+    <state width="1877" height="280" key="GridCell.Tab.0.center" timestamp="1576788243477">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1323" height="174" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575922760094" />
+    <state width="1877" height="280" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1576788243477" />
+    <state width="1877" height="280" key="GridCell.Tab.0.left" timestamp="1576788243477">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1323" height="174" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575922760094" />
+    <state width="1877" height="280" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1576788243477" />
+    <state width="1877" height="280" key="GridCell.Tab.0.right" timestamp="1576788243477">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1323" height="174" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575922760094" />
+    <state width="1877" height="280" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1576788243477" />
+    <state width="1877" height="274" key="GridCell.Tab.1.bottom" timestamp="1576788243462">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1323" height="174" key="GridCell.Tab.1.bottom/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575922732268" />
+    <state width="1877" height="274" key="GridCell.Tab.1.bottom/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1576788243462" />
+    <state width="1877" height="274" key="GridCell.Tab.1.center" timestamp="1576788243462">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1323" height="174" key="GridCell.Tab.1.center/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575922732268" />
+    <state width="1877" height="274" key="GridCell.Tab.1.center/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1576788243462" />
+    <state width="1877" height="274" key="GridCell.Tab.1.left" timestamp="1576788243462">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1323" height="174" key="GridCell.Tab.1.left/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575922732268" />
+    <state width="1877" height="274" key="GridCell.Tab.1.left/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1576788243462" />
+    <state width="1877" height="274" key="GridCell.Tab.1.right" timestamp="1576788243462">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1323" height="174" key="GridCell.Tab.1.right/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575922732268" />
+    <state width="1877" height="274" key="GridCell.Tab.1.right/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1576788243462" />
+    <state x="1804" y="65" key="SettingsEditor" timestamp="1576787973254">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1804" y="65" key="SettingsEditor/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1576787973254" />
+    <state width="691" height="372" key="XDebugger.FullValuePopup" timestamp="1575813373716">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="691" height="372" key="XDebugger.FullValuePopup/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575813373716" />
+    <state x="244" y="99" width="877" height="568" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1575832301598">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="244" y="99" width="877" height="568" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1575832301598" />
+  </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/GA.java</url>
+          <line>93</line>
+          <option name="timeStamp" value="81" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="gson" />
       </configuration>
     </watches-manager>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>No facets are configured</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>Worker</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.6" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>com.google.code.gson:gson:2.8.6</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>

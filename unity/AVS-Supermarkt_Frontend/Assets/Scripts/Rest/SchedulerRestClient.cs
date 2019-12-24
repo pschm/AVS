@@ -4,12 +4,17 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
+using Random = UnityEngine.Random;
 
 public class SchedulerRestClient : MonoBehaviour {
 
+    public NavNode startNavNode;
     public float delayBetweenRequests = 2f;
 
     private bool calculationActive;
+    private bool cancelCalculation;
+
+    private List<NavNode> navMesh = new List<NavNode>();
 
     public static SchedulerRestClient Instance { get; private set; }
 
@@ -18,53 +23,92 @@ public class SchedulerRestClient : MonoBehaviour {
             Instance = this;
         } else {
             Destroy(gameObject);
+            return;
+        }
+    }
+
+    private void Start() {
+        //Debug.Log("Generating custom nav mesh..");
+        SetupNavMeshList(startNavNode);
+    }
+
+    private void SetupNavMeshList(NavNode startNode) {
+        foreach(var node in startNode.NextNodes) {
+            if(navMesh.Contains(node)) continue;
+
+            navMesh.Add(node);
+            SetupNavMeshList(node);
         }
     }
 
 
-    public void StartCalculationForShoppinglist(List<NodeModel> nodes, string hostUrl, Action<List<NodeModel>> actionOnResult) {
+    public void StartCalculationForShoppinglist(List<NodeModel> nodes, string hostUrl, Action<PathResponse> intAction, Action<PathResponse, bool> actionOnResult) {
         if(calculationActive) {
             throw new NotImplementedException("Caculation still active. Cannot start a new one!");
         }
 
+        PathRequest pathRequest = new PathRequest() {
+            Items = nodes,
+            NavMesh = NavNodeModel.CreateList(navMesh)
+        };
+
         calculationActive = true;
         if(string.IsNullOrWhiteSpace(hostUrl)) StartCoroutine(DoCalculationEmulated(nodes, actionOnResult));
-        else StartCoroutine(DoCalculation(nodes, hostUrl, actionOnResult));
+        else StartCoroutine(DoCalculation(pathRequest, hostUrl, intAction, actionOnResult));
+    }
+
+    public void CancelCalculation(string hostUrl = "") {
+        //If hosturl given, call DELETE endpoint for the waypoints etc.
+        if(!string.IsNullOrWhiteSpace(hostUrl)) {           
+            StartCoroutine(HandleDeleteWaypoints(hostUrl));
+        }
+        
+        if(calculationActive) cancelCalculation = true;
     }
 
 
-    private IEnumerator DoCalculationEmulated(List<NodeModel> nodes, Action<List<NodeModel>> actionOnResult) {
+    private IEnumerator DoCalculationEmulated(List<NodeModel> nodes, Action<PathResponse, bool> actionOnResult) {
         Debug.Log("Emulating Scheduler is enabled.");
-        yield return new WaitForSeconds(UnityEngine.Random.Range(0.5f, 2f));
+        var remainingTime = Random.Range(1.5f, 3f);
 
-        Debug.Log("Got result.");
+        while(remainingTime > 0 && !cancelCalculation) {
+            remainingTime -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        Debug.Log("Calculation done. Canceled: " + cancelCalculation);
         calculationActive = false;
-        actionOnResult(nodes);
+
+        float calDistance = 0f;
+        for(int i = 0; i < nodes.Count - 1; i++) {
+            calDistance += Vector2.Distance(nodes[i].position, nodes[i + 1].position);
+        }
+
+        actionOnResult(new PathResponse() { Items = nodes, distance = calDistance }, cancelCalculation);
+
+        cancelCalculation = false;
     }
 
 
-    private IEnumerator DoCalculation(List<NodeModel> nodes, string hostUrl, Action<List<NodeModel>> actionOnResult) {
-        var request = CreatePostShoppingListRequest(nodes, hostUrl);
+    private IEnumerator DoCalculation(PathRequest requestBody, string hostUrl, Action<PathResponse> intAction, Action<PathResponse, bool> actionOnResult) {
+        var request = CreatePostShoppingListRequest(requestBody, hostUrl);
         yield return request.SendWebRequest();
 
         if(request.responseCode != 200) {
             Debug.LogWarning("Error: " + request.responseCode);
-            throw new System.NotImplementedException("No error handling for given response code while POST shopping list");
+            throw new NotImplementedException("No error handling for given response code while POST shopping list");
 
         } else {
             Debug.Log("Sending to scheduler successful.");
-            yield return QueryCalculationResult(hostUrl, actionOnResult);
+            yield return QueryCalculationResult(hostUrl, intAction, actionOnResult);
         }
     }
 
-    private IEnumerator QueryCalculationResult(string hostUrl, Action<List<NodeModel>> actionOnResult) {
+    private IEnumerator QueryCalculationResult(string hostUrl, Action<PathResponse> intAction, Action<PathResponse, bool> actionOnResult) {
         Debug.Log("Checking for result...");
-        bool isCalculating = true;
-        List<NodeModel> result = null;
+        PathResponse result = null;
 
-        while(result == null && isCalculating) {
-            yield return new WaitForSeconds(delayBetweenRequests);
-
+        while(result == null && result.Items == null && !cancelCalculation) {
             var request = CreateGetCalculatedWaypointsRequest(hostUrl);
             yield return request.SendWebRequest();
 
@@ -72,21 +116,28 @@ public class SchedulerRestClient : MonoBehaviour {
                 Debug.Log("Got result.");
 
                 var response = Encoding.UTF8.GetString(request.downloadHandler.data);
-                result = JsonHelper.FromJson<NodeModel>(response);
+                result = JsonUtility.FromJson<PathResponse>(response);
+
+                if(result != null) intAction(result);
 
             } else if(request.isNetworkError /*|| request.responseCode == 503*/) {
                 Debug.LogWarning($"Cant get result. Network-Error: {request.isNetworkError}, Response-Code: {request.responseCode}");
-                isCalculating = false;
+                break;
+
             }
+
+            yield return new WaitForSeconds(delayBetweenRequests);
         }
 
         calculationActive = false;
-        actionOnResult(result);
+        actionOnResult(result, cancelCalculation);
+
+        cancelCalculation = false;
     }
 
 
-    private static UnityWebRequest CreatePostShoppingListRequest(List<NodeModel> nodes, string hostUrl) {
-        var jsonBody = JsonHelper.ToJson(nodes);
+    private static UnityWebRequest CreatePostShoppingListRequest(PathRequest requestBody, string hostUrl) {
+        var jsonBody = JsonUtility.ToJson(requestBody);
 
         var request = new UnityWebRequest(hostUrl + "/map", "POST");
         byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonBody);
@@ -103,6 +154,14 @@ public class SchedulerRestClient : MonoBehaviour {
         request.SetRequestHeader("Accept", "application/json");
 
         return request;
+    }
+
+
+    private IEnumerator HandleDeleteWaypoints(string hostUrl) {
+        UnityWebRequest request = UnityWebRequest.Delete(hostUrl + "/map");
+        request.SetRequestHeader("Accept", "application/json");
+
+        yield return request.SendWebRequest();
     }
 
 }

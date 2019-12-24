@@ -4,6 +4,7 @@ import genetic_algorithm.IndividualPath
 import genetic_algorithm.PathManager
 import genetic_algorithm.Population
 import genetic_algorithm.Product
+import json_structure.MeshNode
 import java.time.LocalDateTime
 import kotlin.math.pow
 import kotlin.random.Random
@@ -13,16 +14,21 @@ class Scheduler {
     companion object {
         const val WORKER_COUNT = 12
         const val POPULATION_SIZE = 200 // min (WORKER_COUNT+1)²
-        const val WORKER_RESPONSE_TIME = 5 // time in minutes
+        const val WORKER_RESPONSE_TIME = 2 // time in minutes
+        const val DEMO_INDIVIDUAL_SIZE = 90 // TODO test sizes
+        const val MIN_DELTA = 10
     }
 
     @get:Synchronized
     val workers =  mutableListOf<Worker>()
-//    val workers: MutableList<Worker> = Collections.synchronizedList( mutableListOf<Worker>() )
-
-
     var bestIndividual: IndividualPath? = null
-    var map: List<Product>? = null
+    val demoIndividual = mutableListOf<IndividualPath>()
+    var bestDistance = 0
+
+    var calculationRunning = false
+
+    var products: List<Product>? = null
+    var map: List<MeshNode>? = null
     val subPopulations = mutableListOf<Population>()
 
     /**
@@ -32,28 +38,29 @@ class Scheduler {
         // best individual of the given population
         val individual = population.getFittest()
 
+        individual?.let { addDemoIndividual(it) } ?: return
 
-        //println(individual?.fitness)
-
-        println("bestIndiviual: $bestIndividual (distance: ${bestIndividual?.distance})")
-        println("newIndividual: $individual (distance ${individual?.distance})")
-
-        val bIndividual = bestIndividual
-        if (bIndividual == null) {
-            bestIndividual = individual
-            return
+        if (demoIndividual.size >= DEMO_INDIVIDUAL_SIZE) {
+            println("Demo worst: ${demoIndividual.last().distance}; Demo best: ${demoIndividual.first().distance}")
+            val delta = demoIndividual.last().distance - demoIndividual.first().distance
+            if (delta < MIN_DELTA) bestIndividual = demoIndividual.first()
         }
 
-        if (individual != null && individual.distance < bIndividual.distance) {
-            bestIndividual = individual
+        println("BEST distance: ${bestIndividual?.distance})")
+        println("DEMO distance: ${demoIndividual.firstOrNull()?.distance})")
+        println("new distance ${individual.distance})")
+    }
+
+    private fun addDemoIndividual(individual: IndividualPath) {
+        if (demoIndividual.size <= DEMO_INDIVIDUAL_SIZE) demoIndividual.add(individual)
+        else if (individual.distance < demoIndividual.last().distance) {
+            demoIndividual.removeAt(demoIndividual.size - 1)
+            demoIndividual.add(individual)
+            println("new distance ${individual.distance})")
         }
 
-//        bestIndividual = individual?.let {
-//            if (it.distance < bestIndividual?.distance ?: -1) individual
-//            else bestIndividual
-//        } ?: bestIndividual
-
-
+        demoIndividual.sortBy { it.distance }
+        bestDistance = demoIndividual.first().distance
     }
 
     /**
@@ -61,6 +68,8 @@ class Scheduler {
      */
     fun createPopulation(products: List<Product>) {
         subPopulations.clear()
+        demoIndividual.clear()
+        bestIndividual = null
         PathManager.clear()
         products.forEach { PathManager.addProduct(it) }
 
@@ -97,9 +106,7 @@ class Scheduler {
      * Returns null if the there are more workers than subPopulations or if no free population was found
      */
     fun getSubPopulation(): Population? {
-        deleteOldWorkers()
-
-        if (workers.size + 1 > subPopulations.size) {
+        if (workers.size + 1 > subPopulations.size && calculationRunning) {
             println("Worker size to large")
             return null
         }
@@ -138,22 +145,14 @@ class Scheduler {
 
     fun printPopulations(header: String) {
         println(header)
-        subPopulations.forEach { println("${it.worker?.uuid} -" + it.getPaths()) }
+        workers.forEach { println("${it.uuid} (${it.subPopulation.getFittest()?.distance})") }
         println("---------------")
-        workers.forEach { println(it.uuid) }
+        subPopulations.forEach { println(it.getPaths().first()) }
         println("---------------")
     }
 
-    // TODO fix concurred modification exception
-    private fun deleteOldWorkers() {
-        val oldWorkers = mutableListOf<Worker>()
+    fun deleteOldWorkers() {
         val now = LocalDateTime.now()
-        workers.forEach {
-            if (it.timestamp.isBefore(now.minusMinutes(WORKER_RESPONSE_TIME.toLong())))
-                oldWorkers.add(it)
-        }
-
-        println("#Workers to remove ${oldWorkers.size}")
-        //workers.removeAll(oldWorkers)
+        workers.removeAll { it.timestamp.isBefore(now.minusMinutes(WORKER_RESPONSE_TIME.toLong())) }
     }
 }

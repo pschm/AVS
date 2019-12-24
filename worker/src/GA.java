@@ -26,8 +26,10 @@ public class GA {
             // Select parents
             IndividualPath parent1 = tournamentSelection(pop);
             IndividualPath parent2 = tournamentSelection(pop);
+
             // Crossover parents
             IndividualPath child = crossover(parent1, parent2);
+
             // Add child to new population
             newPopulation.savePath(i, child);
         }
@@ -48,11 +50,11 @@ public class GA {
      */
     public static IndividualPath crossover(IndividualPath parent1, IndividualPath parent2) {
         // Create new child tour
-    	IndividualPath child = new IndividualPath();
+    	IndividualPath child = new IndividualPath(parent1.pathSize());
 
         // Get start and end sub tour positions for parent1's tour
-        int startPos = (int) (Math.random() * parent1.pathSize());
-        int endPos = (int) (Math.random() * parent1.pathSize());
+        int startPos = 0;
+        int endPos = parent1.pathSize();
 
         // Loop and add the sub path from parent1 to our child
         for (int i = 0; i < child.pathSize(); i++) {
@@ -90,19 +92,23 @@ public class GA {
      */
     private static void mutate(IndividualPath path) {
         // Loop through path products
-        for(int tourPos1=0; tourPos1 < path.pathSize(); tourPos1++){
+        for(int tourPos1=1; tourPos1 < path.pathSize()-1; tourPos1++){
             // Apply mutation rate
             if(Math.random() < mutationRate){
                 // Get a second random position in the path
+
                 int tourPos2 = (int) (path.pathSize() * Math.random());
 
-                // Get the products at target position in path
-                Product city1 = path.getProduct(tourPos1);
-                Product city2 = path.getProduct(tourPos2);
+                if(tourPos2!=0 && tourPos2!=path.pathSize()-1)
+                {
+                    // Get the products at target position in path
+                    Product city1 = path.getProduct(tourPos1);
+                    Product city2 = path.getProduct(tourPos2);
 
-                // Swap them around
-                path.setProduct(tourPos2, city1);
-                path.setProduct(tourPos1, city2);
+                    // Swap them around
+                    path.setProduct(tourPos2, city1);
+                    path.setProduct(tourPos1, city2);
+                }
             }
         }
     }

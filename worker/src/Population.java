@@ -1,5 +1,8 @@
+import com.google.gson.annotations.Expose;
+
 public class Population {
 	// Holds population of paths
+    @Expose
     IndividualPath[] paths;
 
     /**

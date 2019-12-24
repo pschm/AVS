@@ -41,7 +41,7 @@ class Population(populationSize: Int, initialize: Boolean) {
      * @param index
      * @param path
      */
-    fun savePath(index: Int, path: IndividualPath?) {
+    private fun savePath(index: Int, path: IndividualPath?) {
         paths[index] = path
     }
 
@@ -50,7 +50,7 @@ class Population(populationSize: Int, initialize: Boolean) {
      * @param index
      * @return path
      */
-    fun getPath(index: Int): IndividualPath? {
+    private fun getPath(index: Int): IndividualPath? {
         return paths[index]
     }
 

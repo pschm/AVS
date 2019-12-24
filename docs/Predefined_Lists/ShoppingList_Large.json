@@ -1,0 +1,158 @@
+{
+    "Items": [
+        {
+            "name": "Eingang",
+            "position": {
+                "x": -29.0,
+                "y": -54.0
+            }
+        },
+        {
+            "name": "Eis",
+            "position": {
+                "x": -11.0,
+                "y": -17.0
+            }
+        },
+        {
+            "name": "Müsli",
+            "position": {
+                "x": 38.0,
+                "y": -21.5
+            }
+        },
+        {
+            "name": "Teigwaren",
+            "position": {
+                "x": 38.0,
+                "y": 4.5
+            }
+        },
+        {
+            "name": "Säfte",
+            "position": {
+                "x": -46.5,
+                "y": 8.049999237060547
+            }
+        },
+        {
+            "name": "Johgurt",
+            "position": {
+                "x": -59.5,
+                "y": 30.0
+            }
+        },
+        {
+            "name": "Süßwaren",
+            "position": {
+                "x": 13.739527702331543,
+                "y": 27.522789001464845
+            }
+        },
+        {
+            "name": "Eiskaffeé",
+            "position": {
+                "x": -49.0,
+                "y": 46.5
+            }
+        },
+        {
+            "name": "Saucen",
+            "position": {
+                "x": 38.0,
+                "y": 27.0
+            }
+        },
+        {
+            "name": "Bier",
+            "position": {
+                "x": -21.0,
+                "y": 10.5
+            }
+        },
+        {
+            "name": "Zeitschriften",
+            "position": {
+                "x": 16.0,
+                "y": -33.5
+            }
+        },
+        {
+            "name": "Knabberzeugs",
+            "position": {
+                "x": -21.208759307861329,
+                "y": 28.514596939086915
+            }
+        },
+        {
+            "name": "Fleisch (Rind)",
+            "position": {
+                "x": 18.0,
+                "y": 38.0
+            }
+        },
+        {
+            "name": "Fleisch (Geflügel)",
+            "position": {
+                "x": 2.0,
+                "y": 38.0
+            }
+        },
+        {
+            "name": "Wasser (Budget)",
+            "position": {
+                "x": -21.0,
+                "y": -7.5
+            }
+        },
+        {
+            "name": "Pizza",
+            "position": {
+                "x": -37.5,
+                "y": -17.0
+            }
+        },
+        {
+            "name": "Gutscheinkarten",
+            "position": {
+                "x": -2.2299997806549074,
+                "y": -31.770000457763673
+            }
+        },
+        {
+            "name": "Sushi",
+            "position": {
+                "x": 20.0,
+                "y": -38.0
+            }
+        },
+        {
+            "name": "Obst (Orangen)",
+            "position": {
+                "x": 7.0,
+                "y": -47.0
+            }
+        },
+        {
+            "name": "Eingelegtes",
+            "position": {
+                "x": 48.5,
+                "y": 23.0
+            }
+        },
+        {
+            "name": "Fleischtheke",
+            "position": {
+                "x": 9.0,
+                "y": 46.5
+            }
+        },
+        {
+            "name": "Kasse 4",
+            "position": {
+                "x": -33.5,
+                "y": -30.0
+            }
+        }
+    ]
+}

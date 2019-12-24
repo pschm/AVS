@@ -9,8 +9,8 @@ data class Position(
 )
 
 class Product(
-    var position: Position = Position(),
-    var name: String? = null
+    private val position: Position = Position(),
+    private val name: String? = null
 ) {
 
     /**
@@ -25,6 +25,6 @@ class Product(
     }
 
     override fun toString(): String {
-        return "$position,$name"
+        return "$name"
     }
 }

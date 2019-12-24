@@ -1,3 +1,4 @@
+import com.google.gson.annotations.Expose;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -5,16 +6,26 @@ import java.util.Collections;
 
 public class IndividualPath {
 	 // Holds our IndividualPath of products
+    @Expose
     private ArrayList<Product> IndividualPath = new ArrayList<Product>();
     // Cache
+    @Expose
     private double fitness = 0;
-    private int distance = 0;
+    @Expose
+    private double distance = 0;
     
     /**
      * Constructs a blank IndividualPath
      */
     public IndividualPath(){
         for (int i = 0; i < PathManager.numberOfProducts(); i++) {
+            IndividualPath.add(null);
+        }
+    }
+
+    public IndividualPath(int numberOfProducts)
+    {
+        for (int i = 0; i < numberOfProducts; i++) {
             IndividualPath.add(null);
         }
     }
@@ -32,7 +43,7 @@ public class IndividualPath {
      */
     public void generateIndividual() {
         // Loop through all our destination products and add them to our IndividualPath
-        for (int productIndex = 0; productIndex < PathManager.numberOfProducts(); productIndex++) {
+        for (int productIndex = 1; productIndex < PathManager.numberOfProducts()-1; productIndex++) {
           setProduct(productIndex, PathManager.getProduct(productIndex));
         }
         // Randomly reorder the IndividualPath
@@ -59,13 +70,29 @@ public class IndividualPath {
         fitness = 0;
         distance = 0;
     }
+
+    public void addProduct(int index, Product product)
+    {
+        IndividualPath.add(index, product);
+        // If the IndividualPaths been altered we need to reset the fitness and distance
+        fitness = 0;
+        distance = 0;
+    }
+
+    public void removeProduct(Product product)
+    {
+        IndividualPath.remove(product);
+        // If the IndividualPaths been altered we need to reset the fitness and distance
+        fitness = 0;
+        distance = 0;
+    }
     
     /**
      * Gets the IndividualPaths fitness
      * @return Fitness (Double)
      */
     public double getFitness() {
-        if (fitness == 0) {
+        if (fitness == 0 || fitness == 0.0) {
             fitness = 1/(double)getDistance();
         }
         return fitness;
@@ -75,8 +102,8 @@ public class IndividualPath {
      * Gets the total distance of the IndividualPath
      * @return Distance (INT)
      */
-    public int getDistance(){
-        if (distance == 0) {
+    public double getDistance(){
+        if (distance == 0 || distance == 0.0) {
             int IndividualPathDistance = 0;
             // Loop through our IndividualPath's products
             for (int productIndex=0; productIndex < pathSize(); productIndex++) {

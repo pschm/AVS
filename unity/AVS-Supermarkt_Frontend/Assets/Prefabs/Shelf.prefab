@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5238627091461290353}
   - component: {fileID: 6082937220159554529}
+  - component: {fileID: 4197017018559854425}
   m_Layer: 0
   m_Name: Shelf
   m_TagString: Untagged
@@ -45,7 +46,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc7d69f733eb314bb26329d65503906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rangeRadius: 6
+  alwaysShowGizmos: 0
   productName: Sample Product
+--- !u!65 &4197017018559854425
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380786985501419834}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.05, y: 0.3, z: 0.4}
+  m_Center: {x: 0, y: 0, z: 1}
 --- !u!1 &5401527586198668230
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +169,7 @@ RectTransform:
   m_GameObject: {fileID: 5935565936804708365}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.125, y: 0.666667, z: 1}
+  m_LocalScale: {x: 0.083333336, y: 0.6666667, z: 1}
   m_Children: []
   m_Father: {fileID: 5238627091461290353}
   m_RootOrder: 0
@@ -161,7 +177,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1.001}
-  m_SizeDelta: {x: 6.9, y: 0.9}
+  m_SizeDelta: {x: 10, y: 0.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &2467353124556560378
 MeshRenderer:

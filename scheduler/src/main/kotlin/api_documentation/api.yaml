@@ -1,8 +1,9 @@
 openapi: 3.0.2
 info:
-  title: Scheduler API Dokuentation (AVS)
+  title: Scheduler API Dokumentation (AVS)
   description:
-    Der Scheduler bildet die Schnittstelle zwischen der Unity-Instanz und den einzelnen Workern ab. Über eine REST-API (siehe Scheduler Ressourcentabelle) können sich u. a. die Worker anmelden und die Daten aktualisieren.
+    Der Scheduler bildet die Schnittstelle zwischen der Unity-Instanz und den einzelnen Workern ab.
+    Über die hier definierte REST-API können sich die Worker anmelden und die Daten aktualisieren.
   version: 1.0.0
 
 externalDocs:
@@ -19,18 +20,18 @@ paths:
     get:
       tags:
         - Worker
-      summary: Anfrage einer UUID und Population.
+      summary: Anfrage einer UUID und zugewiesener Population.
       operationId: getWorkerId
       parameters:
-        - name: id
+        - name: uuid
           in: query
-          description: ID eines vorhandenen Workers.
+          description: UUID eines vorhandenen Workers.
           required: false
           schema:
             type: string
       responses:
         '200':
-          description: Population für UUID wurde dem Worker zugewiesen und zurückgegeben.
+          description: UUID mit zugewiesener Population.
           content:
             application/json:
               schema:
@@ -45,7 +46,7 @@ paths:
       summary: Die Population aktualisieren, sowie neue erhalten.
       operationId: updatePopulation
       parameters:
-        - name: id
+        - name: uuid
           in: query
           description: UUID des Workers.
           required: true
@@ -72,7 +73,7 @@ paths:
             Die Population fehlt. (JSON selbst ist Fehlerhaft oder die Population ist nicht valide, z. B. durch null-Werte)
         '403':
           description:
-            Der Nutzer ist nicht registriert (aktuell noch 400).
+            Der Worker ist nicht registriert (aktuell noch 400).
         '404':
           description:
             Population konnte aufgrund der fehlenden/fehlerhaften UUID nicht aktualisiert werden. (aktuell noch 400)
@@ -108,7 +109,7 @@ paths:
     get:
       tags:
         - Path
-      summary: Liefert das aktuelle Ergebnis der Berechnung. Also den aktuell besten Pfad über die Karte.
+      summary: Liefert das aktuelle Ergebnis der Berechnung, den aktuell besten Pfad durch den Laden.
       operationId: getPath
       responses:
         '200':

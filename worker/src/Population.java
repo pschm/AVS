@@ -1,7 +1,9 @@
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Population {
 	// Holds population of paths
+    @SerializedName("paths")
     @Expose
     IndividualPath[] paths;
 

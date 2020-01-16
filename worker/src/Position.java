@@ -1,8 +1,11 @@
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Position {
+    @SerializedName("x")
     @Expose
     double x;
+    @SerializedName("y")
     @Expose
     double y;
 

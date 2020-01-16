@@ -46,22 +46,25 @@ public class Worker {
                     JSONObject obj = schedulerAPI.putWorker(uuid, actualPopulation);
 
                     if (obj != null) {
-                        if(obj.has("status") && obj.getJSONObject("status").toString().equals("bad"))
+                        if(obj.has("status"))
                         {
-                            String popAndUUID = schedulerAPI.getWorker();
+                            if(obj.getString("status").equals("bad"))
+                            {
+                                String popAndUUID = schedulerAPI.getWorker();
 
-                            if (popAndUUID != null) {
+                                if (popAndUUID != null) {
 
-                                JSONObject popUUIDObj = new JSONObject(popAndUUID);
+                                    JSONObject popUUIDObj = new JSONObject(popAndUUID);
 
-                                JSONObject popObj = popUUIDObj.getJSONObject("population");
+                                    JSONObject popObj = popUUIDObj.getJSONObject("population");
 
-                                String s = popObj.toString();
+                                    String s = popObj.toString();
 
-                                Gson gson = new Gson();
-                                actualPopulation = gson.fromJson(popObj.toString(), Population.class);
+                                    Gson gson = new Gson();
+                                    actualPopulation = gson.fromJson(popObj.toString(), Population.class);
 
-                                uuid = popUUIDObj.getString("uuid");
+                                    uuid = popUUIDObj.getString("uuid");
+                                }
                             }
                         }
                         else {

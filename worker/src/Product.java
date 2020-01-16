@@ -1,8 +1,11 @@
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Product {
+    @SerializedName("position")
     @Expose
     Position position;
+    @SerializedName("name")
     @Expose
     String name;
     

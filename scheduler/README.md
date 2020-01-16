@@ -9,7 +9,8 @@ Da es sich bei der Umsetzung des Schedulers um ein Gradle-Projekt handelt, ist e
 
 Der Server läuft dann auf localhost mit dem Port 8080. 
 
-
+Eine ausführliche Dokumentation der Scheduler-API ist [hier](https://pschm.github.io/AVS-Scheduler-API/) zu finden.
+<!--
 ### Scheduler Ressourcentabelle
 |Ressource  |Verb |URI |Semantik |Contenttype-Request | Contenttype-Response |
 |-----------|-----|----|---------|--------------------|----------------------|
@@ -37,3 +38,4 @@ Der Server läuft dann auf localhost mit dem Port 8080.
 | /map       | POST | 400        | Bad Request         | Das JSON konnte nicht gelesen werden.                                   |
 | /path     | GET  | 503        | Service Unavailable | Es gibt momentan keine registrieren Worker, die an der Lösung arbeiten. |
 |           |      | 204        | No Content          | Die Worker haben noch kein Ergebnis geliefert.
+-->

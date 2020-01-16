@@ -1,0 +1,217 @@
+openapi: 3.0.2
+info:
+  title: Scheduler API Dokuentation (AVS)
+  description:
+    Der Scheduler bildet die Schnittstelle zwischen der Unity-Instanz und den einzelnen Workern ab. Über eine REST-API (siehe Scheduler Ressourcentabelle) können sich u. a. die Worker anmelden und die Daten aktualisieren.
+  version: 1.0.0
+
+externalDocs:
+  description: GitHub Repository
+  url: 'https://github.com/pschm/AVS/tree/master/scheduler'
+
+tags:
+  - name: Worker
+  - name: Map
+  - name: Path
+
+paths:
+  '/worker':
+    get:
+      tags:
+        - Worker
+      summary: Anfrage einer UUID und Population.
+      operationId: getWorkerId
+      parameters:
+        - name: id
+          in: query
+          description: ID eines vorhandenen Workers.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Population für UUID wurde dem Worker zugewiesen und zurückgegeben.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkerRespond'
+        '204':
+          description: Die Map ist nicht gesetzt.
+        '503':
+          description: Die maximale Anzahl der Worker wurde erreicht.
+    put:
+      tags:
+        - Worker
+      summary: Die Population aktualisieren, sowie neue erhalten.
+      operationId: updatePopulation
+      parameters:
+        - name: id
+          in: query
+          description: UUID des Workers.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Bearbeitete Population des Workers.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Population'
+        required: true
+      responses:
+        '200':
+          description: Population wurde aktualisiert und neue zurückgeliefert.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkerRespond'
+        '204':
+          description: Die Map ist nicht gesetzt.
+        '400':
+          description:
+            Die Population fehlt. (JSON selbst ist Fehlerhaft oder die Population ist nicht valide, z. B. durch null-Werte)
+        '403':
+          description:
+            Der Nutzer ist nicht registriert (aktuell noch 400).
+        '404':
+          description:
+            Population konnte aufgrund der fehlenden/fehlerhaften UUID nicht aktualisiert werden. (aktuell noch 400)
+
+  '/map':
+    post:
+      tags:
+        - Map
+      summary: Setzt Karte und Produkte der Unity-Instanz
+      operationId: addUnityMap
+      requestBody:
+        description: Karte zur Navigation sowie eine Liste der ausgewählten Produkte.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnityMapStructure'
+        required: true
+      responses:
+        '200':
+          description: Karte und Produkte wurden erfolgreich gespeichert.
+        '400':
+          description: Das JSON konnte nicht gelesen werden.
+    delete:
+      tags:
+        - Map
+      summary: Karte und Produkte löschen und somit die Berechnung abbrechen.
+      operationId: deleteMap
+      responses:
+        '200':
+          description: Die Karte wurde gelöscht.
+
+  '/path':
+    get:
+      tags:
+        - Path
+      summary: Liefert das aktuelle Ergebnis der Berechnung. Also den aktuell besten Pfad über die Karte.
+      operationId: getPath
+      responses:
+        '200':
+          description: Aktuell bester Pfad. Ist neben dem DemoPath auch Path gesetzt, handelt es sich beim Ergebnis um das vorläufige Endergebnis.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PathResponse'
+        '204':
+          description: Die Worker haben noch kein Ergebnis geliefert.
+        '503':
+          description: Es gibt momentan keine registrierten Worker, die an einer Lösung arbeiten.
+
+components:
+  schemas:
+    PathResponse:
+      type: object
+      properties:
+        Items: #path
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        DemoItems: #demoPath
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        Distance: #distance
+          type: integer
+          example: 310
+    UnityMapStructure:
+      type: object
+      properties:
+        Items: #products
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        NavMesh: #navMesh
+          type: array
+          items:
+            $ref: '#/components/schemas/MeshNode'
+    WorkerRespond:
+      type: object
+      properties:
+        uuid:
+          type: string
+          example: 'f33c6fa8-1697-11ea-8d71-362b9e155667'
+        population:
+          $ref: '#/components/schemas/Population'
+        navMesh:
+          type: array
+          items:
+            $ref: '#/components/schemas/MeshNode'
+    Population:
+      type: object
+      properties:
+        paths:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndividualPath'
+    IndividualPath:
+      type: object
+      properties:
+        IndivialPath:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        fitness:
+          type: number
+          format: double
+          example: 0.3
+        distance:
+          type: number
+          format: double
+          example: 176.8
+    Product:
+      type: object
+      properties:
+        position:
+          $ref: '#/components/schemas/Position'
+        name:
+          type: string
+          example: Sushi
+    MeshNode:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 5
+        position:
+          $ref: '#/components/schemas/Position'
+        nextNodes:
+          type: array
+          items:
+            type: integer
+            example: 3, 7, 13, 8
+    Position:
+      type: object
+      properties:
+        x:
+          type: number
+          format: double
+          example: '51.04'
+        y:
+          type: number
+          format: double
+          example: '7.23'

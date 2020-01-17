@@ -1,9 +1,9 @@
 openapi: 3.0.2
 info:
-  title: Scheduler API Dokumentation (AVS)
+  title: Scheduler API documentation (AVS)
   description:
-    Der Scheduler bildet die Schnittstelle zwischen der Unity-Instanz und den einzelnen Workern ab.
-    Über die hier definierte REST-API können sich die Worker anmelden und die Daten aktualisieren.
+    The scheduler is the interface between the unity frontend and the individual workers.
+    Workers can register and update data (populations). The unity frontend can set a map and receive the best path.
   version: 1.0.0
 
 externalDocs:
@@ -20,40 +20,40 @@ paths:
     get:
       tags:
         - Worker
-      summary: Anfrage einer UUID und zugewiesener Population.
+      summary: Requests an UUID and the assigned population.
       operationId: getWorkerId
       parameters:
         - name: uuid
           in: query
-          description: UUID eines vorhandenen Workers.
+          description: UUID of a already registered Workers.
           required: false
           schema:
             type: string
       responses:
         '200':
-          description: UUID mit zugewiesener Population.
+          description: UUID with assigned population.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/WorkerRespond'
         '204':
-          description: Die Map ist nicht gesetzt.
+          description: The map is not yet set.
         '503':
-          description: Die maximale Anzahl der Worker wurde erreicht.
+          description: The maximum number of workers has been reached.
     put:
       tags:
         - Worker
-      summary: Die Population aktualisieren, sowie neue erhalten.
+      summary: Update the population and receive a new one.
       operationId: updatePopulation
       parameters:
         - name: uuid
           in: query
-          description: UUID des Workers.
+          description: UUID of a registered workers.
           required: true
           schema:
             type: string
       requestBody:
-        description: Bearbeitete Population des Workers.
+        description: Processed population.
         content:
           application/json:
             schema:
@@ -61,31 +61,31 @@ paths:
         required: true
       responses:
         '200':
-          description: Population wurde aktualisiert und neue zurückgeliefert.
+          description: The population has been updated and the new one has been returned.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/WorkerRespond'
         '204':
-          description: Die Map ist nicht gesetzt.
+          description: The map is not yet set.
         '400':
           description:
-            Die Population fehlt. (JSON selbst ist Fehlerhaft oder die Population ist nicht valide, z. B. durch null-Werte)
+            Population missing. (either the JSON itself contains errors or the population is not valid, e.g. due to null values
         '403':
           description:
-            Der Worker ist nicht registriert (aktuell noch 400).
+            The worker isn't registered.
         '404':
           description:
-            Population konnte aufgrund der fehlenden/fehlerhaften UUID nicht aktualisiert werden. (aktuell noch 400)
+            Couldn't update population due to missing or faulty UUID.
 
   '/map':
     post:
       tags:
         - Map
-      summary: Setzt Karte und Produkte der Unity-Instanz
+      summary: Set map and products of the unity frontend.
       operationId: addUnityMap
       requestBody:
-        description: Karte zur Navigation sowie eine Liste der ausgewählten Produkte.
+        description: Map for navigation and a list of selected products.
         content:
           application/json:
             schema:
@@ -93,35 +93,35 @@ paths:
         required: true
       responses:
         '200':
-          description: Karte und Produkte wurden erfolgreich gespeichert.
+          description: Map and products were saved successfully.
         '400':
-          description: Das JSON konnte nicht gelesen werden.
+          description: Couldn't read JSON.
     delete:
       tags:
         - Map
-      summary: Karte und Produkte löschen und somit die Berechnung abbrechen.
+      summary: Delete map and products and thus cancel the calculation.
       operationId: deleteMap
       responses:
         '200':
-          description: Die Karte wurde gelöscht.
+          description: Map and products have been deleted.
 
   '/path':
     get:
       tags:
         - Path
-      summary: Liefert das aktuelle Ergebnis der Berechnung, den aktuell besten Pfad durch den Laden.
+      summary: Returns the current result of the calcualtion - the currently known best path through the store.
       operationId: getPath
       responses:
         '200':
-          description: Aktuell bester Pfad. Ist neben dem DemoPath auch Path gesetzt, handelt es sich beim Ergebnis um das vorläufige Endergebnis.
+          description: Currently the best path. If Path is set in addition to the DemoPath, the result is the preliminary end result.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PathResponse'
         '204':
-          description: Die Worker haben noch kein Ergebnis geliefert.
+          description: The worker have not yet delivered a result.
         '503':
-          description: Es gibt momentan keine registrierten Worker, die an einer Lösung arbeiten.
+          description: There are currently no registered workers working on a solution.
 
 components:
   schemas:

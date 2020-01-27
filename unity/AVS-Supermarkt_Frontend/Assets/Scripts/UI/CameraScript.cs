@@ -38,17 +38,17 @@ public class CameraScript : MonoBehaviour {
         up.y = 0;
         right.y = 0;
 
-        if(Input.GetKey(KeyCode.W)) {
+        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
             camPos += up * Time.deltaTime * moveSpeed;
         }
-        if(Input.GetKey(KeyCode.S)) {
+        if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
             camPos -= up * Time.deltaTime * moveSpeed;
         }
 
-        if(Input.GetKey(KeyCode.A)) {
+        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
             camPos -= right * Time.deltaTime * moveSpeed;
         }
-        if(Input.GetKey(KeyCode.D)) {
+        if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
             camPos += right * Time.deltaTime * moveSpeed;
         }
 

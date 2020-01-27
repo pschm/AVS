@@ -34,8 +34,6 @@ public class UiManager : MonoBehaviour {
 
         Debug.Log("Posting shoppping list...");
         var hostUrl = schedulerIpField.text;
-        if(!string.IsNullOrWhiteSpace(hostUrl) && !hostUrl.StartsWith("http", StringComparison.InvariantCultureIgnoreCase)) hostUrl = "http://" + hostUrl;
-
         SchedulerRestClient.Instance.StartCalculationForShoppinglist(nodes, hostUrl, ProcessIntermediateResult, ProcessCalculationResult);
         statisticsUI.ResetAndStartTimer();
     }

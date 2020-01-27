@@ -108,7 +108,7 @@ public class SchedulerRestClient : MonoBehaviour {
         Debug.Log("Checking for result...");
         PathResponse result = null;
 
-        while(result == null && result.Items == null && !cancelCalculation) {
+        while(result == null && result?.Items == null && !cancelCalculation) {
             var request = CreateGetCalculatedWaypointsRequest(hostUrl);
             yield return request.SendWebRequest();
 

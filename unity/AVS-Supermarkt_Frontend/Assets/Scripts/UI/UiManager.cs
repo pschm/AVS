@@ -15,7 +15,12 @@ public class UiManager : MonoBehaviour {
 
     public Customer customer;
 
+    public bool AllowCameraScript { get; private set; }
+
     private void Awake() {
+        schedulerIpField.onSelect.AddListener(delegate { AllowCameraScript = false; });
+        schedulerIpField.onDeselect.AddListener(delegate { AllowCameraScript = true; });
+
         OpenOpenerUi();
     }
 
@@ -101,10 +106,11 @@ public class UiManager : MonoBehaviour {
 
     public void OpenPlannerUi() {
         CloseAllUis();
+        AllowCameraScript = false;
         plannerPanel.gameObject.SetActive(true);
     }
 
-    public void OpenOpenerUi() {
+    public void OpenOpenerUi() { //The sidebar on the right
         CloseAllUis();
         openPlannerPanel.SetActive(true);
     }
@@ -114,6 +120,8 @@ public class UiManager : MonoBehaviour {
         loadingPanel.SetActive(false);
         openPlannerPanel.SetActive(false);
         resultPanel.gameObject.SetActive(false);
+
+        AllowCameraScript = true;
     }
 
 }

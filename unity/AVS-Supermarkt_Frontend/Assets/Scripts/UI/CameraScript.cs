@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class CameraScript : MonoBehaviour {
 
+    public UiManager uiManager;
+
     [Header("Movement")]
     public float moveSpeed = 30;
     public Vector2 moveSpace = new Vector2(50, 50);
@@ -28,6 +30,8 @@ public class CameraScript : MonoBehaviour {
 
 
     void Update() {
+        if(uiManager && !uiManager.AllowCameraScript) return;
+
         Vector3 camPos = transform.position;
         Vector3 up = transform.up;
         Vector3 right = transform.right;

@@ -23693,6 +23693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 408c9926e3bc68843a6b0845a5f414b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiManager: {fileID: 771286796}
   moveSpeed: 30
   moveSpace: {x: 50, y: 50}
   zoomSpeed: 4

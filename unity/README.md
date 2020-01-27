@@ -1,22 +1,21 @@
-﻿
 # Unity Frontend
-Das Frontend bildet eine Unity-Instanz. In dieser sind die verschiedenen Läden mit den Artikelstandorten in einer 3D-Welt abgebildet. Ebenso wird hier die Einkaufsliste erstellt und das Ergebnis präsentiert. Somit stellt die Unity Anwendung sowohl den Start- als auch den Endpunkt der verteilten Anwendung dar.
+The frontend is created in Unity. It is responsable for displaying different shopping stores with its item locations in a 3D world. The shopping list is also created here and the result of the calculation is presented. Thus the Unity application represents both the start and end point of the distributed application.
 
-## Funktionen
-- Visuelle Abbildung der Läden mit Artikelstandorten.
-- Generierung einer abstrahierten Darstellung eines Ladens für den Alogrithmus.
-- Bereitstellung eines UI zur Erstellung einer Einkaufsliste.
-- Start des Alogrithmus durch Übergabe der Daten an den Scheduler.
-- Visualisierung des Ergebnisses.
 
-## Installation und Ausführung
-Wenn die Unity Anwendung lediglich ausgeführt werden soll, wird keine weitere Software benötigt. Lediglich die von Unity für die Ausführung vorgegebenen [Systemanforderungen](https://unity3d.com/de/unity/system-requirements "Systemanforderungen") müssen erfüllt sein.
-Zur Ausführung muss dann der entsprechende Build mit der entsprechenden Ausführbaren Datei (z.B. .exe) heruntergeladen und ausgeführt werden.
+## Features
+- Visual mapping of the shops with item locations.
+- Generation of an abstract representation of a shop for the alogrithm.
+- Provision of an UI for creating a shopping list.
+- Starting the alogrithm by transferring the data to the scheduler.
+- Visualization of the result.
 
-#### Debungen und Entwickeln
-Zur Entwicklung und Debugging wird der [Unity Editor](https://unity.com "Unity") benötigt. Anschlieden das Unity-Projekt in diesem öffnen (den Ordner, welcher in dem gleichen Verzeichnis liegt, wie diese Readme).
-Über das *Play*-Symbol in der oberen mitte im Editor kann die Anwendung so gestartet werden, als wenn diese als eine Stand-Alone-Anwendung ausgeführt würde.
 
-**Hinweis**: Das Unity-Projekt beruht auf der Unity-Version `2019.2.11f1`. 
-Falls diese nicht im Hub verfügbar ist, kann diese im [Download-Archiv](https://unity3d.com/de/get-unity/download/archive "Archiv") herunter geladen werden.
+## Installation and Execution
+To start the Unity Frontend just execute the compiled files.
+The system requirements are defined by the engine itself [here](https://unity3d.com/de/unity/system-requirements).
 
+#### Debung and Develop
+To develop and debug the application, the [Unity Editor](https://unity.com) is required. After installing it, just open the Unity-Project (the folder in which this readme is in) with the editor. Using the *Play* icon in the upper center of the editor, the application can be started as if it were running as a stand-alone application.
+
+**Note**: The Unity project is based on the Unity version `2019.2.11f1`. 
+If this version is not available in the hub, you can download it from the [Download Archive](https://unity3d.com/de/get-unity/download/archive).

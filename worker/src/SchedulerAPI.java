@@ -14,8 +14,13 @@ import org.json.JSONObject;
 public class SchedulerAPI {
     
     private static HttpURLConnection con;
-    private static final String urlWorker = "http://139.6.65.27:8080/worker";
-    //private static final String urlWorker = "http://localhost:8080/worker";
+    //private static String urlWorker = "http://139.6.65.27:8080/worker";
+    private static String urlWorker = "";
+
+    public SchedulerAPI(String ipAndPort)
+    {
+        urlWorker = ipAndPort + "/worker";
+    }
 
     public String getWorker() throws IOException, InterruptedException {
         try

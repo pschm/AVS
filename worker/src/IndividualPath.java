@@ -1,13 +1,11 @@
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class IndividualPath {
 	 // Holds our IndividualPath of products
-
     @SerializedName("IndividualPath")
     @Expose
     private ArrayList<Product> IndividualPath = new ArrayList<Product>();
@@ -101,6 +99,10 @@ public class IndividualPath {
             fitness = 1/(double)getDistance();
         }
         return fitness;
+    }
+
+    public ArrayList<Product> getIndividualPath() {
+        return IndividualPath;
     }
     
     /**

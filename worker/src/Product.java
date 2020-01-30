@@ -33,7 +33,7 @@ public class Product {
      * Gets product's x coordinate
      * @return X (INT)
      */
-    public double getX(){
+    public Double getX(){
         return this.position.getX();
     }
     
@@ -41,7 +41,7 @@ public class Product {
      * Gets product's y coordinate
      * @return Y (INT)
      */
-    public double getY(){
+    public Double getY(){
         return this.position.getY();
     }
 

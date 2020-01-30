@@ -153,7 +153,7 @@ public class Worker {
         } // End for (all neighbours)
     }
 
-    private static void start(String ipAndPort) throws IOException, InterruptedException {
+    public static void start(String ipAndPort) throws IOException, InterruptedException {
         SchedulerAPI schedulerAPI = new SchedulerAPI(ipAndPort);
 
         Population actualPopulation = null;
@@ -182,7 +182,7 @@ public class Worker {
                     LinkedList<Vertex> rightVertices = new LinkedList<>();
                     for (Product product : products) {
                         for (int c = 0; c < graph.getVertices().size(); c++) {
-                            if (product.getX().intValue() == graph.getVertices().get(c).getPosition().x && product.getY().intValue() == graph.getVertices().get(c).getPosition().y) {
+                            if ((int)(product.getX()) == graph.getVertices().get(c).getPosition().x && (int)(product.getY()) == graph.getVertices().get(c).getPosition().y) {
                                 rightVertices.add(graph.getVertices().get(c));
                             }
                         }

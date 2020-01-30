@@ -66,26 +66,12 @@ public class SchedulerAPI {
 
             return response.toString();
     
-        }
-        catch (MalformedURLException e)
+        } catch (Exception e)
         {
             System.out.println("Versuche getWorker nochmal: " + e.toString());
             Thread.sleep(5000);
             return getWorker();
-        }
-        catch (IOException e)
-        {
-            System.out.println("Versuche getWorker nochmal: " + e.toString());
-            Thread.sleep(5000);
-            return getWorker();
-        }
-        catch (Exception e)
-        {
-            System.out.println("Versuche getWorker nochmal: " + e.toString());
-            Thread.sleep(5000);
-            return getWorker();
-        }
-        finally
+        } finally
         {
             con.disconnect();
         }
@@ -141,31 +127,31 @@ public class SchedulerAPI {
 
                 return bad;
             }
+            else if(status == HttpURLConnection.HTTP_FORBIDDEN || status == HttpURLConnection.HTTP_NOT_FOUND)
+            {
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run()
+                    {
+                        try {
+                            Worker.start(urlWorker);
+                        } catch (IOException | InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                thread.start();
+                Thread.currentThread().stop();
+            }
 
-            JSONObject jsonObject = new JSONObject(response.toString());
+            return new JSONObject(response.toString());
 
-            return jsonObject;
-
-        }
-        catch (MalformedURLException e)
+        } catch (Exception e)
         {
             System.out.println("Versuche getWorker nochmal: " + e.toString());
             Thread.sleep(5000);
             return putWorker(uuidAsString, population);
-        }
-        catch (IOException e)
-        {
-            System.out.println("Versuche getWorker nochmal: " + e.toString());
-            Thread.sleep(5000);
-            return putWorker(uuidAsString, population);
-        }
-        catch (Exception e)
-        {
-            System.out.println("Versuche getWorker nochmal: " + e.toString());
-            Thread.sleep(5000);
-            return putWorker(uuidAsString, population);
-        }
-        finally
+        } finally
         {
             con.disconnect();
         }

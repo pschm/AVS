@@ -2,6 +2,8 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Product {
+    @SerializedName("id")
+    int id;
     @SerializedName("position")
     @Expose
     Position position;
@@ -24,7 +26,8 @@ public class Product {
      * @param y
      * @param productName
      */
-    public Product(double x, double y, String productName){
+    public Product(int id, double x, double y, String productName){
+        this.id = id;
         this.position = new Position(x, y);
         this.name = productName;
     }

@@ -55,6 +55,14 @@ public class Vertex {
 		return pos;
 	}
 
+	public double distanceTo(Vertex vertex){
+		double xDistance = Math.abs(getPosition().x - vertex.getPosition().x);
+		double yDistance = Math.abs(getPosition().y - vertex.getPosition().y);
+		double distance = Math.sqrt( (xDistance*xDistance) + (yDistance*yDistance) );
+
+		return distance;
+	}
+
 	public void setC(Position position) {
 		this.pos = position;
 	}

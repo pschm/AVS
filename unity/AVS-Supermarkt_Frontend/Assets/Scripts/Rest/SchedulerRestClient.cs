@@ -107,6 +107,7 @@ public class SchedulerRestClient : MonoBehaviour {
     private IEnumerator QueryCalculationResult(string hostUrl, Action<PathResponse> intAction, Action<PathResponse, bool> actionOnResult) {
         Debug.Log("Checking for result...");
         PathResponse result = null;
+        int numNetErrors = 0;
 
         while(result == null && result?.Items == null && !cancelCalculation) {
             var request = CreateGetCalculatedWaypointsRequest(hostUrl);
@@ -120,16 +121,21 @@ public class SchedulerRestClient : MonoBehaviour {
 
                 if(result != null) intAction(result);
 
-            } else if(request.isNetworkError /*|| request.responseCode == 503*/) {
-                Debug.LogWarning($"Cant get result. Network-Error: {request.isNetworkError}, Response-Code: {request.responseCode}");
-                break;
+            } else if(request.isNetworkError) {
+                numNetErrors++;
+                Debug.LogWarning($"Network-Error, cant get result. Response-Code is: {request.responseCode}. \nNumber of failed attempts: {numNetErrors}");
 
+                if(numNetErrors > 10) {
+                    Debug.LogWarning("Cancel result fetching. There were more then a total of ten network errors!");
+                    break;
+                }
             }
 
             yield return new WaitForSeconds(delayBetweenRequests);
         }
 
         calculationActive = false;
+        Debug.Log("Displaying result...");
         actionOnResult(result, cancelCalculation);
 
         cancelCalculation = false;

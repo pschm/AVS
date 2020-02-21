@@ -54,7 +54,7 @@ public class UiManager : MonoBehaviour {
         }
 
         if(result == null || result.Items.Count <= 0) {
-            Debug.Log("Got no result to display.");
+            Debug.Log($"Got no result to display. Result count was: {result?.Items.Count}");
             OpenOpenerUi();
             return;
         }

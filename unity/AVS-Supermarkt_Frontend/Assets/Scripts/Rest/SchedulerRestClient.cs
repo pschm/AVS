@@ -109,7 +109,7 @@ public class SchedulerRestClient : MonoBehaviour {
         PathResponse result = null;
         int numNetErrors = 0;
 
-        while(result == null && result?.Items == null && !cancelCalculation) {
+        while(result?.Items == null && !cancelCalculation) {
             var request = CreateGetCalculatedWaypointsRequest(hostUrl);
             yield return request.SendWebRequest();
 

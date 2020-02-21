@@ -1,6 +1,7 @@
 {
     "Items": [
-        {
+      {
+            "id": "-4114",
             "position": {
                 "x": -29.0,
                 "y": -54.0
@@ -8,6 +9,7 @@
             "name": "Eingang"
         },
         {
+            "id": "-1672",
             "position": {
                 "x": 4.800000190734863,
                 "y": -38.0
@@ -15,6 +17,7 @@
             "name": "Gemüse"
         },
         {
+            "id": "-3302",
             "position": {
                 "x": 14.0,
                 "y": -29.0
@@ -22,6 +25,7 @@
             "name": "Tiernahrung"
         },
         {
+            "id": "-1904",
             "position": {
                 "x": -2.2299997806549072,
                 "y": -31.770000457763672
@@ -29,6 +33,7 @@
             "name": "Gutscheinkarten"
         },
         {
+            "id": "-4070",
             "position": {
                 "x": -39.0,
                 "y": -30.0
@@ -37,42 +42,47 @@
         }
     ],
     "DemoItems": [
-        {
-            "position": {
-                "x": -29.0,
-                "y": -54.0
-            },
-            "name": "Eingang"
-        },
-        {
-            "position": {
-                "x": 4.800000190734863,
-                "y": -38.0
-            },
-            "name": "Gemüse"
-        },
-        {
-            "position": {
-                "x": 14.0,
-                "y": -29.0
-            },
-            "name": "Tiernahrung"
-        },
-        {
-            "position": {
-                "x": -2.2299997806549072,
-                "y": -31.770000457763672
-            },
-            "name": "Gutscheinkarten"
-        },
-        {
-            "position": {
-                "x": -39.0,
-                "y": -30.0
-            },
-            "name": "Kasse 5"
-        }
+      {
+          "id": "-4114",
+          "position": {
+              "x": -29.0,
+              "y": -54.0
+          },
+          "name": "Eingang"
+      },
+      {
+          "id": "-1672",
+          "position": {
+              "x": 4.800000190734863,
+              "y": -38.0
+          },
+          "name": "Gemüse"
+      },
+      {
+          "id": "-3302",
+          "position": {
+              "x": 14.0,
+              "y": -29.0
+          },
+          "name": "Tiernahrung"
+      },
+      {
+          "id": "-1904",
+          "position": {
+              "x": -2.2299997806549072,
+              "y": -31.770000457763672
+          },
+          "name": "Gutscheinkarten"
+      },
+      {
+          "id": "-4070",
+          "position": {
+              "x": -39.0,
+              "y": -30.0
+          },
+          "name": "Kasse 5"
+      }
     ],
-    
+
 	"Distance": 127
 }

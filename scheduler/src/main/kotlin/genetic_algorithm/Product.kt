@@ -9,6 +9,7 @@ data class Position(
 )
 
 class Product(
+    private val id: String,
     private val position: Position = Position(),
     private val name: String? = null
 ) {

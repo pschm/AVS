@@ -1,17 +1,20 @@
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Position {
+    @SerializedName("x")
     @Expose
-    double x;
+    Double x;
+    @SerializedName("y")
     @Expose
-    double y;
+    Double y;
 
     public Position(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
-    public double getX() {
+    public Double getX() {
         return x;
     }
 
@@ -19,7 +22,7 @@ public class Position {
         this.x = x;
     }
 
-    public double getY() {
+    public Double getY() {
         return y;
     }
 

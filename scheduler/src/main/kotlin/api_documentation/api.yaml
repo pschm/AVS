@@ -1,0 +1,218 @@
+openapi: 3.0.2
+info:
+  title: Scheduler API documentation (AVS)
+  description:
+    The scheduler is the interface between the unity frontend and the individual workers.
+    Workers can register and update data (populations). The unity frontend can set a map and receive the best path.
+  version: 1.0.0
+
+externalDocs:
+  description: GitHub Repository
+  url: 'https://github.com/pschm/AVS/tree/master/scheduler'
+
+tags:
+  - name: Worker
+  - name: Map
+  - name: Path
+
+paths:
+  '/worker':
+    get:
+      tags:
+        - Worker
+      summary: Requests an UUID and the assigned population.
+      operationId: getWorkerId
+      parameters:
+        - name: uuid
+          in: query
+          description: UUID of a already registered Workers.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: UUID with assigned population.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkerRespond'
+        '204':
+          description: The map is not yet set.
+        '503':
+          description: The maximum number of workers has been reached.
+    put:
+      tags:
+        - Worker
+      summary: Update the population and receive a new one.
+      operationId: updatePopulation
+      parameters:
+        - name: uuid
+          in: query
+          description: UUID of a registered workers.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Processed population.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Population'
+        required: true
+      responses:
+        '200':
+          description: The population has been updated and the new one has been returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkerRespond'
+        '204':
+          description: The map is not yet set.
+        '400':
+          description:
+            Population missing. (either the JSON itself contains errors or the population is not valid, e.g. due to null values
+        '403':
+          description:
+            The worker isn't registered.
+        '404':
+          description:
+            Couldn't update population due to missing or faulty UUID.
+
+  '/map':
+    post:
+      tags:
+        - Map
+      summary: Set map and products of the unity frontend.
+      operationId: addUnityMap
+      requestBody:
+        description: Map for navigation and a list of selected products.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnityMapStructure'
+        required: true
+      responses:
+        '200':
+          description: Map and products were saved successfully.
+        '400':
+          description: Couldn't read JSON.
+    delete:
+      tags:
+        - Map
+      summary: Delete map and products and thus cancel the calculation.
+      operationId: deleteMap
+      responses:
+        '200':
+          description: Map and products have been deleted.
+
+  '/path':
+    get:
+      tags:
+        - Path
+      summary: Returns the current result of the calcualtion - the currently known best path through the store.
+      operationId: getPath
+      responses:
+        '200':
+          description: Currently the best path. If Path is set in addition to the DemoPath, the result is the preliminary end result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PathResponse'
+        '204':
+          description: The worker have not yet delivered a result.
+        '503':
+          description: There are currently no registered workers working on a solution.
+
+components:
+  schemas:
+    PathResponse:
+      type: object
+      properties:
+        Items: #path
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        DemoItems: #demoPath
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        Distance: #distance
+          type: integer
+          example: 310
+    UnityMapStructure:
+      type: object
+      properties:
+        Items: #products
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        NavMesh: #navMesh
+          type: array
+          items:
+            $ref: '#/components/schemas/MeshNode'
+    WorkerRespond:
+      type: object
+      properties:
+        uuid:
+          type: string
+          example: 'f33c6fa8-1697-11ea-8d71-362b9e155667'
+        population:
+          $ref: '#/components/schemas/Population'
+        navMesh:
+          type: array
+          items:
+            $ref: '#/components/schemas/MeshNode'
+    Population:
+      type: object
+      properties:
+        paths:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndividualPath'
+    IndividualPath:
+      type: object
+      properties:
+        IndivialPath:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        fitness:
+          type: number
+          format: double
+          example: 0.3
+        distance:
+          type: number
+          format: double
+          example: 176.8
+    Product:
+      type: object
+      properties:
+        position:
+          $ref: '#/components/schemas/Position'
+        name:
+          type: string
+          example: Sushi
+    MeshNode:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 5
+        position:
+          $ref: '#/components/schemas/Position'
+        nextNodes:
+          type: array
+          items:
+            type: integer
+            example: 3, 7, 13, 8
+    Position:
+      type: object
+      properties:
+        x:
+          type: number
+          format: double
+          example: '51.04'
+        y:
+          type: number
+          format: double
+          example: '7.23'

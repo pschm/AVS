@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class CameraScript : MonoBehaviour {
 
+    public UiManager uiManager;
+
     [Header("Movement")]
     public float moveSpeed = 30;
     public Vector2 moveSpace = new Vector2(50, 50);
@@ -28,23 +30,25 @@ public class CameraScript : MonoBehaviour {
 
 
     void Update() {
+        if(uiManager && !uiManager.AllowCameraScript) return;
+
         Vector3 camPos = transform.position;
         Vector3 up = transform.up;
         Vector3 right = transform.right;
         up.y = 0;
         right.y = 0;
 
-        if(Input.GetKey(KeyCode.W)) {
+        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
             camPos += up * Time.deltaTime * moveSpeed;
         }
-        if(Input.GetKey(KeyCode.S)) {
+        if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
             camPos -= up * Time.deltaTime * moveSpeed;
         }
 
-        if(Input.GetKey(KeyCode.A)) {
+        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
             camPos -= right * Time.deltaTime * moveSpeed;
         }
-        if(Input.GetKey(KeyCode.D)) {
+        if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
             camPos += right * Time.deltaTime * moveSpeed;
         }
 

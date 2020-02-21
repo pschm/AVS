@@ -1,1 +1,1 @@
-Protokolle aller Meetings.
+protocols of all meetings

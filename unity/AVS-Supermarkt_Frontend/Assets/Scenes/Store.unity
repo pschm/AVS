@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571322, b: 0.30692163, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -15670,7 +15670,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 9
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.8584906, g: 0.8096005, b: 0.6762638, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -23693,6 +23693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 408c9926e3bc68843a6b0845a5f414b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiManager: {fileID: 771286796}
   moveSpeed: 30
   moveSpace: {x: 50, y: 50}
   zoomSpeed: 4

@@ -37,33 +37,33 @@ object RestService {
         application.routing {
             // enable REST-Calls
             get("/ping") {
-                logRequest(call)
+                call.logRequest()
                 call.respondText("pong", ContentType.Text.Plain, HttpStatusCode.OK)
             }
 
             // worker
             get("/worker") {
-                logRequest(call)
+                call.logRequest()
                 call.parameters["uuid"]?.let { respondPopulation(call, it) } ?: addWorker(call)
             }
             put("/worker") {
-                logRequest(call)
+                call.logRequest()
                 updateWorker(call)
             }
 
             // map
             post("/map") {
-                logRequest(call)
+                call.logRequest()
                 saveMap(call)
             }
             delete("/map") {
-                logRequest(call)
+                call.logRequest()
                 deleteMap(call)
             }
 
             // path
             get("/path") {
-                logRequest(call)
+                call.logRequest()
                 respondPath(call)
             }
         }
@@ -146,7 +146,7 @@ object RestService {
         val workerId = call.parameters["uuid"]
 
         if (workerId == null) {
-            call.respondText("parameter uuid missing", ContentType.Text.Plain, HttpStatusCode.BadRequest)
+            call.respondText("parameter uuid missing", ContentType.Text.Plain, HttpStatusCode.NotFound)
             println("worker id missing")
             return
         }
@@ -191,7 +191,7 @@ object RestService {
         scheduler.deleteOldWorkers()
 
         if (!alreadyInList) {
-            call.respondText("Worker is not registered. Use POST instead", ContentType.Text.Plain, HttpStatusCode.BadRequest)
+            call.respondText("Worker is not registered. Use POST instead", ContentType.Text.Plain, HttpStatusCode.Forbidden)
             println("Worker is not registered. Use POST instead - 400")
         }
         else {
@@ -316,8 +316,8 @@ object RestService {
         null
     }
 
-    private fun logRequest(call: ApplicationCall) {
-        println("${call.request.httpMethod.value} ${call.request.path()} from ${call.request.origin.remoteHost}")
+    private fun ApplicationCall.logRequest() {
+        println("${request.httpMethod.value} ${request.path()} from ${request.origin.remoteHost}")
     }
 }
 

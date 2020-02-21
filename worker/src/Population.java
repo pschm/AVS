@@ -1,7 +1,10 @@
+import app.Graph;
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Population {
 	// Holds population of paths
+    @SerializedName("paths")
     @Expose
     IndividualPath[] paths;
 
@@ -45,11 +48,11 @@ public class Population {
      * Gets the best path in the population
      * @return fittest Path
      */
-    public IndividualPath getFittest() {
+    public IndividualPath getFittest(Graph graph) {
     	IndividualPath fittest = paths[0];
         // Loop through individuals to find fittest
         for (int i = 1; i < populationSize(); i++) {
-            if (fittest.getFitness() <= getPath(i).getFitness()) {
+            if (fittest.getFitness(graph) <= getPath(i).getFitness(graph)) {
                 fittest = getPath(i);
             }
         }

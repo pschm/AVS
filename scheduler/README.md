@@ -1,39 +1,10 @@
 # Scheduler
-Der Scheduler bildet die Schnittstelle zwischen der Unity-Instanz und den einzelnen Workern ab. Über eine REST-API (siehe Scheduler Ressourcentabelle) können sich u. a. die Worker anmelden und die Daten aktualisieren.
+The scheduler is the interface between the unity frontend and the individual workers. Workers can register and update data (populations) via a REST-API, see [OpenApi 3.0 Documentation](https://pschm.github.io/AVS-Scheduler-API/) for a detailed specification.
 
-<!-- ## Funktionen -->
+## Installation
+The implementation of the scheduler is a Gradle project, so it's necessary that the IDE used for building (e.g. IntelliJ) supports Gradle. Should IntelliJ doesn't recognize the project automatically, the Gradle synchronization must be started manually. You can trigger this by opening the "build.gradle" file and pressing "Import all Gradle project". If the "Run" button (Shift + F10) isn't immediately green, open the Application.kt and press the "Run" button next to the main function.
 
+The server then listens to **localhost:8080**.
 
-## Installation und Ausführung
-Da es sich bei der Umsetzung des Schedulers um ein Gradle-Projekt handelt, ist es notwendig das die dafür genutzte IDE (z.B. Intellij) dies idealerweise supportet. Sollte Intellij das Projekt nicht automatisch erkennen, muss die Gradle-Synchronisation manuell gestartet werden. Dies ist über das Öffnen  der Datei "build.gradle" und betätigen des "Import all gradle projects" möglich. Wird anschließend der "Run"-Button (Umschalt+F10) nicht direkt grün und somit ausführbar, muss die main.kt geöffnet und dort der "Run"-Button betätigt werden.
-
-Der Server läuft dann auf localhost mit dem Port 8080. 
-
-
-### Scheduler Ressourcentabelle
-|Ressource  |Verb |URI |Semantik |Contenttype-Request | Contenttype-Response |
-|-----------|-----|----|---------|--------------------|----------------------|
-|Ping||||
-||Get|/ping|Liefert "pong"||PlainText|
-|Worker||||
-||Get|/worker|Liefert UUID und Population zurück|application/json|application/json|
-||Put |/worker?uuid={parameter}|Akutalisiert den entsprechenden Worker und liefert eine neue Population zurück|applicaiton/json |applicaiton/json|
-|Map||||
-||Post|/map|Setzt die Karte der Unity Instanz |application/json||
-||Delete|/map|Löscht die Karte. Berechnung wird abgebrochen. ||application/json|
-|Path||||
-||Get|/path|Liefert den aktuell besten Weg zurück. Sowie den "besten", wenn die Verbesserung der Ergebnisse ein Minimum erreicht hat ||application/json|
-
-### Scheduler HTTP-Fehlercodes
-| Ressource | Verb | Fehlercode |                     | Beschreibung                                                            |
-|-----------|------|------------|---------------------|-------------------------------------------------------------------------|
-| /worker   | GET  | 204        | No Content          | Die Map ist nicht gesetzt.                                              |
-|           |      | 503        | Service Unavailable | Die maximale Anzahl der Arbeiter wurde erreicht.                        |
-|           | PUT  | 204        | No Content          | Die Map ist nicht gesetzt.  
-|           |      | 400        | Bad Request         | Population ist nicht valide (enthält z.B. null-Werte).
-|           |      |            |                     | Das JSON konnte nicht gelesen werden.                                   |
-|           |      |            |                     | Die UUID fehlt.                                                         |
-|           |      |            |                     | Der Nutzer ist nicht registriert.                                       |
-| /map       | POST | 400        | Bad Request         | Das JSON konnte nicht gelesen werden.                                   |
-| /path     | GET  | 503        | Service Unavailable | Es gibt momentan keine registrieren Worker, die an der Lösung arbeiten. |
-|           |      | 204        | No Content          | Die Worker haben noch kein Ergebnis geliefert.
+## Documentation
+The REST-API provided by the scheduler is documented in the [OpenApi 3.0](https://swagger.io/docs/specification/about/) Standard and can be found [here](https://pschm.github.io/AVS-Scheduler-API/);

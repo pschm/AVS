@@ -1,3 +1,5 @@
+import app.Graph;
+
 public class GA {
 	 /* GA parameters */
     private static final double mutationRate = 0.015;
@@ -9,13 +11,13 @@ public class GA {
      * @param pop
      * @return new Population
      */
-    public static Population evolvePopulation(Population pop) {
+    public static Population evolvePopulation(Population pop, Graph graph) {
         Population newPopulation = new Population(pop.populationSize(), false);
 
         // Keep our best individual if elitism is enabled
         int elitismOffset = 0;
         if (elitism) {
-            newPopulation.savePath(0, pop.getFittest());
+            newPopulation.savePath(0, pop.getFittest(graph));
             elitismOffset = 1;
         }
 
@@ -24,8 +26,8 @@ public class GA {
         // Current population
         for (int i = elitismOffset; i < newPopulation.populationSize(); i++) {
             // Select parents
-            IndividualPath parent1 = tournamentSelection(pop);
-            IndividualPath parent2 = tournamentSelection(pop);
+            IndividualPath parent1 = tournamentSelection(pop, graph);
+            IndividualPath parent2 = tournamentSelection(pop, graph);
 
             // Crossover parents
             IndividualPath child = crossover(parent1, parent2);
@@ -83,6 +85,7 @@ public class GA {
                 }
             }
         }
+
         return child;
     }
 
@@ -118,7 +121,7 @@ public class GA {
      * @param pop
      * @return fittest path
      */
-    private static IndividualPath tournamentSelection(Population pop) {
+    private static IndividualPath tournamentSelection(Population pop, Graph graph) {
         // Create a tournament population
         Population tournament = new Population(tournamentSize, false);
         // For each place in the tournament get a random candidate path and
@@ -128,7 +131,7 @@ public class GA {
             tournament.savePath(i, pop.getPath(randomId));
         }
         // Get the fittest path
-        IndividualPath fittest = tournament.getFittest();
+        IndividualPath fittest = tournament.getFittest(graph);
         return fittest;
     }
 }

@@ -13,11 +13,10 @@ fun <T> MutableList<T>.get(condition: (T) -> Boolean): T? {
 
 
 fun <T> Array<T>.toBeautyString(): String {
-    var stringBuilder = StringBuilder()
+    val stringBuilder = StringBuilder()
 
-    for (x in 0 until this.size) {
-        stringBuilder.append(this[x])
-    }
+    for (element in this)
+        stringBuilder.append(element)
 
     return stringBuilder.toString()
 }

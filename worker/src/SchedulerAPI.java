@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -13,10 +14,13 @@ import org.json.JSONObject;
 public class SchedulerAPI {
     
     private static HttpURLConnection con;
-    private static final String urlWorker = "http://139.6.65.27:8080/worker";
-    private static final String urlMap = "http://139.6.65.27:8080/map";
-    //private static final String urlWorker = "http://192.168.0.136:8080/worker";
-    //private static final String urlMap = "http://192.168.0.136:8080/map";
+    //private static String urlWorker = "http://139.6.65.27:8080/worker";
+    private static String urlWorker = "";
+
+    public SchedulerAPI(String ipAndPort)
+    {
+        urlWorker = ipAndPort + "/worker";
+    }
 
     public String getWorker() throws IOException, InterruptedException {
         try
@@ -62,8 +66,13 @@ public class SchedulerAPI {
 
             return response.toString();
     
-        } finally {
-    
+        } catch (Exception e)
+        {
+            System.out.println("Versuche getWorker nochmal: " + e.toString());
+            Thread.sleep(5000);
+            return getWorker();
+        } finally
+        {
             con.disconnect();
         }
     }
@@ -118,53 +127,32 @@ public class SchedulerAPI {
 
                 return bad;
             }
-
-            JSONObject jsonObject = new JSONObject(response.toString());
-
-            return jsonObject;
-
-        } finally {
-    
-            con.disconnect();
-        }
-    }
-
-    public String getMap() throws IOException
-    {
-        try
-        {
-            URL myurl = new URL(urlMap);
-            con = (HttpURLConnection) myurl.openConnection();
-
-            con.setDoOutput(true);
-            con.setRequestMethod("GET");
-            con.setRequestProperty("User-Agent", "Java client");
-            con.setRequestProperty("Content-Type", "application/json; utf-8");
-
-            StringBuilder response = null;
-
-            InputStream inputStream;
-            int status = con.getResponseCode();
-
-            if (status != HttpURLConnection.HTTP_OK)  {
-                inputStream = con.getErrorStream();
-            }
-            else  {
-                try(BufferedReader br = new BufferedReader(
-                        new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8))) {
-                    response = new StringBuilder();
-                    String responseLine = null;
-                    while ((responseLine = br.readLine()) != null) {
-                        response.append(responseLine.trim());
+            else if(status == HttpURLConnection.HTTP_FORBIDDEN || status == HttpURLConnection.HTTP_NOT_FOUND)
+            {
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run()
+                    {
+                        try {
+                            Worker.start(urlWorker);
+                        } catch (IOException | InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
-                    System.out.println(response.toString());
-                }
+                });
+                thread.start();
+                Thread.currentThread().stop();
             }
 
-            return response.toString();
+            return new JSONObject(response.toString());
 
-        } finally {
-
+        } catch (Exception e)
+        {
+            System.out.println("Versuche getWorker nochmal: " + e.toString());
+            Thread.sleep(5000);
+            return putWorker(uuidAsString, population);
+        } finally
+        {
             con.disconnect();
         }
     }

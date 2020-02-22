@@ -13,7 +13,7 @@ class Scheduler {
 
     companion object {
         const val WORKER_COUNT = 12
-        const val POPULATION_SIZE = 200 // min (WORKER_COUNT+1)²
+        const val POPULATION_SIZE = 200 // subpopsize = 200/12 min (WORKER_COUNT+1)²
         const val WORKER_RESPONSE_TIME = 2 // time in minutes
         const val DEMO_INDIVIDUAL_SIZE = 90 // TODO test sizes
         const val MIN_DELTA = 10
@@ -36,7 +36,7 @@ class Scheduler {
      */
     fun updateBestIndividual(population: Population) {
         // best individual of the given population
-        val individual = population.getFittest()
+        val individual = population.getBestIndividual()
 
         individual?.let { addDemoIndividual(it) } ?: return
 
@@ -46,9 +46,10 @@ class Scheduler {
             if (delta < MIN_DELTA) bestIndividual = demoIndividual.first()
         }
 
-        println("BEST distance: ${bestIndividual?.distance})")
-        println("DEMO distance: ${demoIndividual.firstOrNull()?.distance})")
-        println("new distance ${individual.distance})")
+        println("Currently shortest Distance: ${demoIndividual.firstOrNull()?.distance} (DemoResult=${bestIndividual == null})")
+//        println("BEST distance: ${bestIndividual?.distance})")
+//        println("DEMO distance: ${demoIndividual.firstOrNull()?.distance})")
+//        println("new distance ${individual.distance})")
     }
 
     private fun addDemoIndividual(individual: IndividualPath) {
@@ -144,10 +145,16 @@ class Scheduler {
     }
 
     fun printPopulations(header: String) {
-        println(header)
-        workers.forEach { println("${it.uuid} (${it.subPopulation.getFittest()?.distance})") }
         println("---------------")
-        subPopulations.forEach { println(it.getPaths().first()) }
+        println("Event: $header")
+        println("Current Worker:")
+        workers.forEach { println("${it.uuid} (${it.subPopulation.getBestIndividual()?.distance})") }
+        println("---")
+        println("Current subPopulations:")
+        subPopulations.forEach { population ->
+            val individual = population.getBestIndividual()
+            println("Distance: ${individual?.distance ?: "null"} - Individual: $individual")
+        }
         println("---------------")
     }
 

@@ -143,6 +143,9 @@ object RestService {
     private suspend fun updateWorker(call: ApplicationCall) {
         // check if worker is in list
         val parsedPopulation = parsePopulation(call) ?: return
+        print("ParsePopulation: Distances: ")
+        parsedPopulation.paths.forEach { print("${it?.distance} |") }
+        println("")
         val workerId = call.parameters["uuid"]
 
         if (workerId == null) {
@@ -151,39 +154,37 @@ object RestService {
             return
         }
 
-        println("update worker")
-
         // update worker individual
         var alreadyInList = false
         var respondPopulation: Population? = null
 
-        scheduler.workers.forEach {
-            if (it.uuid == UUID.fromString(workerId)) {
+        scheduler.workers.forEach { updatingWorker ->
+            if (updatingWorker.uuid == UUID.fromString(workerId)) {
 
-                println("Update worker ${it.uuid}")
+                println("Update worker ${updatingWorker.uuid}")
                 if (!calculationIsRunning(call)) {
-                    it.timestamp = LocalDateTime.now()
+                    updatingWorker.timestamp = LocalDateTime.now()
                     return
                 }
 
                 // utility.get a new population for the worker
                 val newPopulation = scheduler.getSubPopulation() ?: throw NoSuchElementException()
 
-                if (scheduler.subPopulations.any { subPop -> subPop.worker == it }) {
-                    it.subPopulation.updateIndividuals(parsedPopulation)
-                    scheduler.updateBestIndividual(it.subPopulation)
+                if (scheduler.subPopulations.any { subPop -> subPop.worker == updatingWorker }) {
+                    updatingWorker.subPopulation.updateIndividuals(parsedPopulation)
+                    scheduler.updateBestIndividual(updatingWorker.subPopulation)
 
-                    it.changePopulation(newPopulation)
+                    updatingWorker.changePopulation(newPopulation)
                     scheduler.evolvePopulation()
                 } else {
-                    it.changePopulation(newPopulation)
+                    updatingWorker.changePopulation(newPopulation)
                 }
 
-                it.timestamp = LocalDateTime.now()
-                respondPopulation = it.subPopulation
+                updatingWorker.timestamp = LocalDateTime.now()
+                respondPopulation = updatingWorker.subPopulation
                 alreadyInList = true
 
-                scheduler.printPopulations("Update Worker")
+                scheduler.printPopulations("Worker update")
                 return@forEach
             }
         }
@@ -228,7 +229,7 @@ object RestService {
      * delete map and set calculationRunning flag to false
      */
     private suspend fun deleteMap(call: ApplicationCall) {
-        scheduler.bestDistance = 0
+        scheduler.bestDistance = Int.MAX_VALUE
         scheduler.bestIndividual = null
         scheduler.subPopulations.clear()
         scheduler.demoIndividual.clear()
@@ -304,7 +305,6 @@ object RestService {
         val string = call.receiveTextWithCorrectEncoding()
 
         val population = Gson().fromJson(string, Population::class.java)
-        population.paths.forEach { print("$it |") }
 
         if (population.paths.contains(null) || population.paths.isNullOrEmpty()) {
             call.respondText("invalid population", status = HttpStatusCode.BadRequest)

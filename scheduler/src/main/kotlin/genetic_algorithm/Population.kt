@@ -12,7 +12,8 @@ class Population(populationSize: Int, initialize: Boolean) {
     var paths: Array<IndividualPath?>
 
     // transient --> property is ignored from Gson while building json
-    @Transient var worker: Worker? = null
+    @Transient
+    var worker: Worker? = null
 
     init {
         paths = arrayOfNulls(populationSize)
@@ -87,8 +88,8 @@ class Population(populationSize: Int, initialize: Boolean) {
      */
     fun updateIndividuals(population: Population) {
         paths = population.paths
-        println("new saved individuals $paths")
-        paths.forEach { print("$it |") }
-        println("----")
+//        println("new saved individuals $paths")
+//        paths.forEach { print("$it |") }
+//        println("----")
     }
 }

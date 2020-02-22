@@ -52,7 +52,8 @@ public class Worker
 
                     // Print final results
                     System.out.println("Finished");
-                    System.out.println("Final distance: " + actualPopulation.getFittest(graph).getDistance(graph));
+                    actualPopulation.getFittest(graph).getDistance(graph);
+                    System.out.println("Final distance: " + actualPopulation.getBestDistance(graph));
                     System.out.println("Solution:");
                     System.out.println(actualPopulation.getFittest(graph));
 

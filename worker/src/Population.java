@@ -59,6 +59,20 @@ public class Population {
         return fittest;
     }
 
+    public double getBestDistance(Graph graph)
+    {
+        double bestDistance = paths[0].getDistance(graph);
+
+        for (int i = 1; i < populationSize(); i++)
+        {
+            if(bestDistance >= paths[i].getDistance(graph))
+            {
+                bestDistance = paths[i].getDistance(graph);
+            }
+        }
+        return bestDistance;
+    }
+
     /**
      * Gets population size
      * @return size of population

@@ -36,7 +36,7 @@ class Scheduler {
      */
     fun updateBestIndividual(population: Population) {
         // best individual of the given population
-        val individual = population.getFittest()
+        val individual = population.getBestIndividual()
 
         individual?.let { addDemoIndividual(it) } ?: return
 

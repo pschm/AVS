@@ -151,8 +151,6 @@ object RestService {
             return
         }
 
-        println("update worker")
-
         // update worker individual
         var alreadyInList = false
         var respondPopulation: Population? = null
@@ -228,7 +226,7 @@ object RestService {
      * delete map and set calculationRunning flag to false
      */
     private suspend fun deleteMap(call: ApplicationCall) {
-        scheduler.bestDistance = 0
+        scheduler.bestDistance = Int.MAX_VALUE
         scheduler.bestIndividual = null
         scheduler.subPopulations.clear()
         scheduler.demoIndividual.clear()
@@ -304,7 +302,6 @@ object RestService {
         val string = call.receiveTextWithCorrectEncoding()
 
         val population = Gson().fromJson(string, Population::class.java)
-        population.paths.forEach { print("$it |") }
 
         if (population.paths.contains(null) || population.paths.isNullOrEmpty()) {
             call.respondText("invalid population", status = HttpStatusCode.BadRequest)

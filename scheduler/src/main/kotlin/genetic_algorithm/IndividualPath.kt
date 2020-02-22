@@ -11,15 +11,14 @@ class IndividualPath(
     var individualPath: ArrayList<Product?> = ArrayList()
 ) {
 
-    var fitness = 0.0
-        get() {
-            if (field == 0.0) {
-                field = 1 / distance.toDouble()
-            }
-            return field
-        }
-    var distance = 0
-        get() = calcDistance(field)
+    var fitness: Double = 0.0
+//        get() {
+//            if (field == 0.0) {
+//                field = 1 / distance.toDouble()
+//            }
+//            return field
+//        }
+    var distance = Int.MAX_VALUE
 
     init {
         if (individualPath.isEmpty()) {
@@ -73,35 +72,8 @@ class IndividualPath(
     private fun setProduct(individualPathPosition: Int, product: Product?) {
         individualPath[individualPathPosition] = product
         // If the IndividualPaths been altered we need to reset the fitness and distance
-        fitness = 0.0
-        distance = 0
-    }
-
-    /**
-     * Gets the total distance of the IndividualPath
-     * @return Distance (INT)
-     */
-    private fun calcDistance(oldDistance: Int): Int {
-        var newDistance = oldDistance
-        if (oldDistance == 0) {
-            var individualPathDistance = 0
-            // Loop through our IndividualPath's products
-            for (productIndex in 0 until pathSize()) { // Get product we're travelling from
-                val fromProduct = getProduct(productIndex)
-                // Product we're travelling to
-                // Check we're not on our IndividualPath's last product, if we are set our
-                // IndividualPath's final destination product to our starting product
-                val destinationProduct = if (productIndex + 1 < pathSize()) {
-                    getProduct(productIndex + 1)
-                } else {
-                    getProduct(0)
-                }
-                // Get the distance between the two products
-                individualPathDistance += fromProduct!!.distanceTo(destinationProduct!!).toInt()
-            }
-            newDistance = individualPathDistance
-        }
-        return newDistance
+        fitness = Double.MIN_VALUE
+        distance = Int.MAX_VALUE
     }
 
     /**

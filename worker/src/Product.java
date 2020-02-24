@@ -66,7 +66,10 @@ public class Product {
     }
     
     @Override
+//    public String toString(){
+//        return getX()+","+getY()+","+getProductName();
+//    }
     public String toString(){
-        return getX()+","+getY()+","+getProductName();
+        return getProductName();
     }
 }

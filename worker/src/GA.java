@@ -1,13 +1,14 @@
 import app.Graph;
 
 public class GA {
-	 /* GA parameters */
-    private static final double mutationRate = 0.015;
+    /* GA parameters */
+    private static final double mutationRate = 0.2; // 0.015
     private static final int tournamentSize = 5;
     private static final boolean elitism = true;
 
     /**
      * Evolves a population over one generation
+     *
      * @param pop
      * @return new Population
      */
@@ -46,13 +47,14 @@ public class GA {
 
     /**
      * Applies crossover to a set of parents and creates offspring
+     *
      * @param parent1
      * @param parent2
      * @return new Path
      */
     public static IndividualPath crossover(IndividualPath parent1, IndividualPath parent2) {
         // Create new child tour
-    	IndividualPath child = new IndividualPath(parent1.pathSize());
+        IndividualPath child = new IndividualPath(parent1.pathSize());
 
         // Get start and end sub tour positions for parent1's tour
         int startPos = 0;
@@ -91,19 +93,19 @@ public class GA {
 
     /**
      * Mutate a path using swap mutation
+     *
      * @param path
      */
     private static void mutate(IndividualPath path) {
         // Loop through path products
-        for(int tourPos1=1; tourPos1 < path.pathSize()-1; tourPos1++){
+        for (int tourPos1 = 1; tourPos1 < path.pathSize() - 1; tourPos1++) {
             // Apply mutation rate
-            if(Math.random() < mutationRate){
+            if (Math.random() < mutationRate) {
                 // Get a second random position in the path
 
                 int tourPos2 = (int) (path.pathSize() * Math.random());
 
-                if(tourPos2!=0 && tourPos2!=path.pathSize()-1)
-                {
+                if (tourPos2 != 0 && tourPos2 != path.pathSize() - 1) {
                     // Get the products at target position in path
                     Product city1 = path.getProduct(tourPos1);
                     Product city2 = path.getProduct(tourPos2);
@@ -118,6 +120,7 @@ public class GA {
 
     /**
      * Selects candidate path for crossover
+     *
      * @param pop
      * @return fittest path
      */

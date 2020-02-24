@@ -1,12 +1,6 @@
 import app.App;
-import app.Edge;
 import app.Graph;
-import app.Position;
-import app.Vertex;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import javax.swing.*;
@@ -15,14 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
 
 public class Worker
 {
@@ -36,13 +23,13 @@ public class Worker
 
         while(true)
         {
-            Thread.sleep(1000);
+            //Thread.sleep(1000);
 
             if (!uuid.isEmpty())
             {
                 if (actualPopulation != null)
                 {
-                    System.out.println("Initial distance: " + actualPopulation.getFittest(graph).getDistance(graph));
+                    double initialDistance =  actualPopulation.getFittest(graph).getDistance(graph);
 
                     actualPopulation = GA.evolvePopulation(actualPopulation, graph);
                     for (int i = 0; i < 100; i++)
@@ -53,9 +40,12 @@ public class Worker
                     // Print final results
                     System.out.println("Finished");
                     actualPopulation.getFittest(graph).getDistance(graph);
-                    System.out.println("Final distance: " + actualPopulation.getBestDistance(graph));
-                    System.out.println("Solution:");
-                    System.out.println(actualPopulation.getFittest(graph));
+                    double finalDistance = actualPopulation.getBestDistance(graph);
+                    System.out.println("Before: " + initialDistance);
+                    System.out.println("After : " + finalDistance);
+                    double distanceDelta = initialDistance - finalDistance;
+                    System.out.println("Delta : " + distanceDelta);
+                    System.out.println("---");
 
                     JSONObject obj = schedulerAPI.putWorker(uuid, actualPopulation);
 
@@ -126,6 +116,7 @@ public class Worker
 
         JLabel label = new JLabel("Enter Scheduler IP and Port (Example: http://localhost:8080) ");
         JTextField ipPort = new JTextField(20);
+        ipPort.setText("http://localhost:8080");
 
         newPanel.add(label);
         newPanel.add(ipPort);
@@ -153,8 +144,12 @@ public class Worker
         JFrame frame = new JFrame();
         frame.add(newPanel);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
-        frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+//        frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
+//        frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+
+        frame.setLocation(500, 500);
+        frame.setSize(750, 150);
+        frame.setTitle("AVS - Worker");
 
         frame.addWindowListener(new WindowAdapter() {
             @Override

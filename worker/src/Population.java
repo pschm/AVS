@@ -49,14 +49,16 @@ public class Population {
      * @return fittest Path
      */
     public IndividualPath getFittest(Graph graph) {
-    	IndividualPath fittest = paths[0];
-        // Loop through individuals to find fittest
-        for (int i = 1; i < populationSize(); i++) {
-            if (fittest.getFitness(graph) <= getPath(i).getFitness(graph)) {
-                fittest = getPath(i);
-            }
-        }
-        return fittest;
+        return getBestIndividual(graph);
+
+//    	IndividualPath fittest = paths[0];
+//        // Loop through individuals to find fittest
+//        for (int i = 1; i < populationSize(); i++) {
+//            if (fittest.getFitness(graph) <= getPath(i).getFitness(graph)) {
+//                fittest = getPath(i);
+//            }
+//        }
+//        return fittest;
     }
 
     public double getBestDistance(Graph graph)
@@ -71,6 +73,20 @@ public class Population {
             }
         }
         return bestDistance;
+    }
+
+    public IndividualPath getBestIndividual(Graph graph)
+    {
+        IndividualPath bestPath = paths[0];
+
+        for (int i = 1; i < populationSize(); i++)
+        {
+            if(bestPath.getDistance(graph) >= paths[i].getDistance(graph))
+            {
+                bestPath = paths[i];
+            }
+        }
+        return bestPath;
     }
 
     /**

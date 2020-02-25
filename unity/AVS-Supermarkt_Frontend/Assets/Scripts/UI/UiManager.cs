@@ -138,4 +138,9 @@ public class UiManager : MonoBehaviour {
         AllowCameraScript = true;
     }
 
+
+    public void ToogleDisplayStraightPath(bool check) => pathDisplayer.EnableDisplayStraithPath(check);
+    public void ToogleDisplayNavPath(bool check) => pathDisplayer.EnableDisplayNavPath(check);
+    public void ToogleDisplayOrderNumbers(bool check) => pathDisplayer.EnableOrderNumbers(check);
+
 }

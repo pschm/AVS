@@ -16,6 +16,7 @@ public class PathDisplayer : MonoBehaviour {
     private const float hightOffsetNumbers = 3f;
 
     private List<GameObject> activeOrderNumbers = new List<GameObject>();
+    private bool orderNumbersEnabled = true;
 
     public static PathDisplayer Instance { get; private set; }
 
@@ -53,6 +54,7 @@ public class PathDisplayer : MonoBehaviour {
             number.transform.SetParent(transform);
             number.transform.position = new Vector3(waypoints[i].x, hightOffsetNumbers, waypoints[i].z);
             number.name = "No. " + numVal;
+            number.gameObject.SetActive(orderNumbersEnabled);
 
             activeOrderNumbers.Add(number.gameObject);
         }
@@ -99,5 +101,13 @@ public class PathDisplayer : MonoBehaviour {
         rendererPath.positionCount = 0;
         rendererStraight.positionCount = 0;
         ClearOrderNumbers();
+    }
+
+
+    public void EnableStraightPath(bool visable) => rendererStraight.enabled = visable;
+    public void EnableNavPath(bool visable) => rendererPath.enabled = visable;
+    public void EnableOrderNumbers(bool visable) {
+        orderNumbersEnabled = visable;
+        activeOrderNumbers.ForEach(x => x.SetActive(visable));
     }
 }

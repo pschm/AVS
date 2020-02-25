@@ -99,6 +99,17 @@ public class Worker {
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
+        // CONSOLE-ONLY
+        if (args.length > 0 && args[0] != null && args[0].equals("no-gui")) {
+            String address = "http://localhost:8080";
+
+            if (args.length > 1 && args[1].contains("http")) address = args[1];
+
+            start(address);
+            return;
+        }
+
+        // GUI
         JPanel newPanel = new JPanel();
         newPanel.setLayout(new GridBagLayout());
 
@@ -130,10 +141,6 @@ public class Worker {
 
         JFrame frame = new JFrame();
         frame.add(newPanel);
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-//        frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
-//        frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
-
         frame.setLocation(500, 500);
         frame.setSize(750, 150);
         frame.setTitle("AVS - Worker");

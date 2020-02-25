@@ -1,15 +1,9 @@
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
-
 import com.google.gson.Gson;
 import org.json.JSONObject;
+
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class SchedulerAPI {
     
@@ -46,7 +40,7 @@ public class SchedulerAPI {
                     while ((responseLine = br.readLine()) != null) {
                         response.append(responseLine.trim());
                     }
-                    System.out.println("GET RESPONSE:" + response.toString());
+                    //System.out.println("GET RESPONSE:" + response.toString());
                 }
             }
             else if(status == HttpURLConnection.HTTP_NO_CONTENT)
@@ -63,7 +57,6 @@ public class SchedulerAPI {
             }
     
             //JSONObject jsonObject = new JSONObject(response.toString());
-
             return response.toString();
     
         } catch (Exception e)
@@ -111,7 +104,7 @@ public class SchedulerAPI {
                     while ((responseLine = br.readLine()) != null) {
                         response.append(responseLine.trim());
                     }
-                    System.out.println("RESPONSE:" + response.toString());
+                    //System.out.println("RESPONSE:" + response.toString());
                 }
             }
             else if(status == HttpURLConnection.HTTP_NO_CONTENT)

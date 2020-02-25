@@ -1,0 +1,1 @@
+java -jar classes/artifacts/Worker_jar/Worker.jar no-gui http://localhost:8080

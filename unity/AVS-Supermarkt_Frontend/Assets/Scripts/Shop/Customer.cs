@@ -93,6 +93,7 @@ public class Customer : MonoBehaviour {
     public void ResetPosition(Vector3 position) {
         agent.isStopped = true;
         destination = null;
+        waypoints = null;
         transform.position = position;
     }
 

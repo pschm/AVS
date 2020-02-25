@@ -3,14 +3,19 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine.AI;
+using TMPro;
 
 public class PathDisplayer : MonoBehaviour {
 
+    [SerializeField] private TextMeshPro orderNumberPrefab = null;
     [SerializeField] private LineRenderer rendererPath = null;
     [SerializeField] private LineRenderer rendererStraight = null;
 
     private const float hightOffsetPath = .1f;
     private const float hightOffsetStraight = 2.5f;
+    private const float hightOffsetNumbers = 3f;
+
+    private List<GameObject> activeOrderNumbers = new List<GameObject>();
 
     public static PathDisplayer Instance { get; private set; }
 
@@ -29,6 +34,35 @@ public class PathDisplayer : MonoBehaviour {
     public void DisplayAllPath(List<Vector3> waypoints) {
         DisplayStraightPath(waypoints);
         DisplayNavPath(waypoints);
+    }
+
+    public void DisplayOrderNumbers(List<Vector3> waypoints) {
+        if(orderNumberPrefab == null) {
+            Debug.LogWarning("No order number prefab set. Skipping displaying them.");
+            return;
+        }
+
+        ClearOrderNumbers();
+
+        //Skit first and two last points (entry, checkout, exit)
+        for(int i = 1; i < waypoints.Count - 2; i++) {
+            var numVal = i - 1;
+
+            var number = Instantiate(orderNumberPrefab);
+            number.text = numVal.ToString();
+            number.transform.SetParent(transform);
+            number.transform.position = new Vector3(waypoints[i].x, hightOffsetNumbers, waypoints[i].z);
+            number.name = "No. " + numVal;
+
+            activeOrderNumbers.Add(number.gameObject);
+        }
+    }
+
+    public void ClearOrderNumbers() {
+        for(int i = activeOrderNumbers.Count - 1; i > 0; i--) {
+            Destroy(activeOrderNumbers[i].gameObject);
+        }
+        activeOrderNumbers = new List<GameObject>();
     }
 
     public void DisplayStraightPath(List<Vector3> waypoints) {
@@ -61,8 +95,9 @@ public class PathDisplayer : MonoBehaviour {
         rendererPath.Simplify(1);
     }
 
-    public void ClearAllPath() {
+    public void ClearAll() {
         rendererPath.positionCount = 0;
         rendererStraight.positionCount = 0;
+        ClearOrderNumbers();
     }
 }

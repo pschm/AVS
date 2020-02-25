@@ -25224,7 +25224,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 771286796}
-        m_MethodName: CancelCalculation
+        m_MethodName: CancelCalculationAndVisualization
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -29855,6 +29855,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd754ddcc5f2d9346bb598fdf740f2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orderNumberPrefab: {fileID: 4950690841639413939, guid: 2125acc19424ceb479d12f02e485ba39,
+    type: 3}
   rendererPath: {fileID: 1957047611}
   rendererStraight: {fileID: 316010527}
 --- !u!4 &1309254115

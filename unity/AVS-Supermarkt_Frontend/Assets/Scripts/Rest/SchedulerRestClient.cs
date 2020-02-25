@@ -41,6 +41,7 @@ public class SchedulerRestClient : MonoBehaviour {
         }
     }
 
+    public bool CalcuationRunning => calculationActive;
 
     public void StartCalculationForShoppinglist(List<NodeModel> nodes, string hostUrl, Action<PathResponse> intAction, Action<PathResponse, bool> actionOnResult) {
         if(calculationActive) {

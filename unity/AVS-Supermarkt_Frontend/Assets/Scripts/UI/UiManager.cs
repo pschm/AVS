@@ -27,7 +27,7 @@ public class UiManager : MonoBehaviour {
     public void StartCalculation() {
         CloseAllUis();
         statisticsUI.ClearStatistics();
-        PathDisplayer.Instance.ClearAllPath();
+        PathDisplayer.Instance.ClearAll();
 
         loadingPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Berechnung läuft...";
         loadingPanel.SetActive(true);
@@ -43,8 +43,13 @@ public class UiManager : MonoBehaviour {
         statisticsUI.ResetAndStartTimer();
     }
 
-    public void CancelCalculation() {
-        SchedulerRestClient.Instance.CancelCalculation(schedulerIpField.text);
+    public void CancelCalculationAndVisualization() {
+        if(SchedulerRestClient.Instance.CalcuationRunning) SchedulerRestClient.Instance.CancelCalculation(schedulerIpField.text);
+        else {
+            customer.ResetPosition();
+            PathDisplayer.Instance.ClearAll();
+            OpenOpenerUi();
+        }
     }
 
     private void ProcessCalculationResult(PathResponse result, bool wasCanceled) {
@@ -102,6 +107,9 @@ public class UiManager : MonoBehaviour {
 
         //Display the all waypoints as the customers real path
         if(!customer.onlyBeeLine) PathDisplayer.Instance.DisplayNavPath(waypoints);
+
+        //Display order numbers
+        PathDisplayer.Instance.DisplayOrderNumbers(waypoints);
     }
 
     public void OpenPlannerUi() {

@@ -1,4 +1,4 @@
-import app.Graph;
+import a_star.Graph;
 
 public class GA {
     /* GA parameters */

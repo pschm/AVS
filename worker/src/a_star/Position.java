@@ -1,7 +1,7 @@
-package app;
+package a_star;
 
 public class Position {
-	
+
     public final int x;
     public final int y;
 

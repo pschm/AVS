@@ -1,16 +1,17 @@
-package app;
+package a_star;
 
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
+import java.util.PriorityQueue;
+import java.util.logging.Logger;
 
 
 public class Graph {
+    private static final Logger logger = Logger.getLogger(Graph.class.getCanonicalName());
 
     private LinkedList<Vertex> vertices; // Alle Knoten/Vertices des Graphen
-    private LinkedList<Edge> edges;         // Alle Kanten/Edges des Graphen
-
-    private LinkedList<Vertex> highlightedVerticies = new LinkedList<>();
-    private LinkedList<Edge> highlightedEdges = new LinkedList<>();
+    private LinkedList<Edge> edges;      // Alle Kanten/Edges des Graphen
 
     private int lastEdgeId = 0;
 
@@ -21,6 +22,106 @@ public class Graph {
         vertices = new LinkedList<>();
         edges = new LinkedList<>();
     }
+
+    public double aStar(Vertex from, Vertex to) throws NoSuchElementException {
+        LinkedList<Vertex> vertices = getVertices();
+
+        // MAKEHEAP create new heap (binary heap)
+        PriorityQueue<Vertex> openList = new PriorityQueue<>(Comparator.comparing(Vertex::getOrder));
+
+        // test if from and to are in the graph!
+        if (!vertices.contains(from) && !vertices.contains(to)) {
+            // one vertex is not in the graph
+            throw new NoSuchElementException();
+        } else {
+            from = getVertex(from.getId());
+            to = getVertex(to.getId());
+        }
+
+        LinkedList<Vertex> closedList = new LinkedList<>();
+
+        // init all vertices
+        for (Vertex v : vertices) {
+            v.setDistance(Double.POSITIVE_INFINITY);
+
+            // calc heuristic
+            double a = Math.abs(v.getPosition().x - to.getPosition().x);
+            double b = Math.abs(v.getPosition().y - to.getPosition().y);
+            double heuristic = Math.sqrt((a * a) + (b * b));
+            v.setHeuristic(heuristic);
+
+            // set heuristic + distance // always infinity
+            v.setOrder(v.getDistance() + v.getHeuristic());
+
+            v.setPre(null);
+        }
+
+        // init from Vertex
+        from.setDistance(0.0);
+        //to.setDistance(0.0);
+        openList.add(from);            // HEAP INSERT
+
+        while (!openList.isEmpty()) {
+            Vertex u = openList.poll(); // HEAP-EXTRACT-MIN
+            if (u == null) return 0.0;
+            if (u.equals(to)) {
+                // Pfad gefunden
+                closedList.add(to);
+
+                double aStarDistance = 0.0;
+                if (closedList.size() >= 2) {
+                    for (int i = 0; i < closedList.size() - 1; i++) {
+                        Vertex a = closedList.get(i);
+                        Vertex b = closedList.get(i + 1);
+
+                        aStarDistance += a.distanceTo(b);
+                    }
+                }
+
+                return aStarDistance;
+            }
+
+            closedList.add(u);
+            expandNode(openList, closedList, u);
+        }
+        logger.warning("Could not find path.");
+        return 0.0;
+    }
+
+    private void expandNode(PriorityQueue<Vertex> openList, LinkedList<Vertex> closedList, Vertex u) {
+        // for all neighbours of u
+        for (Vertex v : neighbours(u)) {
+
+            // wenn der Nachbar bereits teil des Pfads ist,
+            // mache mit dem nächsten Nachbarn weiter
+            if (closedList.contains(v)) continue;
+
+            // distanz berechnen
+            double g = u.getDistance() + getEdgeWeight(u, v);
+
+            // wenn der Nachbar in der openList ist, aber die Distanz zu groß ist,
+            // mach mit dem nächsten Nachbarn weiter
+            if (openList.contains(v) && g >= v.getDistance()) continue;
+
+            v.setPre(u);
+            v.setDistance(g);
+
+            double order = v.getHeuristic() + g;
+
+            if (openList.contains(v)) {
+                // HEAP DECREASE KEY
+                openList.remove(v);
+                v.setOrder(order);
+                openList.add(v);
+            } else {
+                // HEAP INSERT
+                v.setOrder(order);
+                openList.add(v);
+            }
+
+        } // End for (all neighbours)
+    }
+
 
     // Knoten/Vertices //
 
@@ -46,8 +147,7 @@ public class Graph {
     /**
      * Liefert den Vertex mit der gegebenen @param id
      */
-    public Vertex getVertex(int id)
-    {
+    public Vertex getVertex(int id) {
         for (Vertex v : vertices) {
             if (v.getId() == id) return v;
         }
@@ -298,23 +398,4 @@ public class Graph {
         }
         return false;
     }
-
-
-    public LinkedList<Vertex> getHighlightedVerticies() {
-        return highlightedVerticies;
-    }
-
-    public void setHighlightedVerticies(LinkedList<Vertex> highlightedVerticies) {
-        this.highlightedVerticies = highlightedVerticies;
-    }
-
-    public LinkedList<Edge> getHighlightedEdges() {
-        return highlightedEdges;
-    }
-
-    public void setHighlightedEdges(LinkedList<Edge> highlightedEdges) {
-        this.highlightedEdges = highlightedEdges;
-    }
-
-
 }

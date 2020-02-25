@@ -1,4 +1,4 @@
-import app.Graph;
+import a_star.Graph;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

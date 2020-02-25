@@ -1,5 +1,5 @@
-import app.App;
-import app.Graph;
+import a_star.Graph;
+import a_star.GraphParser;
 import com.google.gson.Gson;
 import org.json.JSONObject;
 
@@ -11,29 +11,21 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 
-public class Worker
-{
-    public static void start(String ipAndPort) throws IOException, InterruptedException
-    {
+public class Worker {
+    public static void start(String ipAndPort) throws IOException, InterruptedException {
         SchedulerAPI schedulerAPI = new SchedulerAPI(ipAndPort);
 
         Population actualPopulation = null;
         String uuid = "";
         Graph graph = null;
 
-        while(true)
-        {
-            //Thread.sleep(1000);
-
-            if (!uuid.isEmpty())
-            {
-                if (actualPopulation != null)
-                {
-                    double initialDistance =  actualPopulation.getFittest(graph).getDistance(graph);
+        while (true) {
+            if (!uuid.isEmpty()) {
+                if (actualPopulation != null) {
+                    double initialDistance = actualPopulation.getFittest(graph).getDistance(graph);
 
                     actualPopulation = GA.evolvePopulation(actualPopulation, graph);
-                    for (int i = 0; i < 100; i++)
-                    {
+                    for (int i = 0; i < 100; i++) {
                         actualPopulation = GA.evolvePopulation(actualPopulation, graph);
                     }
 
@@ -50,10 +42,8 @@ public class Worker
                     JSONObject obj = schedulerAPI.putWorker(uuid, actualPopulation);
 
                     if (obj != null) {
-                        if(obj.has("status"))
-                        {
-                            if(obj.getString("status").equals("bad"))
-                            {
+                        if (obj.has("status")) {
+                            if (obj.getString("status").equals("bad")) {
                                 String popAndUUID = schedulerAPI.getWorker();
 
                                 if (popAndUUID != null) {
@@ -71,11 +61,10 @@ public class Worker
 
                                     String jsonALL = popUUIDObj.toString();
 
-                                    graph = App.start(jsonALL);
+                                    graph = GraphParser.readNavMesh(jsonALL);
                                 }
                             }
-                        }
-                        else {
+                        } else {
                             Gson gson = new Gson();
                             actualPopulation = gson.fromJson(obj.getJSONObject("population").toString(), Population.class);
                         }
@@ -103,14 +92,13 @@ public class Worker
 
                     String jsonALL = popUUIDObj.toString();
 
-                    graph = App.start(jsonALL);
+                    graph = GraphParser.readNavMesh(jsonALL);
                 }
             }
         }
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException
-    {
+    public static void main(String[] args) throws IOException, InterruptedException {
         JPanel newPanel = new JPanel();
         newPanel.setLayout(new GridBagLayout());
 
@@ -127,8 +115,7 @@ public class Worker
             public void actionPerformed(ActionEvent e) {
                 Thread thread = new Thread(new Runnable() {
                     @Override
-                    public void run()
-                    {
+                    public void run() {
                         try {
                             start(ipPort.getText());
                         } catch (IOException | InterruptedException ex) {
@@ -161,5 +148,5 @@ public class Worker
         });
 
         frame.setVisible(true);
-	}
+    }
 }

@@ -1,4 +1,4 @@
-package app;
+package a_star;
 
 /**
  * Stellt eine Kante/Edge innerhalb eines Graphen dar

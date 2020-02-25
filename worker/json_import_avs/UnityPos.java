@@ -1,6 +1,6 @@
 package json_import_avs;
 
-import app.Position;
+import a_star.Position;
 import com.google.gson.annotations.SerializedName;
 
 public class UnityPos {

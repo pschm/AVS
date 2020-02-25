@@ -15,6 +15,8 @@ public class UiManager : MonoBehaviour {
 
     public Customer customer;
 
+    private PathDisplayer pathDisplayer;
+
     public bool AllowCameraScript { get; private set; }
 
     private void Awake() {
@@ -24,10 +26,14 @@ public class UiManager : MonoBehaviour {
         OpenOpenerUi();
     }
 
+    private void Start() {
+        pathDisplayer = PathDisplayer.Instance;
+    }
+
     public void StartCalculation() {
         CloseAllUis();
         statisticsUI.ClearStatistics();
-        PathDisplayer.Instance.ClearAll();
+        pathDisplayer.ClearAll();
 
         loadingPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Berechnung läuft...";
         loadingPanel.SetActive(true);
@@ -47,7 +53,7 @@ public class UiManager : MonoBehaviour {
         if(SchedulerRestClient.Instance.CalcuationRunning) SchedulerRestClient.Instance.CancelCalculation(schedulerIpField.text);
         else {
             customer.ResetPosition();
-            PathDisplayer.Instance.ClearAll();
+            pathDisplayer.ClearAll();
             OpenOpenerUi();
         }
     }
@@ -77,7 +83,7 @@ public class UiManager : MonoBehaviour {
         if(intermediateRes == null || intermediateRes.DemoItems.Count <= 0) return;
 
         statisticsUI.UpdateCalcDistance(intermediateRes.distance);
-        PathDisplayer.Instance.DisplayStraightPath(NodeModel.GetVector3List(intermediateRes.DemoItems));
+        pathDisplayer.DisplayStraightPath(NodeModel.GetVector3List(intermediateRes.DemoItems));
     }
 
 
@@ -95,7 +101,7 @@ public class UiManager : MonoBehaviour {
         var waypoints = NodeModel.GetVector3List(resultPanel.ResultNodeList);
 
         //Display the waypoints beeline before adding the additional points for visualisation puropses
-        PathDisplayer.Instance.DisplayStraightPath(waypoints);
+        pathDisplayer.DisplayStraightPath(waypoints);
 
         //Add the second point of the cashdesk and the entry/exit point to the list
         //Only for visual puropses :)
@@ -106,10 +112,10 @@ public class UiManager : MonoBehaviour {
         customer.SetWaypoints(waypoints, OpenOpenerUi);
 
         //Display the all waypoints as the customers real path
-        if(!customer.onlyBeeLine) PathDisplayer.Instance.DisplayNavPath(waypoints);
+        if(!customer.onlyBeeLine) pathDisplayer.DisplayNavPath(waypoints);
 
         //Display order numbers
-        PathDisplayer.Instance.DisplayOrderNumbers(waypoints);
+        pathDisplayer.DisplayOrderNumbers(waypoints);
     }
 
     public void OpenPlannerUi() {

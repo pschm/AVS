@@ -47,7 +47,7 @@ public class PathDisplayer : MonoBehaviour {
 
         //Skit first and two last points (entry, checkout, exit)
         for(int i = 1; i < waypoints.Count - 2; i++) {
-            var numVal = i - 1;
+            var numVal = i;
 
             var number = Instantiate(orderNumberPrefab);
             number.text = numVal.ToString();
@@ -61,7 +61,7 @@ public class PathDisplayer : MonoBehaviour {
     }
 
     public void ClearOrderNumbers() {
-        for(int i = activeOrderNumbers.Count - 1; i > 0; i--) {
+        for(int i = activeOrderNumbers.Count - 1; i >= 0; i--) {
             Destroy(activeOrderNumbers[i].gameObject);
         }
         activeOrderNumbers = new List<GameObject>();

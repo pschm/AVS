@@ -6,6 +6,7 @@ import genetic_algorithm.Population
 import genetic_algorithm.Product
 import json_structure.MeshNode
 import java.time.LocalDateTime
+import java.util.*
 import kotlin.math.pow
 import kotlin.random.Random
 
@@ -160,6 +161,17 @@ class Scheduler {
 
     fun deleteOldWorkers() {
         val now = LocalDateTime.now()
-        workers.removeAll { it.timestamp.isBefore(now.minusMinutes(WORKER_RESPONSE_TIME.toLong())) }
+        val workerId = mutableListOf<UUID>();
+        for (worker in workers) {
+            if(worker.timestamp.isBefore(now.minusMinutes(WORKER_RESPONSE_TIME.toLong()))){
+                workerId.add(worker.uuid);
+            }
+        }
+        subPopulations.forEach{
+            if(workerId.contains(it.worker?.uuid)){
+                it.worker = null;
+            }
+        }
+        workers.removeAll{workerId.contains(it.uuid)}
     }
 }

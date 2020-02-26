@@ -14,10 +14,11 @@ class Scheduler {
 
     companion object {
         const val WORKER_COUNT = 12
-        const val POPULATION_SIZE = 200 // subpopsize = 200/12 min (WORKER_COUNT+1)²
+        const val POPULATION_SIZE = 1200 // subpopsize = 200/12 min (WORKER_COUNT+1)²
         const val WORKER_RESPONSE_TIME = 2 // time in minutes
         const val DEMO_INDIVIDUAL_SIZE = 90 // TODO test sizes
         const val MIN_DELTA = 10
+        const val INDIVIDUAL_EXCHANGE_COUNT = 10
     }
 
     @get:Synchronized
@@ -135,10 +136,13 @@ class Scheduler {
             val paths = it.getPaths()
             // sort all individuals according to the best path
             paths.sortBy { individualPath -> individualPath?.distance }
-            // remove the worst individual
-            paths.removeAt(paths.size - 1)
-            // add random new individual from neighbor population
-            paths.add(lastPopulation.getPaths()[Random.nextInt(0, lastPopulation.populationSize())])
+
+            repeat(INDIVIDUAL_EXCHANGE_COUNT) {
+                // remove the worst individual
+                paths.removeAt(paths.size - 1)
+                // add random new individual from neighbor population
+                paths.add(0, lastPopulation.getPaths()[Random.nextInt(0, lastPopulation.populationSize())])
+            }
 
             it.setPaths(paths)
             lastPopulation = it

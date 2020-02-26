@@ -32,7 +32,7 @@ public class UnityPos {
     }
 
     public Position convert() {
-        return new Position((int) x, (int) y);
+        return new Position(x, y);
     }
 
     @Override

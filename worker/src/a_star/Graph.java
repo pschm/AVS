@@ -45,8 +45,8 @@ public class Graph {
             v.setDistance(Double.POSITIVE_INFINITY);
 
             // calc heuristic
-            double a = Math.abs(v.getPosition().x - to.getPosition().x);
-            double b = Math.abs(v.getPosition().y - to.getPosition().y);
+            double a = v.getPosition().x - to.getPosition().x;
+            double b = v.getPosition().y - to.getPosition().y;
             double heuristic = Math.sqrt((a * a) + (b * b));
             v.setHeuristic(heuristic);
 

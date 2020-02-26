@@ -1,4 +1,5 @@
 import com.google.gson.Gson;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -127,7 +128,7 @@ public class SchedulerAPI {
                     {
                         try {
                             Worker.start(urlWorker);
-                        } catch (IOException | InterruptedException e) {
+                        } catch (IOException | InterruptedException | JSONException e) {
                             e.printStackTrace();
                         }
                     }

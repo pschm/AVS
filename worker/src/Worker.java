@@ -1,6 +1,7 @@
 import a_star.Graph;
 import a_star.GraphParser;
 import com.google.gson.Gson;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import javax.swing.*;
@@ -12,7 +13,7 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 public class Worker {
-    public static void start(String ipAndPort) throws IOException, InterruptedException {
+    public static void start(String ipAndPort) throws IOException, InterruptedException, JSONException {
         SchedulerAPI schedulerAPI = new SchedulerAPI(ipAndPort);
 
         Population actualPopulation = null;
@@ -32,8 +33,12 @@ public class Worker {
                     // Print final results
                     System.out.println("Finished");
                     actualPopulation.getFittest(graph).getDistance(graph);
+
+                    for (int i = 0; i < actualPopulation.paths.length; i++) {
+                        System.out.print(actualPopulation.paths[i].getDistance(graph) + " | ");
+                    }
                     double finalDistance = actualPopulation.getBestDistance(graph);
-                    System.out.println("Before: " + initialDistance);
+                    System.out.println("\nBefore: " + initialDistance);
                     System.out.println("After : " + finalDistance);
                     double distanceDelta = initialDistance - finalDistance;
                     System.out.println("Delta : " + distanceDelta);
@@ -98,7 +103,7 @@ public class Worker {
         }
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException, JSONException {
         // CONSOLE-ONLY
         if (args.length > 0 && args[0] != null && args[0].equals("no-gui")) {
             String address = "http://localhost:8080";
@@ -129,7 +134,7 @@ public class Worker {
                     public void run() {
                         try {
                             start(ipPort.getText());
-                        } catch (IOException | InterruptedException ex) {
+                        } catch (IOException | InterruptedException | JSONException ex) {
                             ex.printStackTrace();
                         }
                     }

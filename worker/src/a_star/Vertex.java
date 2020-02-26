@@ -55,8 +55,8 @@ public class Vertex {
     }
 
     public double distanceTo(Vertex vertex) {
-        double xDistance = Math.abs(getPosition().x - vertex.getPosition().x);
-        double yDistance = Math.abs(getPosition().y - vertex.getPosition().y);
+        double xDistance = getPosition().x - vertex.getPosition().x;
+        double yDistance = getPosition().y - vertex.getPosition().y;
         double distance = Math.sqrt((xDistance * xDistance) + (yDistance * yDistance));
 
         return distance;

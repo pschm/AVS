@@ -48,11 +48,6 @@ public class GraphParser {
                 List<Integer> nextNodes = node.getNextNodes();
                 for (int nodeId : nextNodes) {
                     Vertex to = graph.getVertex(nodeId);
-
-                    int a = Math.abs(from.getPosition().x - to.getPosition().x);
-                    int b = Math.abs(from.getPosition().y - to.getPosition().y);
-                    int weight = (int) Math.sqrt((a * a) + (b * b));
-
                     graph.addEdge(from, to);
                 }
             }

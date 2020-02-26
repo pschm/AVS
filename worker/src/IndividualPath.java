@@ -112,7 +112,7 @@ public class IndividualPath {
      */
     public double getDistance(Graph graph){
         if (distance == 0 || distance == 0.0) {
-            int IndividualPathDistance = 0;
+            double IndividualPathDistance = 0;
             // Loop through our IndividualPath's products
             for (int productIndex=0; productIndex < pathSize()-1; productIndex++) {
                 // Get product we're travelling from

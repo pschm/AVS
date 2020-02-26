@@ -25,7 +25,7 @@ class Scheduler {
     val workers =  mutableListOf<Worker>()
     var bestIndividual: IndividualPath? = null
     val demoIndividual = mutableListOf<IndividualPath>()
-    var bestDistance = 0
+    var bestDistance = 0.0
 
     var calculationRunning = false
 

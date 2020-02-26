@@ -18,7 +18,7 @@ class IndividualPath(
 //            }
 //            return field
 //        }
-    var distance = Int.MAX_VALUE
+    var distance = Double.MAX_VALUE
 
     init {
         if (individualPath.isEmpty()) {
@@ -73,7 +73,7 @@ class IndividualPath(
         individualPath[individualPathPosition] = product
         // If the IndividualPaths been altered we need to reset the fitness and distance
         fitness = Double.MIN_VALUE
-        distance = Int.MAX_VALUE
+        distance = Double.MAX_VALUE
     }
 
     /**

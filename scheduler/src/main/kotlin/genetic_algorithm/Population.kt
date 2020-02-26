@@ -73,7 +73,7 @@ class Population(populationSize: Int, initialize: Boolean) {
     /**
      * @return Individual with the shortest/best distance.
      */
-    fun getBestIndividual(): IndividualPath? = paths.minBy { it?.distance ?: Int.MAX_VALUE }
+    fun getBestIndividual(): IndividualPath? = paths.minBy { it?.distance ?: Double.MAX_VALUE }
 
     /**
      * Gets population size

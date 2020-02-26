@@ -17,7 +17,7 @@ data class PathResponse(
     @SerializedName("DemoItems")
     val demoPath: List<Product>,
     @SerializedName("Distance")
-    val distance: Int
+    val distance: Double
 )
 
 data class MeshNode(val id: Int, val position: Position, val nextNodes: List<Int>)

@@ -229,7 +229,7 @@ object RestService {
      * delete map and set calculationRunning flag to false
      */
     private suspend fun deleteMap(call: ApplicationCall) {
-        scheduler.bestDistance = Int.MAX_VALUE
+        scheduler.bestDistance = Double.MAX_VALUE
         scheduler.bestIndividual = null
         scheduler.subPopulations.clear()
         scheduler.demoIndividual.clear()

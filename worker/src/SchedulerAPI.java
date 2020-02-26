@@ -8,7 +8,6 @@ import java.net.URL;
 public class SchedulerAPI {
     
     private static HttpURLConnection con;
-    //private static String urlWorker = "http://139.6.65.27:8080/worker";
     private static String urlWorker = "";
 
     public SchedulerAPI(String ipAndPort)

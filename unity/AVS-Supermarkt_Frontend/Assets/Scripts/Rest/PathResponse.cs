@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [Serializable]
 public class PathResponse {
 
-    public float distance;
+    public float Distance;
 
     public List<NodeModel> Items; //Final Result. Only set when available.
 

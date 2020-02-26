@@ -85,7 +85,7 @@ public class SchedulerRestClient : MonoBehaviour {
             calDistance += Vector2.Distance(nodes[i].position, nodes[i + 1].position);
         }
 
-        actionOnResult(new PathResponse() { Items = nodes, distance = calDistance }, cancelCalculation);
+        actionOnResult(new PathResponse() { Items = nodes, Distance = calDistance }, cancelCalculation);
 
         cancelCalculation = false;
     }

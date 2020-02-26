@@ -75,14 +75,14 @@ public class UiManager : MonoBehaviour {
         resultPanel.gameObject.SetActive(true);
        
         statisticsUI.StopTimerAndDisplay();
-        statisticsUI.UpdateCalcDistance(result.distance);
+        statisticsUI.UpdateCalcDistance(result.Distance);
         if(!customer.onlyBeeLine) statisticsUI.UpdateRealDistance(NodeModel.GetVector3List(result.Items));
     }
 
     private void ProcessIntermediateResult(PathResponse intermediateRes) {
         if(intermediateRes == null || intermediateRes.DemoItems.Count <= 0) return;
 
-        statisticsUI.UpdateCalcDistance(intermediateRes.distance);
+        statisticsUI.UpdateCalcDistance(intermediateRes.Distance);
         pathDisplayer.DisplayStraightPath(NodeModel.GetVector3List(intermediateRes.DemoItems));
     }
 

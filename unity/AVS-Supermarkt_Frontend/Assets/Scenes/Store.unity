@@ -4013,7 +4013,7 @@ RectTransform:
   m_Father: {fileID: 1848957532}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.00000011920929, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -19956,8 +19956,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 186756159}
   m_HandleRect: {fileID: 186756158}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 0.9999999
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -30804,7 +30804,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 50
   m_Viewport: {fileID: 84183436}
   m_HorizontalScrollbar: {fileID: 1282887176}
   m_VerticalScrollbar: {fileID: 293199960}
@@ -32258,7 +32258,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 50
   m_Viewport: {fileID: 1853438333}
   m_HorizontalScrollbar: {fileID: 869251567}
   m_VerticalScrollbar: {fileID: 1948929206}
@@ -45851,7 +45851,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 50
   m_Viewport: {fileID: 2081827420}
   m_HorizontalScrollbar: {fileID: 2039469956}
   m_VerticalScrollbar: {fileID: 562266135}

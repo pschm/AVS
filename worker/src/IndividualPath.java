@@ -114,7 +114,7 @@ public class IndividualPath {
         if (distance == 0 || distance == 0.0) {
             int IndividualPathDistance = 0;
             // Loop through our IndividualPath's products
-            for (int productIndex=0; productIndex < pathSize(); productIndex++) {
+            for (int productIndex=0; productIndex < pathSize()-1; productIndex++) {
                 // Get product we're travelling from
             	Product fromProduct = getProduct(productIndex);
                 // Product we're travelling to

@@ -7,6 +7,7 @@ buildscript {
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
         classpath "com.github.jengelman.gradle.plugins:shadow:5.0.0"
     }
 }
@@ -16,6 +17,8 @@ apply plugin: 'java'
 apply plugin: "com.github.johnrengelman.shadow"
 apply plugin: 'application'
 apply plugin: 'org.jetbrains.kotlin.jvm'
+apply plugin: 'kotlinx-serialization'
+
 
 group 'avs-scheduler'
 version '1.0-SNAPSHOT'
@@ -43,9 +46,19 @@ dependencies {
 
     // json support
     implementation "com.google.code.gson:gson:1.7.2"
+    implementation "io.ktor:ktor-serialization:$ktor_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.14.0"
+
+
+    // yaml support
+    implementation "com.charleskorn.kaml:kaml:0.15.0"
 
     // kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+
+
+    // logging
+    implementation 'io.github.microutils:kotlin-logging:1.7.7'
 
     // junit
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_version"

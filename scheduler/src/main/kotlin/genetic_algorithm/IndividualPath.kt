@@ -12,12 +12,6 @@ class IndividualPath(
 ) {
 
     var fitness: Double = 0.0
-//        get() {
-//            if (field == 0.0) {
-//                field = 1 / distance.toDouble()
-//            }
-//            return field
-//        }
     var distance = Double.MAX_VALUE
 
     init {

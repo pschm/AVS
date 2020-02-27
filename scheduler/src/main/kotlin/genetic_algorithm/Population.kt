@@ -88,8 +88,5 @@ class Population(populationSize: Int, initialize: Boolean) {
      */
     fun updateIndividuals(population: Population) {
         paths = population.paths
-//        println("new saved individuals $paths")
-//        paths.forEach { print("$it |") }
-//        println("----")
     }
 }

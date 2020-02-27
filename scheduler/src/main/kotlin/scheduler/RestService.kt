@@ -20,6 +20,7 @@ import json_structure.MeshNode
 import json_structure.PathResponse
 import json_structure.UnityMapStructure
 import json_structure.WorkerRespond
+import mu.KotlinLogging
 import utility.get
 import java.time.LocalDateTime
 import java.util.*
@@ -30,6 +31,7 @@ import kotlin.NoSuchElementException
  */
 object RestService {
 
+    private val logger = KotlinLogging.logger {}
     private val scheduler = Scheduler()
     private val gson = Gson()
 
@@ -143,14 +145,17 @@ object RestService {
     private suspend fun updateWorker(call: ApplicationCall) {
         // check if worker is in list
         val parsedPopulation = parsePopulation(call) ?: return
-        print("ParsePopulation: Distances: ")
-        parsedPopulation.paths.forEach { print("${it?.distance} |") }
-        println("")
+
+        val populationInfo = StringBuilder()
+        populationInfo.append("ParsePopulation: Distances: ")
+        parsedPopulation.paths.forEach { populationInfo.append("${it?.distance} |") }
+        logger.info { populationInfo }
+
         val workerId = call.parameters["uuid"]
 
         if (workerId == null) {
             call.respondText("parameter uuid missing", ContentType.Text.Plain, HttpStatusCode.NotFound)
-            println("worker id missing")
+            logger.info { "Could not update worker - 404, worker id missing" }
             return
         }
 
@@ -161,7 +166,7 @@ object RestService {
         scheduler.workers.forEach { updatingWorker ->
             if (updatingWorker.uuid == UUID.fromString(workerId)) {
 
-                println("Update worker ${updatingWorker.uuid}")
+                logger.info { "Update worker ${updatingWorker.uuid}" }
                 if (!calculationIsRunning(call)) {
                     updatingWorker.timestamp = LocalDateTime.now()
                     return
@@ -184,7 +189,7 @@ object RestService {
                 respondPopulation = updatingWorker.subPopulation
                 alreadyInList = true
 
-                scheduler.printPopulations("Worker update")
+                scheduler.displaySchedulerStatus("Worker update")
                 return@forEach
             }
         }
@@ -193,7 +198,7 @@ object RestService {
 
         if (!alreadyInList) {
             call.respondText("Worker is not registered. Use POST instead", ContentType.Text.Plain, HttpStatusCode.Forbidden)
-            println("Worker is not registered. Use POST instead - 400")
+            logger.info { "Could not update worker - 400, Worker is not registered. Use POST instead" }
         }
         else {
             // TODO fix that ugly thingy... (WorkerRespond everything is nullable)
@@ -214,7 +219,7 @@ object RestService {
             scheduler.map = unityData.navMesh
             scheduler.calculationRunning = true
         } catch (e: Exception) {
-            println("Could not read map")
+            logger.warn { "Could not read map" }
             e.printStackTrace()
         }
 
@@ -236,7 +241,7 @@ object RestService {
 
         scheduler.calculationRunning = false
 
-        println("Map has been deleted")
+        logger.info { "Map has been deleted" }
         call.respondText("Current map has been deleted", ContentType.Text.Plain, HttpStatusCode.OK)
     }
 
@@ -252,7 +257,7 @@ object RestService {
     private suspend fun respondPath(call: ApplicationCall) {
         when {
             scheduler.demoIndividual.isNotEmpty() -> {
-                println("Send best Individual")
+                logger.info { "Send best Individual" }
 
                 val pathResponse = PathResponse(
                     scheduler.bestIndividual?.getIndividualPathWithoutNulls(),
@@ -293,7 +298,7 @@ object RestService {
 
     private suspend fun respondJsonError(call: ApplicationCall) {
         call.respondText("Could not read json", ContentType.Text.Plain, HttpStatusCode.BadRequest)
-        println("Could not read json")
+        logger.warn { "Could not read json" }
     }
 
     /**
@@ -308,7 +313,7 @@ object RestService {
 
         if (population.paths.contains(null) || population.paths.isNullOrEmpty()) {
             call.respondText("invalid population", status = HttpStatusCode.BadRequest)
-            println("invalid population - 400")
+            logger.info { "Could not parse population - 400, invalid population" }
             null
         } else population
     } catch (e: ContentTransformationException) {
@@ -317,7 +322,7 @@ object RestService {
     }
 
     private fun ApplicationCall.logRequest() {
-        println("${request.httpMethod.value} ${request.path()} from ${request.origin.remoteHost}")
+        logger.info { "${request.httpMethod.value} ${request.path()} from ${request.origin.remoteHost}" }
     }
 }
 

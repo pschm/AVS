@@ -5,6 +5,7 @@ import genetic_algorithm.PathManager
 import genetic_algorithm.Population
 import genetic_algorithm.Product
 import json_structure.MeshNode
+import mu.KotlinLogging
 import java.time.LocalDateTime
 import java.util.*
 import kotlin.math.pow
@@ -15,6 +16,8 @@ class Scheduler {
     companion object {
         val config = SchedulerConfig.getInstance()
     }
+
+    private val logger = KotlinLogging.logger {}
 
     @get:Synchronized
     val workers =  mutableListOf<Worker>()
@@ -38,12 +41,13 @@ class Scheduler {
         individual?.let { addDemoIndividual(it) } ?: return
 
         if (demoIndividual.size >= config.DEMO_INDIVIDUAL_SIZE) {
-            println("Demo worst: ${demoIndividual.last().distance}; Demo best: ${demoIndividual.first().distance}")
+
+            logger.debug { "Demo worst: ${demoIndividual.last().distance}; Demo best: ${demoIndividual.first().distance}" }
             val delta = demoIndividual.last().distance - demoIndividual.first().distance
             if (delta < config.MIN_DELTA) bestIndividual = demoIndividual.first()
         }
 
-        println("Currently shortest Distance: ${demoIndividual.firstOrNull()?.distance} (DemoResult=${bestIndividual == null})")
+        logger.info { "Currently shortest Distance: ${demoIndividual.firstOrNull()?.distance} (DemoResult=${bestIndividual == null})" }
     }
 
     private fun addDemoIndividual(individual: IndividualPath) {
@@ -51,7 +55,6 @@ class Scheduler {
         else if (individual.distance < demoIndividual.last().distance) {
             demoIndividual.removeAt(demoIndividual.size - 1)
             demoIndividual.add(individual)
-            println("new distance ${individual.distance})")
         }
 
         demoIndividual.sortBy { it.distance }
@@ -93,7 +96,7 @@ class Scheduler {
         }
         subPopulations.last().getPaths().addAll(masterPopulation.paths)
 
-        printPopulations("Created following subPopulations")
+        displaySchedulerStatus("Created following subPopulations")
     }
 
     /**
@@ -102,7 +105,7 @@ class Scheduler {
      */
     fun getSubPopulation(): Population? {
         if (workers.size + 1 > subPopulations.size && calculationRunning) {
-            println("Worker size to large")
+            logger.warn { "Worker size to large." }
             return null
         }
 
@@ -113,7 +116,7 @@ class Scheduler {
         if (freePopulations.isNotEmpty())
             return freePopulations[Random.nextInt(0, freePopulations.size)]
 
-        println("could not find free population :/")
+        logger.warn { "Could not find free population." }
         return null
     }
 
@@ -141,18 +144,19 @@ class Scheduler {
         }
     }
 
-    fun printPopulations(header: String) {
-        println("---------------")
-        println("Event: $header")
-        println("Current Worker:")
-        workers.forEach { println("${it.uuid} (${it.subPopulation.getBestIndividual()?.distance})") }
-        println("---")
-        println("Current subPopulations:")
+    fun displaySchedulerStatus(header: String) {
+        val schedulerStatus = StringBuilder()
+        schedulerStatus.append("Scheduler Status (Event: $header) \n")
+        schedulerStatus.append("Current Worker:\n")
+        workers.forEach { schedulerStatus.append("${it.uuid} (${it.subPopulation.getBestIndividual()?.distance})\n") }
+        schedulerStatus.append("---\n")
+        schedulerStatus.append("Current subPopulations:\n")
         subPopulations.forEach { population ->
             val individual = population.getBestIndividual()
-            println("Distance: ${individual?.distance ?: "null"} - Individual: $individual")
+            schedulerStatus.append("Distance: ${individual?.distance ?: "null"} - Individual: $individual\n")
         }
-        println("---------------")
+
+        logger.debug { schedulerStatus }
     }
 
     fun deleteOldWorkers() {

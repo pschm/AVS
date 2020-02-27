@@ -13,12 +13,7 @@ import kotlin.random.Random
 class Scheduler {
 
     companion object {
-        const val WORKER_COUNT = 12
-        const val POPULATION_SIZE = 1200 // subpopsize = 200/12 min (WORKER_COUNT+1)²
-        const val WORKER_RESPONSE_TIME = 2 // time in minutes
-        const val DEMO_INDIVIDUAL_SIZE = 90 // TODO test sizes
-        const val MIN_DELTA = 10
-        const val INDIVIDUAL_EXCHANGE_COUNT = 10
+        val config = SchedulerConfig.getInstance()
     }
 
     @get:Synchronized
@@ -42,20 +37,17 @@ class Scheduler {
 
         individual?.let { addDemoIndividual(it) } ?: return
 
-        if (demoIndividual.size >= DEMO_INDIVIDUAL_SIZE) {
+        if (demoIndividual.size >= config.DEMO_INDIVIDUAL_SIZE) {
             println("Demo worst: ${demoIndividual.last().distance}; Demo best: ${demoIndividual.first().distance}")
             val delta = demoIndividual.last().distance - demoIndividual.first().distance
-            if (delta < MIN_DELTA) bestIndividual = demoIndividual.first()
+            if (delta < config.MIN_DELTA) bestIndividual = demoIndividual.first()
         }
 
         println("Currently shortest Distance: ${demoIndividual.firstOrNull()?.distance} (DemoResult=${bestIndividual == null})")
-//        println("BEST distance: ${bestIndividual?.distance})")
-//        println("DEMO distance: ${demoIndividual.firstOrNull()?.distance})")
-//        println("new distance ${individual.distance})")
     }
 
     private fun addDemoIndividual(individual: IndividualPath) {
-        if (demoIndividual.size <= DEMO_INDIVIDUAL_SIZE) demoIndividual.add(individual)
+        if (demoIndividual.size <= config.DEMO_INDIVIDUAL_SIZE) demoIndividual.add(individual)
         else if (individual.distance < demoIndividual.last().distance) {
             demoIndividual.removeAt(demoIndividual.size - 1)
             demoIndividual.add(individual)
@@ -67,7 +59,7 @@ class Scheduler {
     }
 
     /**
-     * Create [WORKER_COUNT]+1 sub populations and save them in [subPopulations]
+     * Create [SchedulerConfig.WORKER_COUNT]+1 sub populations and save them in [subPopulations]
      */
     fun createPopulation(products: List<Product>) {
         subPopulations.clear()
@@ -77,15 +69,15 @@ class Scheduler {
         products.forEach { PathManager.addProduct(it) }
 
         // calc populationSize (should max be product.size²)
-        var populationSize = POPULATION_SIZE
+        var populationSize = config.POPULATION_SIZE
         val maxSize = products.size.toDouble().pow(products.size).toInt()
         if (populationSize > maxSize)
             populationSize = maxSize
 
         val masterPopulation = Population(populationSize, true)
 
-        val subPopSize = populationSize / (WORKER_COUNT+1)
-        repeat(WORKER_COUNT+1) {
+        val subPopSize = populationSize / (config.WORKER_COUNT+1)
+        repeat(config.WORKER_COUNT+1) {
             val subPopulation = Population(subPopSize, false)
             val individuals = arrayListOf<IndividualPath?>()
 
@@ -137,7 +129,7 @@ class Scheduler {
             // sort all individuals according to the best path
             paths.sortBy { individualPath -> individualPath?.distance }
 
-            repeat(INDIVIDUAL_EXCHANGE_COUNT) {
+            repeat(config.INDIVIDUAL_EXCHANGE_COUNT) {
                 // remove the worst individual
                 paths.removeAt(paths.size - 1)
                 // add random new individual from neighbor population
@@ -165,15 +157,15 @@ class Scheduler {
 
     fun deleteOldWorkers() {
         val now = LocalDateTime.now()
-        val workerId = mutableListOf<UUID>();
+        val workerId = mutableListOf<UUID>()
         for (worker in workers) {
-            if(worker.timestamp.isBefore(now.minusMinutes(WORKER_RESPONSE_TIME.toLong()))){
-                workerId.add(worker.uuid);
+            if(worker.timestamp.isBefore(now.minusMinutes(config.WORKER_RESPONSE_TIME.toLong()))){
+                workerId.add(worker.uuid)
             }
         }
         subPopulations.forEach{
             if(workerId.contains(it.worker?.uuid)){
-                it.worker = null;
+                it.worker = null
             }
         }
         workers.removeAll{workerId.contains(it.uuid)}

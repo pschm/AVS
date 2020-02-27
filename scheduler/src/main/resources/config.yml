@@ -1,0 +1,20 @@
+# how many workers do you provide
+WORKER_COUNT: 12
+
+# Size for the master population, must be greater than: (WORKER_COUNT+1)²
+# Reminder: subpopulation size = POPULATION_SIZE / (WORKER_COUNT+1)
+POPULATION_SIZE: 1200
+
+# time in minutes before an inactive worker will be deleted
+WORKER_RESPONSE_TIME: 2
+
+# how many results should be gathered at least
+DEMO_INDIVIDUAL_SIZE: 90
+
+# How far can the best and the worst result be apart?
+# Note: All DEMO_INDIVIDUAL_SIZE result are considered for this calculation
+MIN_DELTA: 10
+
+# how many individuals are exchanged between the sub populations
+# this should not be more than 20% of the subpopulation size [POPULATION_SIZE / (WORKER_COUNT+1)]
+INDIVIDUAL_EXCHANGE_COUNT: 10

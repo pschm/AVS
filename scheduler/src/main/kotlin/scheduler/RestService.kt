@@ -83,7 +83,7 @@ object RestService {
 
             if (subPopulation == null) {
                 call.respondText(
-                    "Max worker count is reached: ${Scheduler.WORKER_COUNT} Workers",
+                    "Max worker count is reached: ${Scheduler.config.WORKER_COUNT} Workers",
                     status = HttpStatusCode.ServiceUnavailable
                 )
                 return@ensureMapAndProducts

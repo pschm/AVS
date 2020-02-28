@@ -1,15 +1,23 @@
 package scheduler
 
+import com.google.gson.Gson
+import com.google.gson.JsonArray
+import com.google.gson.JsonParser
+import com.google.gson.stream.JsonReader
 import genetic_algorithm.IndividualPath
 import genetic_algorithm.PathManager
 import genetic_algorithm.Population
 import genetic_algorithm.Product
 import json_structure.MeshNode
 import mu.KotlinLogging
+import java.io.File
+import java.io.FileReader
+import java.io.FileWriter
 import java.time.LocalDateTime
 import java.util.*
 import kotlin.math.pow
 import kotlin.random.Random
+
 
 class Scheduler {
 
@@ -31,6 +39,11 @@ class Scheduler {
     var map: List<MeshNode>? = null
     val subPopulations = mutableListOf<Population>()
 
+    //Testing variables
+    var start: Long = 0
+    var finish: Long = 0
+    var distanceJsonObject:DistancesOverTime? = null
+
     /**
      * update [bestIndividual] if [population] has better fitness
      */
@@ -39,12 +52,14 @@ class Scheduler {
         val individual = population.getBestIndividual()
 
         individual?.let { addDemoIndividual(it) } ?: return
-
+        createJsonForConfiguration();
         if (demoIndividual.size >= config.DEMO_INDIVIDUAL_SIZE) {
 
             logger.debug { "Demo worst: ${demoIndividual.last().distance}; Demo best: ${demoIndividual.first().distance}" }
             val delta = demoIndividual.last().distance - demoIndividual.first().distance
-            if (delta < config.MIN_DELTA) bestIndividual = demoIndividual.first()
+            if (delta < config.MIN_DELTA) {
+                bestIndividual = demoIndividual.first()
+            }
         }
 
         logger.info { "Currently shortest Distance: ${demoIndividual.firstOrNull()?.distance} (DemoResult=${bestIndividual == null})" }
@@ -59,6 +74,35 @@ class Scheduler {
 
         demoIndividual.sortBy { it.distance }
         bestDistance = demoIndividual.first().distance
+
+        finish = System.currentTimeMillis()
+        var timeDelta = (finish - start)/1000 //sekunden
+        distanceJsonObject = DistancesOverTime(bestDistance,timeDelta)
+        start = finish;
+    }
+
+    private fun createJsonForConfiguration() {
+        val file = File("src/main/resources/distancesOverTime.json")
+        var distances:MutableList<DistancesOverTime> = mutableListOf()
+        val gson = Gson()
+        if(file.exists()) {
+            val fr = FileReader(file.absolutePath)
+            val jsonReader = JsonReader(fr)
+            val parser = JsonParser();
+            val jsonarray: JsonArray = parser.parse(jsonReader).asJsonArray
+
+            jsonarray.forEach{
+                distances.add(gson.fromJson(it, DistancesOverTime::class.java))
+            }
+            println(distances.size)
+        }
+        distances.add(distanceJsonObject!!)
+        println(file.exists())
+       // val json = gson.toJson(distances)
+        val json = gson.toJson(distances)
+        val writer = FileWriter(file)
+        writer.write(json)
+        writer.close()
     }
 
     /**

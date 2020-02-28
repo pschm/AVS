@@ -22,6 +22,7 @@ import json_structure.UnityMapStructure
 import json_structure.WorkerRespond
 import mu.KotlinLogging
 import utility.get
+import java.io.File
 import java.time.LocalDateTime
 import java.util.*
 import kotlin.NoSuchElementException
@@ -57,6 +58,7 @@ object RestService {
             post("/map") {
                 call.logRequest()
                 saveMap(call)
+                deleteJsonFile();
             }
             delete("/map") {
                 call.logRequest()
@@ -98,6 +100,8 @@ object RestService {
 
             val gson = GsonBuilder().serializeNulls().create()
             val json = gson.toJson(WorkerRespond(worker.uuid, worker.subPopulation, navMesh))
+
+            scheduler.start = System.currentTimeMillis()
 
             call.respondText(json, ContentType.Application.Json, HttpStatusCode.Created)
         } ?: call.respondText(
@@ -323,6 +327,11 @@ object RestService {
 
     private fun ApplicationCall.logRequest() {
         logger.info { "${request.httpMethod.value} ${request.path()} from ${request.origin.remoteHost}" }
+    }
+
+    private fun deleteJsonFile(){
+        val file = File("src/main/resources/distancesOverTime.json")
+        file.delete()
     }
 }
 

@@ -57,7 +57,7 @@ class Scheduler {
 
             logger.debug { "Demo worst: ${demoIndividual.last().distance}; Demo best: ${demoIndividual.first().distance}" }
             val delta = demoIndividual.last().distance - demoIndividual.first().distance
-            if (delta < config.MIN_DELTA) {
+            if (delta <= config.MIN_DELTA) {
                 bestIndividual = demoIndividual.first()
             }
         }

@@ -103,7 +103,7 @@ object RestService {
 
             scheduler.start = System.currentTimeMillis()
 
-            call.respondText(json, ContentType.Application.Json, HttpStatusCode.Created)
+            call.respondText(json, ContentType.Application.Json, HttpStatusCode.OK)
         } ?: call.respondText(
             "No map available, therefore no population could be created",
             status = HttpStatusCode.ServiceUnavailable
